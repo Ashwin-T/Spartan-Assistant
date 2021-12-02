@@ -25,6 +25,7 @@ const Login = () => {
                         !useMobileState() &&
                         <div className="loginContent loginImage">
                             <div>Make timelapse of walking around school</div>
+                            <div>(Slideshows, videos, etc.)</div>
                         </div>
                     }   
                     <div className="loginContent loginLogin">
