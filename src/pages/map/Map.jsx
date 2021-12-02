@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import InteractiveMap, {Marker} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
+
 import * as roomData from "../../data/Rooms.json";
+
 import './map.css';
 // import * as otherData from "./Data/other.json";
 
@@ -20,9 +22,12 @@ const Map = () => {
     const [viewPort, setViewPort] = useState({});// sets initial value of 'view port' to empty js object. viewport will help us setd
 
 
-    const [currentRoom, setCurrentRoom] = useState('');
-    const [findingRoom, setFindingRoom] = useState('');
-
+    const [currentRoom, setCurrentRoom] = useState({});
+    const [findingRoom, setFindingRoom] = useState({});
+    
+    const inputCurrentRoom = useRef(null);
+    const inputFindingRoom = useRef(null);
+    
 
     const calculateWidth =()=>{//this sets the width of the map so it looks ok on mobile and computer
         if(window.innerWidth < 600){// 600 is the borderish from phone to computer 
@@ -74,6 +79,9 @@ const Map = () => {
     
 
     const handleCheck = ()=>{
+        // const restRoom = inputCurrentRoom.current.value;
+        // const findRoom = inputFindingRoom.current.value;
+        
         roomData.features.forEach((room)=>{//pushed a
             if(room.properties.name === restRoom || room.properties.name2 === restRoom){
                 setCurrentRoom(room);
@@ -82,23 +90,30 @@ const Map = () => {
             if(room.properties.name === findRoom || room.properties.name2 === findRoom){
                 setFindingRoom(room);
             }
-        })
+        }) 
     }
 
-
     const handleMap = ()=>{
+        let currentRoom = {}, findingRoom = {};
+        roomData.features.forEach((room)=>{//pushed a
+            if(room.properties.name === restRoom || room.properties.name2 === restRoom){
+                currentRoom = room
+                setCurrentRoom(room);
+            }
 
-        handleCheck();
+            if(room.properties.name === findRoom || room.properties.name2 === findRoom){
+                findingRoom = room
+                setFindingRoom(room);
+            }
+        })
 
-        // console.log(currentRoom);
-        // console.log(findingRoom);
 
-        if(currentRoom !== '' && findingRoom !== ''){
+        if('type' in currentRoom && 'type' in findingRoom){
             setSubmittedRoom(true)
         }
         else{
-            alert('Rooms not found')
-        }//ok wth does this work it shouldn't lOL
+            alert('Please enter a valid room name')
+        }
 
         setViewPort({
             longitude: -122.06716285921868,
@@ -108,14 +123,14 @@ const Map = () => {
             height: heightX,
             bearing: 90
 
-        })//resets map in center of school
-    }
+        })
 
+    }
 
     //important notice: do we want which style
 
     
-    const MarkerPoints = () => {//marker for searched class
+    const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
 
         console.log(currentRoom)
         console.log(findingRoom)
@@ -160,11 +175,11 @@ const Map = () => {
 
                 <div className="flexbox center column">
                     <h3>What Room Are You In?</h3>
-                    <input value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
+                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
                     <h3>What Room Are You Going To?</h3>
-                    <input value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
+                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
                     <div>
-                        <button className = 'go' onClick = {()=>handleMap()}>Go!</button>
+                        <button className = 'go' onClick = {handleMap}>Go!</button>
                     </div>
                 </div>
             </div>
@@ -177,7 +192,7 @@ const Map = () => {
                             onViewportChange={viewPort => setViewPort(viewPort)}
                             > 
 
-                        {(submittedRoom)? <MarkerPoints />: null}
+                        {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
             </InteractiveMap>
                 
         </div>     
