@@ -1,0 +1,87 @@
+.mapPageContainer{
+    margin-top: 3vh;
+}
+
+.mapPageContainer > *{
+    margin: 0.75vh 3vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 3px solid var(--alternate-color);
+}
+
+.mapControls{
+    width: 25vw;
+    height: 40vh;
+    border-radius: 25px;
+    background-color: var(--alternate-background-color) !important;
+}
+
+.mapControls h1{
+    text-align: center;
+    border-bottom: 3px solid var(--alternate-color);
+}
+
+.mapControls .go{
+    width: 5vw;
+    height: 1.5vw;
+    margin: 1vh 0; 
+    outline: none;
+    border-radius: 16px; 
+    border: 3px solid var(--alternate-color);
+    background-color: var(--alternate-background-color);
+    transition: all 0.3s ease;
+}
+
+.mapControls .go:hover{   
+    background-color: var(--alternate-color);
+}
+
+.mapControls input{
+    width: 10vw;
+    height: 2vh;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid var(--alternate-color);
+    font-size: 2vh;
+}
+
+.refreshIcon{
+    margin-top: 0.5vh;
+    font-size: 2.5vw;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--alternate-background-color);
+    color: dodgerblue;
+}
+
+.mapIcon > *{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: 2px solid white;
+}
+
+.searchMarkerCurrent{
+    background: dodgerblue !important;
+}
+
+.searchMarkerFind{
+    background: red !important;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .mapControls{
+        width: 85vw;
+        height: 15vh;
+    }
+
+    .mapControls h1{
+        font-size: 2vh;
+    }
+    .refreshIcon{
+        font-size:7vw;
+    }
+
+}

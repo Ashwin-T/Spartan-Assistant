@@ -1,0 +1,33 @@
+nav{
+    width: 90vw;
+    height: 10vh;
+    margin-top: 3vh;
+    background-color: var(--alternate-background-color) !important;
+    border: 5px solid var(--alternate-color);
+    border-radius: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+}
+
+nav a{
+    text-decoration: none;
+    color: var(--content-color) !important;
+    margin: 0 1.25vw;
+
+}
+
+nav img{
+    width: 70px;
+    height: 70px;
+    clip-path: circle();
+}
+
+@media only screen and (max-width: 768px) {
+    nav img{
+        width: 40px;
+        height: 40px;
+    }
+}

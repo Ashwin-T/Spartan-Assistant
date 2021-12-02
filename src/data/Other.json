@@ -1,0 +1,104 @@
+{ "type": "FeatureCollection",
+  
+    "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": []
+          },
+          "properties": {
+            "name" : "Bike Rack",
+            "key": "1"
+          }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Bike Rack",
+              "key": "2"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Student Parking"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Faculty Parking"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Electic Car Charging Station",
+              "key" : "1"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Electic Car Charging Station",
+              "key" : "2"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Vending Machine",
+              "key" : "1"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Vending Machine",
+              "key" : "2"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": []
+            },
+            "properties": {
+              "name" : "Vending Machine",
+              "key" : "3"
+            }
+        }
+
+
+    ]
+}
