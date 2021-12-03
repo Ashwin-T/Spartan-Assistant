@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import InteractiveMap, {Marker} from 'react-map-gl';
+import InteractiveMap, {Marker, Source, Layer} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
+import {IoIosNavigate} from 'react-icons/io';
 
 import * as roomData from "../../data/Rooms.json";
+import Navbar from "../../components/navbar/Navbar";
 
 import './map.css';
 // import * as otherData from "./Data/other.json";
@@ -27,44 +29,40 @@ const Map = () => {
     
     const inputCurrentRoom = useRef(null);
     const inputFindingRoom = useRef(null);
-    
 
-    const calculateWidth =()=>{//this sets the width of the map so it looks ok on mobile and computer
-        if(window.innerWidth < 600){// 600 is the borderish from phone to computer 
-            return '90vw';
-        }
-        return '60vw'
-    }
+    const [menuToggle, setMenuToggle] = useState(false);
 
-    const calculateHeight =()=>{//this sets the width of the map so it looks ok on mobile and computer
-        if(window.innerWidth < 600){// 600 is the borderish from phone to computer 
-            return '60vh';
-        }
-        return '75vh'
-    }
+    const [menuStyle, setMenuStyle] = useState({color: 'dodgerblue'});
 
     const calculateZoom =()=>{//this sets the zoom of the map so it looks ok on mobile and computer
-        if(window.innerWidth < 600){// 600 is the borderish from phone to computer 
-            return 16.5
+        if(window.innerWidth < 768){// 600 is the borderish from phone to computer 
+            return 16.35
         }
         return 17
     }
 
-    const widthX = calculateWidth(); //sets a variable to the value of width and zoom
+    const calculateCenter = ()=>{//this sets the center of the map so it looks ok on mobile and computer
+        if(window.innerWidth < 768){// 600 is the borderish from phone to computer
+            return -122.06586285921868
+        }
+        return -122.06656285921868
+    }
+
+    
+    const lon = calculateCenter();
     const zoomX = calculateZoom();
-    const heightX = calculateHeight();
 
     useEffect(()=>{     
         setViewPort({
-            latitude: 37.360158578662605,
-            longitude: -122.06716285921868,
+            latitude: 37.360205578662605,
+            longitude: lon,
             zoom: zoomX,
-            width: widthX,
-            height: heightX,
+            width: "100vw",
+            height: "100vh",
             bearing: 90
         })
 
-    }, [zoomX, widthX, heightX])// the useEffect will run on start-up and add data to the viewport object
+    }, [zoomX,lon])// the useEffect will run on start-up and add data to the viewport object
 
    
     const formChange1 = (room)=>{
@@ -76,29 +74,15 @@ const Map = () => {
         setSubmittedRoom(false)
         setFindRoom(room)//sets searched to variable
     }
-    
 
-    const handleCheck = ()=>{
-        // const restRoom = inputCurrentRoom.current.value;
-        // const findRoom = inputFindingRoom.current.value;
-        
-        roomData.features.forEach((room)=>{//pushed a
-            if(room.properties.name === restRoom || room.properties.name2 === restRoom){
-                setCurrentRoom(room);
-            }
-
-            if(room.properties.name === findRoom || room.properties.name2 === findRoom){
-                setFindingRoom(room);
-            }
-        }) 
-    }
 
     const handleMap = ()=>{
-        let currentRoom = {}, findingRoom = {};
+        let currentRoom = {}, findingRoom = {}, geojson = {};
         roomData.features.forEach((room)=>{//pushed a
             if(room.properties.name === restRoom || room.properties.name2 === restRoom){
                 currentRoom = room
                 setCurrentRoom(room);
+                  
             }
 
             if(room.properties.name === findRoom || room.properties.name2 === findRoom){
@@ -110,19 +94,19 @@ const Map = () => {
 
         if('type' in currentRoom && 'type' in findingRoom){
             setSubmittedRoom(true)
+            handleMenu();
         }
         else{
             alert('Please enter a valid room name')
         }
 
         setViewPort({
-            longitude: -122.06716285921868,
-            latitude: 37.360158578662605,
+            latitude: 37.360205578662605,
+            longitude: lon,
             zoom: zoomX,
-            width: widthX,
-            height: heightX,
+            width: "100vw",
+            height: "100vh",
             bearing: 90
-
         })
 
     }
@@ -132,8 +116,6 @@ const Map = () => {
     
     const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
 
-        console.log(currentRoom)
-        console.log(findingRoom)
 
         return ( 
         <>
@@ -155,36 +137,20 @@ const Map = () => {
         </> ); 
     }
 
+    const handleMenu = ()=>{
+        setMenuToggle(!menuToggle)
+        if(menuToggle){
+            setMenuStyle({color: 'dodgerblue'})
+        }
+        else{
+            setMenuStyle({color: '#D7BE69'})
+        }
+    }
+
     
     return (
-        <div className="flexbox center mapPageContainer">
-            <div className="flexbox center column mapControls">
-                <h1>
-                    MV Maps
-                </h1>
+        <div className="flexbox mapPageContainer">
 
-                <button onClick = {()=>{setViewPort({
-                                                latitude: 37.360158578662605,
-                                                longitude: -122.06716285921868,
-                                                zoom: zoomX,
-                                                width: widthX,
-                                                height: heightX,
-                                                bearing: 90
-                                            })}} 
-                className="refreshIcon"> <MdOutlineShareLocation /></button>
-
-                <div className="flexbox center column">
-                    <h3>What Room Are You In?</h3>
-                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
-                    <h3>What Room Are You Going To?</h3>
-                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
-                    <div>
-                        <button className = 'go' onClick = {handleMap}>Go!</button>
-                    </div>
-                </div>
-            </div>
-
-            <br />
             <InteractiveMap
                             {...viewPort}
                             mapStyle = "mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n"
@@ -192,8 +158,58 @@ const Map = () => {
                             onViewportChange={viewPort => setViewPort(viewPort)}
                             > 
 
+                        <Navbar />                    
+
                         {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
+
+                        <div className="flexbox space-between">
+
+                            {menuToggle && window.innerWidth > 768 && 
+                                <div className="flexbox column center controlContainer">
+                                    <h3>What Room Are You In Right Now?</h3>
+                                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
+                                    <h3>What Room Are You Going To?</h3>
+                                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
+                                    <div>
+                                        <button className = 'go' onClick = {handleMap}>Navigate!</button>
+                                    </div>
+                                </div>
+                            } 
+
+                            
+                            <div className="flexbox center column mapControls">
+                                <div className="flexbox center column">
+                                    <button onClick = {()=>{setViewPort({
+                                                                latitude: 37.360205578662605,
+                                                                longitude: lon,
+                                                                zoom: zoomX,
+                                                                width: "100vw",
+                                                                height: "100vh",
+                                                                bearing: 90
+                                                            })}} 
+                                className="controlButton"> <MdOutlineShareLocation size = {50}/></button>
+                             </div>
+                                <div className="flexbox center column">
+                                    <button className="controlButton" onClick = {handleMenu}> <IoIosNavigate size = {50} style = {menuStyle}/></button>
+                                </div>
+                            </div>
+
+                            {menuToggle && window.innerWidth < 768 && 
+                                <div className="flexbox column center controlContainer">
+                                    <h3>What Room Are You In Right Now?</h3>
+                                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
+                                    <h3>What Room Are You Going To?</h3>
+                                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
+                                    <div>
+                                        <button className = 'go' onClick = {handleMap}>Navigate!</button>
+                                    </div>
+                                </div>
+                            } 
+
+                        </div>
+
             </InteractiveMap>
+
                 
         </div>     
     ) 

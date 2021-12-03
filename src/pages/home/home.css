@@ -7,8 +7,25 @@
     border-radius: 25px;
 }
 
+h1{
+    color: var(--alternate-color) !important;
+    font-size: 3vw;
+}
+
+h5{
+    font-style: italic;
+    color: var(--content-color) !important;
+    font-weight: normal;
+    border-bottom: 3px solid var(--alternate-color) !important;
+    margin: 0 10vw; 
+}
+
+
 @media only screen and (max-width: 600px) {
     .homeContainer{
         width: 85vw;
+    }
+    h1{
+        font-size: 7vw;
     }
 }

@@ -3,7 +3,7 @@ html {
     --alternate-background-color: white;
     --alternate-color: #D7BE69;
     --content-color: black;
-    --shadow-color: gray;
+    --shadow-color: #d3d3d3 ;
 }
 
 h1{ 
@@ -33,4 +33,8 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.space-between{
+    justify-content: space-between;
 }

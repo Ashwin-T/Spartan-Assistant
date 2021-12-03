@@ -6,10 +6,11 @@ import Map from '../pages/map/Map';
 const Source = () => {
     return ( 
         <>
-            <Navbar />
             <Routes>
-                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/" element={<><Navbar /><Home /></>} />
                     <Route exact path="/map" element={<Map />} />
+                    <Route exact path="/chat" />
+                    <Route exact path="/settings" />
             </Routes>
         </>
      );

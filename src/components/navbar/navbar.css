@@ -16,13 +16,17 @@ nav a{
     text-decoration: none;
     color: var(--content-color) !important;
     margin: 0 1.25vw;
+    cursor: pointer;
+}
 
+nav .profile{
+    width: 40px;
+    height: 40px;
 }
 
 nav img{
     width: 70px;
     height: 70px;
-    clip-path: circle();
 }
 
 @media only screen and (max-width: 768px) {
