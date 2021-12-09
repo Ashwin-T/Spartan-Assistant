@@ -94,7 +94,7 @@
 
     .mapControls{
         width: 50vw;
-        height: 7vh;;
+        height: 7.75vh;;
     }
 
     .controlContainer{
@@ -118,4 +118,16 @@
         font-size:7vw;
     }
 
+}
+
+@media only screen and (max-width: 375px) {
+    .mapControls{
+        height: 9vh;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .mapControls{
+        height: 15vh;;
+    }
 }

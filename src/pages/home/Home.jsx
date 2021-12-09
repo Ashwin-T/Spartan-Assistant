@@ -22,7 +22,6 @@ const Home = () => {
         setToday(moment().format('dddd') + " " + moment().format("MMM Do"));
 
         const setApiQuote = async () => {
-            console.log("Getting quote...");
             const dataArray = await axios.get(`https://type.fit/api/quotes`)
             const randomIndex = Math.floor(Math.random() * dataArray.data.length);
             let author;
@@ -43,15 +42,15 @@ const Home = () => {
         <div className="flexbox column center">
 
             {(quote !== '') ?
-            <div className="flexbox column center homeContainer">
-                <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
+                <div className="flexbox column center homeContainer">
+                    <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
-                <h2>Today is: {today}</h2>
-                <h3>Quote of the hour:</h3>
-                <h2>{quote}</h2>
-    
-                
-            </div>
+                    <h2>Today is: {today}</h2>
+                    <h4>Quote of the hour:</h4>
+                    <h5>{quote}</h5>
+        
+                    
+                </div>
 
             : <Loading />}
 

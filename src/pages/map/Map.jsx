@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import InteractiveMap, {Marker} from 'react-map-gl';
+import InteractiveMap, {Marker, Layer, Source} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
 import {IoIosNavigate} from 'react-icons/io';
-
 import * as roomData from "../../data/Rooms.json";
 import Navbar from "../../components/navbar/Navbar";
+import useDirections from "../../hooks/useDirections";
 
 import './map.css';
 // import * as otherData from "./Data/other.json";
@@ -16,6 +16,7 @@ const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools center location
+
     
     const [restRoom, setRestRoom] = useState('');//sets initial value of 'search'
     const [findRoom, setFindRoom] = useState('');//sets initial value of 'search'
@@ -76,7 +77,7 @@ const Map = () => {
     }
 
 
-    const handleMap = ()=>{
+    const handleMap = async()=>{
         let currentRoom = {}, findingRoom = {};
         roomData.features.forEach((room)=>{//pushed a
             if(room.properties.name === restRoom || room.properties.name2 === restRoom){
@@ -93,8 +94,11 @@ const Map = () => {
 
 
         if('type' in currentRoom && 'type' in findingRoom){
+        
+    
             setSubmittedRoom(true)
             handleMenu();
+
         }
         else{
             alert('Please enter a valid room name')
@@ -116,9 +120,15 @@ const Map = () => {
     
     const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
 
-
         return ( 
         <>
+
+            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}>
+
+                <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
+            
+            </Source>
+
             <Marker longitude={currentRoom.geometry.coordinates[0]}
                     latitude={currentRoom.geometry.coordinates[1]}
             >
