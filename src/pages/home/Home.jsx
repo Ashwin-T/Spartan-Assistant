@@ -46,9 +46,10 @@ const Home = () => {
             <div className="flexbox column center homeContainer">
                 <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
-                <h4>Today is: {today}</h4>
-                <h4>Quote of the Day:</h4>
-                <h5>{quote}</h5>
+                <h2>Today is: {today}</h2>
+                <h3>Quote of the hour:</h3>
+                <h2>{quote}</h2>
+    
                 
             </div>
 

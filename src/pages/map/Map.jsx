@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import InteractiveMap, {Marker, Source, Layer} from 'react-map-gl';
+import InteractiveMap, {Marker} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
 import {IoIosNavigate} from 'react-icons/io';
 
@@ -77,7 +77,7 @@ const Map = () => {
 
 
     const handleMap = ()=>{
-        let currentRoom = {}, findingRoom = {}, geojson = {};
+        let currentRoom = {}, findingRoom = {};
         roomData.features.forEach((room)=>{//pushed a
             if(room.properties.name === restRoom || room.properties.name2 === restRoom){
                 currentRoom = room
