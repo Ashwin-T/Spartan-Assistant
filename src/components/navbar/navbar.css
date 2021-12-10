@@ -39,17 +39,15 @@ nav button{
     background-color: transparent;
 }
 
-nav .profile{
-    width: 4.5vh !important;
+nav img{
+    width: 50px !important;
     clip-path: circle();
 }
 
-nav img{
-    width: 5vh;
-}
+
 
 .dropdown{
-    margin-right: 1vw;
+    margin: 0 1.25vw;
     cursor: pointer;
 }
 
