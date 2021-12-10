@@ -46,7 +46,7 @@ const Home = () => {
                     <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
                     <h3>Today is: {today}</h3>
-                    <h4>Quote of the hour:</h4>
+                    <h4>Quote of the Hour:</h4>
                     <h5>{quote}</h5>
         
                     
