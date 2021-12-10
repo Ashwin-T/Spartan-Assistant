@@ -168,7 +168,7 @@ const Map = () => {
                             onViewportChange={viewPort => setViewPort(viewPort)}
                             > 
 
-                        <Navbar type = {1}/>                    
+                        <Navbar navType = {1}/>                    
 
                         {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
 

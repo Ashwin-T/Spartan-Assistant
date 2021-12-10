@@ -12,7 +12,7 @@ const FreshmenChat = () => {
                     null:
 
                     <div className="sidebar">
-                        <Navbar type = {2}/>
+                        <Navbar navType = {2}/>
                     </div>
                 }
                 

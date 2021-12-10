@@ -8,7 +8,7 @@ const Source = () => {
     return ( 
         <>
             <Routes>
-                    <Route exact path="/" element={<><Navbar type = {1}/><Home /></>} />
+                    <Route exact path="/" element={<><Navbar navType = {1}/><Home /></>} />
                     <Route exact path="/map" element={<Map />} />
                     <Route exact path="/chat" element={<><Chat /></>}/>
                     <Route exact path="/settings" />
