@@ -1,5 +1,5 @@
 nav{
-    width: 90vw;
+    width: 90%;
     height: 10vh;
     margin-top: 3vh;
     background-color: var(--alternate-background-color) !important;
@@ -11,6 +11,15 @@ nav{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
 }
+.default{
+    width: 90% !important;
+}
+
+.open{
+    width: 225% !important;
+    margin-left: 1vw;
+}
+
 
 nav a{
     text-decoration: none;
@@ -19,20 +28,31 @@ nav a{
     cursor: pointer;
 }
 
+nav button{
+    text-decoration: none;
+    color: var(--content-color) !important;
+    margin: 0 1.25vw;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
 nav .profile{
-    width: 40px;
-    height: 40px;
+    width: 4.5vh !important;
     clip-path: circle();
 }
 
 nav img{
-    width: 70px;
-    height: 70px;
+    width: 5vh;
+}
+
+.dropdown{
+    margin-right: 1vw;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
     nav img{
-        width: 40px;
-        height: 40px;
+        width: 5vh !important;
     }
 }
