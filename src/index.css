@@ -6,6 +6,7 @@ html {
     --shadow-color: #d3d3d3 ;
 }
 
+
 h1{ 
     margin:0
 }
@@ -22,6 +23,11 @@ body {
     width: 100%;
     height: 100%;
 }
+a{
+    text-decoration: none !important;
+    color: var(--content-color) !important;
+}
+
 
 .flexbox{
     display: flex;

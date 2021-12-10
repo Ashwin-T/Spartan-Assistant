@@ -1,6 +1,8 @@
-import './freshmenChat.css'
 import Navbar from '../../../components/navbar/Navbar'
 import useMobileState from '../../../hooks/useMobileState'
+
+import './freshmenChat.css'
+
 
 const FreshmenChat = () => {
 

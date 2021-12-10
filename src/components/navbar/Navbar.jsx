@@ -80,12 +80,12 @@ const Navbar = ({navType}) => {
                         
                         <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${user.photoURL}`} /></Link>
                         
-                        {isOpen && <button className = "link"  onClick={handleOpen}><AiOutlineMenuFold size = {40}/></button>}
+                        {isOpen && <button className = "link"  onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
                     </div>
 
                 : <div className= 'dropdown' onClick={handleOpen}>
                     
-                    <AiOutlineMenuUnfold size = {40}/>
+                    <AiOutlineMenuUnfold size = {35}/>
                     
                 </div>}
 

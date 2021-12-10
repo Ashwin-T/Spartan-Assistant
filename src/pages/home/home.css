@@ -19,12 +19,64 @@ h5{
     margin: 0 10vw; 
 }
 
+.importantLinks{
+    width: 25vw;
+    height: 7vh;
+    background-color:var(--alternate-background-color) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 2vh 3vw;
+    border-radius: 16px;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
 
-@media only screen and (max-width: 600px) {
+.importantLinks img{
+    width: 45px;
+    clip-path: circle();
+}
+
+.importantLinks h3{
+    color: var(--alternate-color) !important;
+    margin: 0;
+    padding: 0;
+}
+
+.importantLinks :nth-child(1){
+    margin: 0 1.5vw;
+}
+.importantLinks :nth-child(2){
+    margin: 0 2vw;
+}
+
+.importantLinks:hover{
+    transform: scale(1.25);
+}
+
+.homeLinks{
+    margin: 3vh 0;
+}
+
+
+@media only screen and (max-width: 786px) {
     .homeContainer{
         width: 85vw;
     }
     h1{
-        font-size: 7vw;
+        font-size: 12vw;
     }
+
+      
+    .importantLinks{
+        width: 65vw;
+        height: 7vh;
+    }
+    
+
+    .importantLinks img{
+        width: 35px;
+        clip-path: circle();
+    }
+  
+
+    
 }

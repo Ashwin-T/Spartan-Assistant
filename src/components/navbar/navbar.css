@@ -39,9 +39,13 @@ nav button{
     background-color: transparent;
 }
 
-nav img{
-    width: 50px !important;
+nav .profile{
+    width: 35px !important;
     clip-path: circle();
+}
+
+nav img{
+    width: 50px;
 }
 
 
