@@ -25,7 +25,7 @@ const FreshmenChat = () => {
             <div className="flexbox column center">
                 <div className="chatContainer">
                     <div className="chatContent">
-                        <Bar />
+                        <Bar/>
                     </div>
                 </div>
             </div>

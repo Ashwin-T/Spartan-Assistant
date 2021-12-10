@@ -14,10 +14,12 @@ nav{
 }
 .default{
     width: 90% !important;
+    margin: 3vh 1vw;
 }
 
 .open{
-    width: calc(90vw - 5px) !important;
+    width: calc(90vw - 2vw - 5px) !important;
+    margin: 3vh 1vw;
 }
 
 
