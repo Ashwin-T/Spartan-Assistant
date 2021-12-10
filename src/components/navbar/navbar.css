@@ -10,14 +10,14 @@ nav{
     align-items: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
+    position: relative;
 }
 .default{
     width: 90% !important;
 }
 
 .open{
-    width: 225% !important;
-    margin-left: 1vw;
+    width: calc(90vw - 5px) !important;
 }
 
 
