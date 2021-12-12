@@ -30,10 +30,9 @@ const FreshmenChat = () => {
                 <div className="chatContainer flexbox">
                     <Bar/>
                     <div className="flexbox column align-items-center chatContent">
-                        <div className = "flexbox center space-between">
+                        <div className = "flexbox center space-between inputSection">
                             <input type = 'text' />
-                            {/* <GrSend /> */}
-                            <button>Submit</button>
+                            <button><GrSend size = {30}/></button>
                         </div>
                     </div>
 

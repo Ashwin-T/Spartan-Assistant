@@ -5,8 +5,6 @@ import {useEffect, useState} from 'react'
 import moment from 'moment';
 import Loading from '../../components/loading/Loading';
 // import axios from 'axios';
-
-
 import './home.css';
 
 const Home = () => {
