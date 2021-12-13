@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom'
-import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "@firebase/auth";
 import app from '../../tools/Firebase'
 
@@ -11,9 +10,6 @@ import {useState} from 'react'
 import './navbar.css'
 
 const Navbar = ({navType}) => {
-
-    const auth = getAuth(app);
-    const [user] = useAuthState(auth);
 
     const [isOpen, setIsOpen] = useState(false)
     const [styleType, setStyleType] = useState('default')
@@ -78,7 +74,7 @@ const Navbar = ({navType}) => {
                             })
                         }
                         
-                        <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${user.photoURL}`} /></Link>
+                        <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${getAuth().currentUser.photoURL}`} /></Link>
                         
                         {isOpen && <button className = "link"  onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
                     </div>
