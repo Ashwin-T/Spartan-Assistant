@@ -3,6 +3,7 @@ import Navbar from "./navbar/Navbar";
 import Home from '../pages/home/Home';
 import Map from '../pages/map/Map';
 import Chat from '../pages/chat/Chat';
+import Setting from '../pages/setting/Setting';
 
 const Source = () => {
     return ( 
@@ -11,7 +12,7 @@ const Source = () => {
                     <Route exact path="/" element={<><Navbar navType = {1}/><Home /></>} />
                     <Route exact path="/map" element={<Map />} />
                     <Route exact path="/chat" element={<><Chat /></>}/>
-                    <Route exact path="/settings" />
+                    <Route exact path="/settings" element={<><Navbar navType = {1}/><Setting /></>} />
             </Routes>
         </>
      );
