@@ -5,7 +5,6 @@
     border-radius: 25px 0 0 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     grid-area: "a";
-
 }
 .chatContainer{
     width: 90vw;
@@ -20,28 +19,39 @@
     width: 65vw;
     height: 95vh;
 }
+
 .inputSection button{
     width:5vw;
     height: 5vh;
     border: 2px solid black;
-    border-radius: 16px;
+    border-radius: 35px;
     margin-top: calc(90vh - 10px);
-    /* background-color: var(--background-color);
-    outline: none;
-    margin: 0 1vw;*/
-
 }
 
- .inputSection{
-    width: calc(55vw - 4px);
+ .inputSection input[type = "text"]{
+    width: calc(50vw - 4px);
     height: 5vh;
     background-color: var(--background-color);
     border: none;
     border: 2px solid black;
-    font-size: 15px;
+    font-size: 1rem;
     justify-content: flex-end;
     margin: 0;
     padding: 0;
-    margin-top: calc(90vh - 10px);
-    border-radius: 16px;
+    margin-top: calc(90vh - 15px);
+    border-radius: 35px;
+    padding: 0 1vh;
+    margin-right: 1vw;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .inputSection input[type = "text"]{
+        width: calc(40vw - 4px);
+    }
+
+    .inputSection button{
+        width: 7vw;
+        height: 5vh;
+    }
 }

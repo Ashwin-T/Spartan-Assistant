@@ -3,10 +3,20 @@ import useMobileState from '../../../hooks/useMobileState'
 
 import './freshmenChat.css'
 
-import {GrSend} from 'react-icons/gr'
-
+import { useEffect, useState } from 'react'
 
 const FreshmenChat = () => {
+
+    const [chatStyle, SetChatStyle] = useState('')
+    
+    useEffect(() => {
+        if(window.innerWidth< 768){
+            SetChatStyle('column center')
+        }
+        else{
+            SetChatStyle('')
+        }
+    }, [])
 
     const Bar = () => {
         return ( 
@@ -27,13 +37,13 @@ const FreshmenChat = () => {
     
     return (  
             <div className="flexbox column center">
-                <div className="chatContainer flexbox">
+                <div className= {"chatContainer flexbox " + chatStyle}>
                     <Bar/>
-                    <div className="flexbox column align-items-center chatContent">
-                        <div className = "flexbox center space-between inputSection">
-                            <input type = 'text' />
-                            <button><GrSend size = {30}/></button>
-                        </div>
+                    <div className="flexbox column center align-items-center chatContent">
+                        <form className = "inputSection">
+                            <input type = 'text' placeholder = 'Hey Everyone...'/>
+                            <button>Send</button>
+                        </form>
                     </div>
 
                 </div>

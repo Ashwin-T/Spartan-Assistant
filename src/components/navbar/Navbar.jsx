@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
-import app from '../../tools/Firebase'
 
 import { MdQuestionAnswer } from "react-icons/md";
 import { FaMapMarkerAlt , FaQuestionCircle} from "react-icons/fa";
@@ -60,7 +59,6 @@ const Navbar = ({navType}) => {
     return (  
         <div className="flexbox column center">
             <nav className= {styleType}>
-        
                 <Link to = "/"><img alt = 'logo' src = 'images/logoNav.png' /></Link>
 
                 {type === 1 ? 
@@ -84,9 +82,6 @@ const Navbar = ({navType}) => {
                     <AiOutlineMenuUnfold size = {35}/>
                     
                 </div>}
-
-                
-
             </nav>
         </div>
     );
