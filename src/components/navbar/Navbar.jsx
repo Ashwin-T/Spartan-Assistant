@@ -1,10 +1,9 @@
 import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
-
 import { MdQuestionAnswer } from "react-icons/md";
-import { FaMapMarkerAlt , FaQuestionCircle} from "react-icons/fa";
-import {IoMdSettings} from 'react-icons/io'
+import { FaQuestionCircle} from "react-icons/fa";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
+import {SiGooglemaps} from 'react-icons/si'
 import {useState} from 'react'
 import './navbar.css'
 
@@ -33,18 +32,13 @@ const Navbar = ({navType}) => {
     const content = [
         {
             name: 'Map',
-            icon: <FaMapMarkerAlt size = {35}/>,
+            icon: <SiGooglemaps size = {35}/>,
             link: '/map'
         },
         {
             name: 'Chat',
             icon: <MdQuestionAnswer size = {35}/>,
             link: '/chat',
-        },
-        {
-            name: 'Settings',
-            icon: <IoMdSettings size = {35}/>,
-            link: '/settings'
         },
         {
             name: 'Help',

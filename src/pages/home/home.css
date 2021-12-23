@@ -23,7 +23,7 @@ h5{
     width: 25vw;
     height: 7vh;
     background-color:var(--alternate-background-color) !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 100px 0 rgba(0, 0, 0, 0.19);
     margin: 2vh 3vw;
     border-radius: 16px;
     transition: all 0.1s ease;

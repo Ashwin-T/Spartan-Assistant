@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import InteractiveMap, {Marker, Layer, Source} from 'react-map-gl';
+import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
 import {IoIosNavigate} from 'react-icons/io';
 import * as roomData from "../../data/Rooms.json";
@@ -161,7 +161,7 @@ const Map = () => {
     return (
         <div className="flexbox mapPageContainer">
 
-            <InteractiveMap
+            <ReactMapGL
                             {...viewPort}
                             mapStyle = "mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n"
                             mapboxApiAccessToken = "pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w"
@@ -218,7 +218,7 @@ const Map = () => {
 
                         </div>
 
-            </InteractiveMap>
+            </ReactMapGL>
 
                 
         </div>     
