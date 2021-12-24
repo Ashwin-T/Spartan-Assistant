@@ -126,8 +126,8 @@ const Map = () => {
         return ( 
         <>
 
-            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}>
-
+            <Source id="directionLayer" type="geojson" //data={useDirections(currentRoom, findingRoom)} include this when testing
+            >
                 <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
             
             </Source>
@@ -160,6 +160,10 @@ const Map = () => {
         }
     }
 
+    const handleLocation = (e)=>{
+        console.log(e.lngLat)
+    }
+
     
     return (
         <div className="flexbox mapPageContainer">
@@ -169,6 +173,7 @@ const Map = () => {
                             mapStyle = "mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n"
                             mapboxApiAccessToken = "pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w"
                             onViewportChange={viewPort => setViewPort(viewPort)}
+                            onClick = {handleLocation}
                             > 
 
                         <Navbar navType = {1}/>                    
@@ -176,13 +181,15 @@ const Map = () => {
                         {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
 
                         {/*  START OF TESTING */}
-                            <Marker longitude={pathNodes.nodes[0].geometry.coordinates[0]}
-                                    latitude={pathNodes.nodes[0].geometry.coordinates[1]}
+
+                            <Marker longitude={-122.06804168193189}
+                                    latitude={37.36093065237892}
                             >
-                                <div className="mapIcon">
+                                <div className="mapIcon" >
                                     <div className = 'searchMarkerFind'></div>
                                 </div>
                             </Marker>
+
                         {/*  END OF TESTING */}
 
                         <div className="flexbox space-between">

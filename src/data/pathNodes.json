@@ -2,7 +2,7 @@
     "nodes": [
         {
             "properties": {
-                "room": "100"
+                "room": "101"
             },
             "geometry": {
                 "type": "Point",

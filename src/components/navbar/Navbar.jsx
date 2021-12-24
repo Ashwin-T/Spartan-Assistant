@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
-import { MdQuestionAnswer } from "react-icons/md";
+import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import { FaQuestionCircle} from "react-icons/fa";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
 import {SiGooglemaps} from 'react-icons/si'
 import {useState} from 'react'
-import './navbar.css'
+import './navbar.css' 
 
 const Navbar = ({navType}) => {
 
@@ -44,6 +44,11 @@ const Navbar = ({navType}) => {
             name: 'Help',
             icon: <FaQuestionCircle size = {35}/>,
             link: '/help'
+        },
+        {
+            name: 'Settings',
+            icon: <MdSettings size = {35}/>,
+            link: '/settings'
         }
         
     ]
