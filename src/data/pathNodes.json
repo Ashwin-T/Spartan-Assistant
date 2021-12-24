@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "properties": {
+                "room": "100"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.06789041802074,
+                    37.360983970335326
+                ]
+            },
+            "intersections": [
+                [
+                  
+                ]
+            ]
+            
+        }
+    ]
+}

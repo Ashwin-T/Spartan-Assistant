@@ -2,7 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
 import { MdOutlineShareLocation } from 'react-icons/md';
 import {IoIosNavigate} from 'react-icons/io';
+
 import * as roomData from "../../data/Rooms.json";
+import * as pathNodes from "../../data/pathNodes.json";
+
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
 
@@ -171,6 +174,16 @@ const Map = () => {
                         <Navbar navType = {1}/>                    
 
                         {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
+
+                        {/*  START OF TESTING */}
+                            <Marker longitude={pathNodes.nodes[0].geometry.coordinates[0]}
+                                    latitude={pathNodes.nodes[0].geometry.coordinates[1]}
+                            >
+                                <div className="mapIcon">
+                                    <div className = 'searchMarkerFind'></div>
+                                </div>
+                            </Marker>
+                        {/*  END OF TESTING */}
 
                         <div className="flexbox space-between">
 
