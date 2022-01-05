@@ -13,7 +13,15 @@ const nodes = [
         },
         "otherNodes": [ // other nodes that are connected to this one (used for pathfinding)
             [
-                
+                [
+                    //longitude, latitude
+                ],
+                [
+                    //longitude, latitude
+                ],
+                [
+                    //longitude, latitude
+                ]
             ]
         ]
         
