@@ -126,7 +126,7 @@ const Map = () => {
         return ( 
         <>
 
-            <Source id="directionLayer" type="geojson" //data={useDirections(currentRoom, findingRoom)} include this when testing
+            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}
             >
                 <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
             
@@ -182,13 +182,13 @@ const Map = () => {
 
                         {/*  START OF TESTING */}
 
-                            <Marker longitude={-122.06804168193189}
+                            {/* <Marker longitude={-122.06804168193189}
                                     latitude={37.36093065237892}
                             >
                                 <div className="mapIcon" >
                                     <div className = 'searchMarkerFind'></div>
                                 </div>
-                            </Marker>
+                            </Marker> */}
 
                         {/*  END OF TESTING */}
 
