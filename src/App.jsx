@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from './pages/login/Login';
 import Error from './components/error/Error';
 import Loading from './components/loading/Loading';
-import Source from './components/Source';
+import Source from './pages/Source';
 import app from './tools/Firebase'
 
 const App = () =>{

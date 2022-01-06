@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
-import { MdOutlineShareLocation } from 'react-icons/md';
+import { FaRoute, FaDirections } from 'react-icons/fa';
 import {IoIosNavigate} from 'react-icons/io';
-
 import * as roomData from "../../data/Rooms.json";
-import * as pathNodes from "../../data/pathNodes.json";
+import nodes from "../../data/pathNodes.js";
 
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
@@ -34,9 +33,13 @@ const Map = () => {
     const inputCurrentRoom = useRef(null);
     const inputFindingRoom = useRef(null);
 
-    const [menuToggle, setMenuToggle] = useState(false);
+    const [singleDirectionsToggle, setSingleDirectionsToggle] = useState(false);
+    const [scheduleDirectionToggle, setScheduleDirectionToggle] = useState(false);
 
-    const [menuStyle, setMenuStyle] = useState({color: 'dodgerblue'});
+    const [singleDirectionStyle, setSingleDirectionStyle] = useState({color: 'dodgerblue'});
+    const [scheduleDirectionStyle, setScheduleDirectionStyle] = useState({color: 'dodgerblue'});
+
+    const schedule = [606, 104, 201]
 
     const calculateZoom =()=>{//this sets the zoom of the map so it looks ok on mobile and computer
         if(window.innerWidth < 768){// 600 is the borderish from phone to computer 
@@ -98,9 +101,8 @@ const Map = () => {
 
         if('type' in currentRoom && 'type' in findingRoom){
         
-    
             setSubmittedRoom(true)
-            handleMenu();
+            handleSingleDirection();
 
         }
         else{
@@ -150,15 +152,37 @@ const Map = () => {
         </> ); 
     }
 
-    const handleMenu = ()=>{
-        setMenuToggle(!menuToggle)
-        if(menuToggle){
-            setMenuStyle({color: 'dodgerblue'})
+    const handleSingleDirection = ()=>{
+        setScheduleDirectionToggle(false);
+        setScheduleDirectionStyle({color: 'dodgerblue'})
+
+        setSingleDirectionsToggle(!singleDirectionsToggle)
+
+        if(singleDirectionsToggle){
+            setSingleDirectionStyle({color: 'dodgerblue'})
         }
         else{
-            setMenuStyle({color: '#D7BE69'})
+            setSingleDirectionStyle({color: '#D7BE69'})
         }
+
     }
+
+    const handleScheduleDirections = ()=>{
+        setSingleDirectionsToggle(false);
+        setSingleDirectionStyle({color: 'dodgerblue'})
+
+        setScheduleDirectionToggle(!scheduleDirectionToggle)
+        
+        if(scheduleDirectionToggle){
+            setScheduleDirectionStyle({color: 'dodgerblue'})
+        }
+        else{
+            setScheduleDirectionStyle({color: '#D7BE69'})
+        }
+
+    }
+
+
 
     const handleLocation = (e)=>{
         console.log(e.lngLat)
@@ -194,7 +218,7 @@ const Map = () => {
 
                         <div className="flexbox space-between">
 
-                            {menuToggle && window.innerWidth > 768 && 
+                            {singleDirectionsToggle && window.innerWidth > 768 && 
                                 <div className="flexbox column center controlContainer">
                                     <h3>What Room Are You In Right Now?</h3>
                                     <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
@@ -206,8 +230,20 @@ const Map = () => {
                                 </div>
                             } 
 
+                            {scheduleDirectionToggle && window.innerWidth > 768 && 
+                                <div className="flexbox column center controlContainer">
+                                    <h2>Daily Schedule Route</h2>
+                                    <h3>Todays Periods</h3>
+                                    {
+                                        schedule.map((period, index)=>{
+                                            return <li key = {index}>{period}</li>
+                                        })
+                                    }
+                                </div>
+                            } 
+
                             
-                            <div className="flexbox center column mapControls">
+                            <div className="flexbox center mapControls">
                                 <div className="flexbox center column">
                                     <button onClick = {()=>{setViewPort({
                                                                 latitude: 37.360205578662605,
@@ -217,14 +253,20 @@ const Map = () => {
                                                                 height: "100vh",
                                                                 bearing: 90
                                                             })}} 
-                                className="controlButton"> <MdOutlineShareLocation size = {50}/></button>
+                                className="controlButton"> <IoIosNavigate size = {40}/></button>
                              </div>
-                                <div className="flexbox center column">
-                                    <button className="controlButton" onClick = {handleMenu}> <IoIosNavigate size = {50} style = {menuStyle}/></button>
-                                </div>
+
+                            <div className="flexbox center column">
+                                <button className="controlButton" onClick = {handleSingleDirection}> <FaDirections size = {40} style = {singleDirectionStyle}/></button>
                             </div>
 
-                            {menuToggle && window.innerWidth < 768 && 
+                            <div className="flexbox center column">
+                                <button className="controlButton" onClick = {handleScheduleDirections}> <FaRoute size = {40} style = {scheduleDirectionStyle}/></button>
+                            </div>
+                                
+                            </div>
+
+                            {singleDirectionsToggle && window.innerWidth < 768 && 
                                 <div className="flexbox column center controlContainer">
                                     <h3>What Room Are You In Right Now?</h3>
                                     <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>

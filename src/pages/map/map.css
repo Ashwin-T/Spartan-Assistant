@@ -5,12 +5,16 @@
 }
 
 .mapControls{
-    width: 15vw;
+    width: 25vw;
     height: 10vh;
     background-color: var(--alternate-background-color) !important;
     margin: 3vh 5vw;
     border: 5px solid var(--alternate-color) !important;
     border-radius: 35px !important;
+}
+
+.mapControls > *{
+    padding: 0 2.25vw;
 }
 
 .content{
@@ -89,7 +93,7 @@
 @media only screen and (max-width: 768px) {
 
     .mapControls{
-        width: 50vw;
+        width: 65vw;
         height: 7.75vh;;
     }
 

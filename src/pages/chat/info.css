@@ -1,0 +1,8 @@
+.resouceTitle{
+    padding: 7vh 0 0 3vw;
+}
+
+.resouceTitle h1{
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}

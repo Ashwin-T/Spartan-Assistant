@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
-import { FaQuestionCircle} from "react-icons/fa";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
 import {SiGooglemaps} from 'react-icons/si'
 import {useState} from 'react'
@@ -39,11 +38,6 @@ const Navbar = ({navType}) => {
             name: 'Chat',
             icon: <MdQuestionAnswer size = {35}/>,
             link: '/chat',
-        },
-        {
-            name: 'Help',
-            icon: <FaQuestionCircle size = {35}/>,
-            link: '/help'
         },
         {
             name: 'Settings',

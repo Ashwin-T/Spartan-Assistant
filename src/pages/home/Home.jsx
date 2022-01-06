@@ -66,7 +66,7 @@ const Home = () => {
         <div className="flexbox column center">
 
             {!loading ?
-                <div className="flexbox column center homeContainer">
+                <div className="flexbox column center container">
                     <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
                     <h3>Today is: {today}</h3>
