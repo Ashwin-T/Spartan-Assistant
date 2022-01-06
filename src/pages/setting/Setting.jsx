@@ -8,7 +8,6 @@ const Settings = () => {
             <div className="flexbox column center">
 
                 <div className="flexbox column center container">
-                   
                 </div>
 
             </div>
