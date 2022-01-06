@@ -128,11 +128,11 @@ const Map = () => {
         return ( 
         <>
 
-            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}
+            {/* <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}
             >
                 <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
             
-            </Source>
+            </Source> */}
 
             <Marker longitude={currentRoom.geometry.coordinates[0]}
                     latitude={currentRoom.geometry.coordinates[1]}
