@@ -6,7 +6,6 @@ import * as roomData from "../../data/Rooms.json";
 
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
-import useSettings from "../../hooks/useSettings";
 
 import './map.css';
 // import * as otherData from "./Data/other.json";
@@ -18,9 +17,6 @@ const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools center location
-
-    useSettings();
-
 
     const [restRoom, setRestRoom] = useState('');//sets initial value of 'search'
     const [findRoom, setFindRoom] = useState('');//sets initial value of 'search'
@@ -129,13 +125,6 @@ const Map = () => {
     
     const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
         
-        const layer = {
-            id: 'route',
-            type: 'fill',
-            source: 'mapbox',
-            'source-layer': 'landuse',
-            filter: ['==', 'class', 'park']
-          };
 
         return ( 
         <>
