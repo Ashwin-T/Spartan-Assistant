@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
+import ReactMapGL, {Marker, Layer, Source, Popup} from 'react-map-gl';
 import { FaRoute, FaDirections } from 'react-icons/fa';
 import {IoIosNavigate} from 'react-icons/io';
 import * as roomData from "../../data/Rooms.json";
-import nodes from "../../data/pathNodes.js";
 
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
+import useSettings from "../../hooks/useSettings";
 
 import './map.css';
 // import * as otherData from "./Data/other.json";
@@ -19,7 +19,9 @@ const Map = () => {
     // longitude: -122.06716285921868,
     //^ schools center location
 
-    
+    useSettings();
+
+
     const [restRoom, setRestRoom] = useState('');//sets initial value of 'search'
     const [findRoom, setFindRoom] = useState('');//sets initial value of 'search'
 
@@ -85,11 +87,11 @@ const Map = () => {
 
     const handleMap = async()=>{
         let currentRoom = {}, findingRoom = {};
+        
         roomData.features.forEach((room)=>{//pushed a
             if(room.properties.name === restRoom || room.properties.name2 === restRoom){
                 currentRoom = room
-                setCurrentRoom(room);
-                  
+                setCurrentRoom(room);     
             }
 
             if(room.properties.name === findRoom || room.properties.name2 === findRoom){
@@ -123,16 +125,24 @@ const Map = () => {
     //important notice: do we want which style
 
     
+
+    
     const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
+        
+        const layer = {
+            id: 'route',
+            type: 'fill',
+            source: 'mapbox',
+            'source-layer': 'landuse',
+            filter: ['==', 'class', 'park']
+          };
 
         return ( 
         <>
 
-            {/* <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}
-            >
+            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}>
                 <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
-            
-            </Source> */}
+            </Source>
 
             <Marker longitude={currentRoom.geometry.coordinates[0]}
                     latitude={currentRoom.geometry.coordinates[1]}
@@ -140,7 +150,10 @@ const Map = () => {
                 <div className="mapIcon">
                     <div className = 'searchMarkerCurrent'></div>
                 </div>
+
+                
             </Marker>
+
 
             <Marker longitude={findingRoom.geometry.coordinates[0]}
                     latitude={findingRoom.geometry.coordinates[1]}
@@ -149,6 +162,26 @@ const Map = () => {
                     <div className = 'searchMarkerFind'></div>
                 </div>
             </Marker>
+
+            <Popup
+                longitude={currentRoom.geometry.coordinates[0]}
+                latitude={currentRoom.geometry.coordinates[1]}
+                closeButton= {false}
+                closeOnClick={false}
+                anchor="bottom" 
+            >
+            {currentRoom.properties.name}
+            </Popup>
+
+            <Popup
+                longitude={findingRoom.geometry.coordinates[0]}
+                latitude={findingRoom.geometry.coordinates[1]}
+                closeButton= {false}
+                closeOnClick={false}
+                anchor="bottom" 
+            >
+            {findingRoom.properties.name}
+            </Popup>
         </> ); 
     }
 
@@ -184,9 +217,9 @@ const Map = () => {
 
 
 
-    const handleLocation = (e)=>{
-        console.log(e.lngLat)
-    }
+    // const handleLocation = (e)=>{
+    //     console.log(e.lngLat)
+    // }
 
     
     return (
@@ -197,7 +230,7 @@ const Map = () => {
                             mapStyle = "mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n"
                             mapboxApiAccessToken = "pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w"
                             onViewportChange={viewPort => setViewPort(viewPort)}
-                            onClick = {handleLocation}
+                            // onClick = {handleLocation}
                             > 
 
                         <Navbar navType = {1}/>                    

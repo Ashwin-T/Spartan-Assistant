@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
+import {FaHandsHelping} from 'react-icons/fa'
 import {SiGooglemaps} from 'react-icons/si'
 import {useState} from 'react'
 import './navbar.css' 
@@ -38,6 +39,11 @@ const Navbar = ({navType}) => {
             name: 'Chat',
             icon: <MdQuestionAnswer size = {35}/>,
             link: '/chat',
+        },
+        {
+            name: 'Resources',
+            icon: <FaHandsHelping size = {35}/>,
+            link: '/resources',
         },
         {
             name: 'Settings',

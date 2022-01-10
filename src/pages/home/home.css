@@ -15,13 +15,14 @@ h5{
 .importantLinks{
     width: 25vw;
     height: 7vh;
-    background-color:var(--alternate-background-color) !important;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 100px 0 rgba(0, 0, 0, 0.19);
+    background-color:var(--background-color) !important;
     margin: 2vh 3vw;
-    border-radius: 16px;
+    border-radius: 35px;
     transition: all 0.1s ease;
     cursor: pointer;
+    padding: 7px;
 }
+
 
 .importantLinks img{
     width: 45px;

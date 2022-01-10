@@ -33,6 +33,11 @@ const FreshmenChat = () => {
             </>
          );
     }
+
+
+    const sendChats = () => {
+        
+    }
      
     
     return (  
@@ -42,7 +47,7 @@ const FreshmenChat = () => {
                     <div className="flexbox column center align-items-center chatContent">
                         <form className = "inputSection">
                             <input type = 'text' placeholder = 'Hey Everyone...'/>
-                            <button>Send</button>
+                            <button className = 'buttonInput'>Send</button>
                         </form>
                     </div>
 

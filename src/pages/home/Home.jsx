@@ -4,6 +4,9 @@ import app from '../../tools/Firebase'
 import {useEffect, useState} from 'react'
 import moment from 'moment';
 import Loading from '../../components/loading/Loading';
+import Setting from '../setting/Setting';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+
 // import axios from 'axios';
 import './home.css';
 
@@ -16,10 +19,13 @@ const Home = () => {
 
     const [loading, setLoading] = useState(false);
     // const [quote, setQuote] = useState('');
+    const [dontRedirect, setDontRedirect] = useState(true);
+
 
     useEffect(() => {
 
         setLoading(true);
+
         setToday(moment().format('dddd') + " " + moment().format("MMM Do"));
 
         // const setApiQuote = async () => {
@@ -35,6 +41,29 @@ const Home = () => {
         //     setQuote("'" + dataArray.data[randomIndex].text +  "' -" + author);
         // }
         // setApiQuote();
+
+
+        const db = getFirestore();
+
+        setLoading(true);
+
+        const auth = getAuth();
+
+        const checkData = async () => {
+            const docRef = doc(db, "users", auth.currentUser.uid);
+            const docSnap = await getDoc(docRef);
+
+            console.log(getAuth().currentUser.uid)
+
+            if (docSnap.exists()) {
+                setDontRedirect(true);
+            } else {
+            // doc.data() will be undefined in this case
+            setDontRedirect(false);
+            }
+        }
+
+        checkData();
 
         setLoading(false);
 
@@ -61,7 +90,10 @@ const Home = () => {
         }
     ]
 
+
     return (
+
+        loading ? <Loading /> : !dontRedirect ? <Setting init = {true}/> : 
         
         <div className="flexbox column center">
 
@@ -76,7 +108,7 @@ const Home = () => {
                     <div className = 'flexbox center homeLinks'>
                             {links.map((link, index) => {
                                 return (
-                                        <a className="flexbox align-items-center importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
+                                        <a key = {index} className="flexbox align-items-center importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
                                             <img src={link.image} alt={link.name} /> 
                                             <h3>{link.name}</h3>
                                         </a>
