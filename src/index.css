@@ -6,8 +6,10 @@ html {
     --shadow-color: #d3d3d3 ;
 }
 
-
 h1{ 
+    margin:0
+}
+h2{
     margin:0
 }
 

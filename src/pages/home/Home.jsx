@@ -93,8 +93,8 @@ const Home = () => {
 
     return (
 
-        loading ? <Loading /> : !dontRedirect ? <Setting init = {true}/> : 
-        
+        loading ? <Loading /> : !dontRedirect ? <Setting init = {true}/> :
+        <>
         <div className="flexbox column center">
 
             {!loading ?
@@ -108,20 +108,17 @@ const Home = () => {
                     <div className = 'flexbox center homeLinks'>
                             {links.map((link, index) => {
                                 return (
-                                        <a key = {index} className="flexbox align-items-center importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
-                                            <img src={link.image} alt={link.name} /> 
-                                            <h3>{link.name}</h3>
-                                        </a>
+                                    <a key = {index} className="flexbox align-items-center importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
+                                        <img src={link.image} alt={link.name} /> 
+                                        <h3>{link.name}</h3>
+                                    </a>
                                 )
                             })}
                     </div>
-                    
                 </div>
-
             : <Loading />}
-
-            
         </div>
+        </>
     );
 }
  

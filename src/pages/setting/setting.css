@@ -1,0 +1,104 @@
+.settings .left{
+    width: 50%;
+    background-color: var(--alternate-color);
+    border-radius: 25px 0 0 25px;
+    color: var(--alternate-background-color) !important;
+}
+
+.settings .left > *{
+    margin: 1vh 0;
+}
+.settings h1{
+    color: var(--alternate-background-color) !important;
+    font-size: 7vh !important;
+}
+
+.settings h2{
+    color: var(--alternate-background-color) !important;
+    font-size: 3vh !important;
+}
+
+.settings .right{
+    width: 50%;
+}
+
+.settings .right > *{
+    margin: 1vh 0;
+    color: var(--content-color) !important;
+}
+
+.settings .right input[type="number"]{
+    width: 35%;
+    height: 3%;
+    font-size: 2vh;
+    padding: 15px;
+    border-radius: 25px;
+    outline: none;
+    margin-bottom: 5vh;
+    border: 5px solid var(--content-color);
+
+}
+
+.settings .right input[type="number"]:focus{
+    border: 5px solid var(--alternate-color);
+}
+.scheduleInputs input[type="text"]{
+    width: 25vh;
+    height: 1vh;
+    font-size: 1.75vh;
+    padding: 15px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-bottom: 3.5px solid grey;
+}
+
+.scheduleInputs input[type="text"]:focus{
+    border-bottom: 3.5px solid var(--alternate-color);
+}
+
+.right button{
+    background-color: var(--alternate-color);
+    color: var(--alternate-background-color) !important;
+    font-size: 2vh;
+    padding: 15px;
+    border-radius: 25px;
+    outline: none;    
+    width: 20vh;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.right button:hover{
+    transform: scale(1.1);
+}
+.periodTitle{
+    margin: 0 0 1vh 0;
+}
+.periodContainers {
+    margin: 1vh 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .left{
+        width: 100% !important;
+        height: 25% !important;
+        border-radius: 25px 25px 0 0 !important;
+    }
+
+    .settings h1{
+        color: var(--alternate-background-color) !important;
+        font-size: 5vh !important;
+    }
+    
+    .settings h2{
+        color: var(--alternate-background-color) !important;
+        font-size: 2vh !important;
+    }
+    .right{
+        width: 100% !important;
+        height: 75% !important;
+    }
+}

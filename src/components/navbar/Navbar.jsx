@@ -4,7 +4,9 @@ import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
 import {FaHandsHelping} from 'react-icons/fa'
 import {SiGooglemaps} from 'react-icons/si'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import { doc, getDoc, getFirestore} from "firebase/firestore";
+
 import './navbar.css' 
 
 const Navbar = ({navType}) => {
@@ -12,6 +14,8 @@ const Navbar = ({navType}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [styleType, setStyleType] = useState('default')
     const [type, setType] = useState(navType)
+
+    const [freshmen, setFreshmen] = useState(false)
 
     let temp = isOpen
 
@@ -29,7 +33,25 @@ const Navbar = ({navType}) => {
         }
     }
 
-    const content = [
+    useEffect(() => {
+
+        const getData = async() => { 
+            const docRef = doc(getFirestore(), "users", getAuth().currentUser.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                if(docSnap.data().gradYear === 2025){
+                    setFreshmen(true)
+                }
+            } else {
+            // doc.data() will be undefined in this case
+            }
+        }
+
+        getData()
+    } , [])
+
+    const content = freshmen ? [
         {
             name: 'Map',
             icon: <SiGooglemaps size = {35}/>,
@@ -46,11 +68,27 @@ const Navbar = ({navType}) => {
             link: '/resources',
         },
         {
-            name: 'Settings',
+            name: 'Settings', 
             icon: <MdSettings size = {35}/>,
             link: '/settings'
         }
         
+    ] : [
+        {
+            name: 'Map',
+            icon: <SiGooglemaps size = {35}/>,
+            link: '/map'
+        },
+        {
+            name: 'Resources',
+            icon: <FaHandsHelping size = {35}/>,
+            link: '/resources',
+        },
+        {
+            name: 'Settings',
+            icon: <MdSettings size = {35}/>,
+            link: '/settings'
+        }
     ]
 
 
@@ -73,7 +111,7 @@ const Navbar = ({navType}) => {
                         
                         <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${getAuth().currentUser.photoURL}`} /></Link>
                         
-                        {isOpen && <button className = "link"  onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
+                        {isOpen && <button className = "link" onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
                     </div>
 
                 : <div className= 'dropdown' onClick={handleOpen}>
@@ -81,6 +119,8 @@ const Navbar = ({navType}) => {
                     <AiOutlineMenuUnfold size = {35}/>
                     
                 </div>}
+
+                
             </nav>
         </div>
     );

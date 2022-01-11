@@ -17,10 +17,10 @@ const useSettings = () => {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                navigate("/");
+                
             } else {
             // doc.data() will be undefined in this case
-                navigate("/settings");
+                navigate("/");
             }
         }
         
