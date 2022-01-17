@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactMapGL, {Marker, Layer, Source, Popup} from 'react-map-gl';
+import { getPeriodsOnDay } from 'mvhs-schedule'
+
 import { FaRoute, FaDirections } from 'react-icons/fa';
 import {IoIosNavigate} from 'react-icons/io';
+import moment from 'moment';
 import * as roomData from "../../data/Rooms.json";
 
 import Navbar from "../../components/navbar/Navbar";
@@ -16,12 +19,14 @@ const Map = () => {
 
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
-    //^ schools center location
+    //^ schools  center location
 
     const [restRoom, setRestRoom] = useState('');//sets initial value of 'search'
     const [findRoom, setFindRoom] = useState('');//sets initial value of 'search'
 
     const [submittedRoom, setSubmittedRoom] = useState(false);
+    const [submittedSchedule, setSubmittedSchedule] = useState(false);
+
     const [viewPort, setViewPort] = useState({});// sets initial value of 'view port' to empty js object. viewport will help us setd
 
 
@@ -123,7 +128,7 @@ const Map = () => {
     
 
     
-    const MarkerPoints = ({currentRoom, findingRoom}) => {//marker for searched class
+    const MarkerPointsOneWay = ({currentRoom, findingRoom}) => {//marker for searched class
         
 
         return ( 
@@ -174,8 +179,39 @@ const Map = () => {
         </> ); 
     }
 
+    const MarkerPointsSchedule = () => {//marker for searched class
+
+        const periodsLocal = localStorage.getItem('periods');  
+        console.log(periodsLocal);
+        let periodsToday =[]
+        getPeriodsOnDay(new Date('11/15/2021')).then(result => {
+            periodsToday = result
+            console.log(periodsToday)
+        }) //change to moment().format('L') during school days
+
+
+        // let dailyCoords = [];
+
+        const roomsToday = [];
+        for(let i = 0; i < periodsToday.length; i++){
+            for(let j = 0; i < periodsLocal.length; i++){
+                if(periodsToday[i].period === periodsLocal[j]){
+                    roomsToday.push(periodsToday[i])
+                    console.log('added')
+                }
+            }
+        }
+
+        return (
+            <>
+
+            </>
+        )   
+    }
+
     const handleSingleDirection = ()=>{
         setScheduleDirectionToggle(false);
+        setSubmittedSchedule(false);
         setScheduleDirectionStyle({color: 'dodgerblue'})
 
         setSingleDirectionsToggle(!singleDirectionsToggle)
@@ -191,6 +227,7 @@ const Map = () => {
 
     const handleScheduleDirections = ()=>{
         setSingleDirectionsToggle(false);
+        setSubmittedRoom(false);
         setSingleDirectionStyle({color: 'dodgerblue'})
 
         setScheduleDirectionToggle(!scheduleDirectionToggle)
@@ -200,16 +237,10 @@ const Map = () => {
         }
         else{
             setScheduleDirectionStyle({color: '#D7BE69'})
+            setSubmittedSchedule(true)
         }
 
     }
-
-
-
-    // const handleLocation = (e)=>{
-    //     console.log(e.lngLat)
-    // }
-
     
     return (
         <div className="flexbox mapPageContainer">
@@ -224,7 +255,8 @@ const Map = () => {
 
                         <Navbar navType = {1}/>                    
 
-                        {(submittedRoom)? <MarkerPoints currentRoom={currentRoom} findingRoom={findingRoom} />: null}
+                        {(submittedRoom) && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} />}
+                        {(submittedSchedule) && <MarkerPointsSchedule />}
 
                         {/*  START OF TESTING */}
 
@@ -237,6 +269,8 @@ const Map = () => {
                             </Marker> */}
 
                         {/*  END OF TESTING */}
+
+                    
 
                         <div className="flexbox space-between">
 

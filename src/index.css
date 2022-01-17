@@ -60,6 +60,17 @@ a{
     align-items: center;
 }
 
+.onLoad{
+    width: 100vw;
+    height: 100vh;
+}
+
+.onLoad img{
+    width: 50vh;
+    transition: all 2s ease-in-out;
+}
+
+
 @media only screen and (max-width: 786px) {
     .container{
         width: 85vw !important;

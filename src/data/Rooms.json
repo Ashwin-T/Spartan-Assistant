@@ -1856,6 +1856,19 @@
            "name":"806",
            "name2":"None"
         }
+     },
+     {
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[]
+      },
+      "properties":{
+         "wing":"free",
+         "itemType":"room",
+         "name":"free",
+         "name2":"free"
+      }
      }
   ]
 }

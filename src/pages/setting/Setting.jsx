@@ -3,13 +3,15 @@ import {getAuth} from 'firebase/auth';
 import './setting.css'
 import useMobileState from '../../hooks/useMobileState';
 import { doc, getFirestore, setDoc , getDoc} from "firebase/firestore"; 
+import * as roomData from "../../data/Rooms.json";
 
+ 
 // Add a new document in collection "cities"
 
 const Settings = ({init}) => {
 
     //settings have preview of graduation year, and schecule of rooms
-    
+
 
     const [gradYear, setGradYear] = useState(2022);
 
@@ -26,13 +28,15 @@ const Settings = ({init}) => {
     const styleName = useMobileState() ? 'column' : '';
 
     const db = getFirestore();
+
     useEffect(() => {
+
         if(init){
             setTitle('Lets Get You Set Up');
         }
 
         const getData = async() => {
-            const docRef = doc(db, "cities", "SF");
+            const docRef = doc(db, "users", getAuth().currentUser.uid);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -44,9 +48,11 @@ const Settings = ({init}) => {
                 setPeriodFive(docSnap.data().periods[4]);
                 setPeriodSix(docSnap.data().periods[5]);
                 setPeriodSeven(docSnap.data().periods[6]);
+
+                localStorage.setItem('periods', `${docSnap.data().periods}`);
+
             } else {
             // doc.data() will be undefined in this case
-            console.log("No such document!");
             }
         }
 
@@ -54,13 +60,24 @@ const Settings = ({init}) => {
 
     } , [init, db])
 
+    const handleRoomCheck = (roomNumber) => {
+
+        return(roomData.features.some(room=>
+            room.properties.name === roomNumber || room.properties.name2 === roomNumber
+          )
+        )
+    }
+
     const submit = async() => {
+
+        const periods = [periodOne, periodTwo, periodThree, periodFour, periodFive, periodSix, periodSeven];
         await setDoc(doc(db, "users", getAuth().currentUser.uid), {
             name: getAuth().currentUser.displayName,
-            periods: [periodOne, periodTwo, periodThree, periodFour, periodFive, periodSix, periodSeven],
+            periods: periods,
             gradYear: gradYear,
           })
-
+        localStorage.setItem('allow', 'true');
+        localStorage.setItem('periods', periods);
         window.location.reload();
     }
 
@@ -75,7 +92,12 @@ const Settings = ({init}) => {
         }
         else if(page === 1){
             if(periodOne !== '' && periodTwo !== '' && periodThree !== '' && periodFour !== ''){
-                setPage(2);
+                if(handleRoomCheck(periodOne) && handleRoomCheck(periodTwo) && handleRoomCheck(periodThree) && handleRoomCheck(periodFour)){
+                    setPage(2);
+                }
+                else{
+                    alert('Please enter a valid room number');
+                }
             }
             else{
                 alert('Please fill out all periods');
@@ -83,7 +105,12 @@ const Settings = ({init}) => {
         }
         else if(page === 2){
             if(periodFive !== '' && periodSix !== '' && periodSeven !== ''){
-                submit();
+                if(handleRoomCheck(periodFive) && handleRoomCheck(periodSix) && handleRoomCheck(periodSeven)){
+                    submit();
+                }
+                else{
+                    alert('Please enter a valid room number');
+                }
             }
             else{
                 alert('Please fill out all periods');
@@ -95,7 +122,7 @@ const Settings = ({init}) => {
     return (
         <>
 
-            <div className="flexbox column center">
+            <div className={`flexbox column center ${init}`}>
 
                 <div className={"flexbox settings container " + styleName}>
                     <div className="left flexbox column center">

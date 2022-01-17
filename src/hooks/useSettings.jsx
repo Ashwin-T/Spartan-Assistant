@@ -23,6 +23,8 @@ const useSettings = () => {
                 navigate("/");
             }
         }
+
+        checkData();
         
     }, [])
 
