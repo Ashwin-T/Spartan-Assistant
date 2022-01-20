@@ -40,7 +40,7 @@ const Navbar = ({navType}) => {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                if(docSnap.data().gradYear === 2025){
+                if(docSnap.data().gradYear === "2025"){
                     setFreshmen(true)
                 }
             } else {

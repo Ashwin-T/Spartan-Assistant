@@ -6,6 +6,7 @@ import Home from './home/Home';
 import Map from './map/Map';
 import Chat from './chat/Chat';
 import Setting from './setting/Setting';
+import Resources from './resources/Resources';
 import {useState, useEffect} from 'react';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
@@ -54,6 +55,7 @@ const Source = () => {
                 <Route exact path="/map" element={<Map />} />
                 <Route exact path="/chat" element={<><Chat /></>}/>
                 <Route exact path="/settings" element={<><Navbar navType = {1}/><Setting init = {false}/></>} />
+                <Route exact path="/resources" element={<><Navbar navType = {1}/><Resources /></>} />
             </Routes>   
         </>
      );
