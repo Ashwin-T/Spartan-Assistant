@@ -1,5 +1,5 @@
 .importantLinks{
-    width: 25vw;
+    width: 80%;
     height: 7vh;
     background-color:var(--background-color) !important;
     margin: 2vh 3vw;
@@ -7,4 +7,12 @@
     transition: all 0.1s ease;
     cursor: pointer;
     padding: 7px;
+}
+
+.faq-container{
+    width: 50%;
+}
+
+.link-container{
+    width: 50%;
 }
