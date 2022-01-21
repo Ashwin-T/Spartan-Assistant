@@ -12,11 +12,10 @@ h5{
     margin: 0 10vw; 
 }
 
-.importantLinks{
+.homeLinks{
     width: 40vh;
     height: 7vh;
-    background-color:var(--background-color) !important;
-    margin: 2vh 3vw;
+    background-color: #F3F3F3 !important;
     border-radius: 35px;
     transition: all 0.1s ease;
     cursor: pointer;
@@ -24,25 +23,23 @@ h5{
 }
 
 
-.importantLinks img{
+.homeLinks img{
     width: 45px;
     clip-path: circle();
 }
 
-.importantLinks h3{
+.homeLinks h3{
     color: black !important;
-    margin: 0;
-    padding: 0;
 }
 
-.importantLinks :nth-child(1){
+.homeLinks :nth-child(1){
     margin: 0 1.5vw;
 }
-.importantLinks :nth-child(2){
+.homeLinks :nth-child(2){
     margin: 0 2vw;
 }
 
-.importantLinks:hover{
+.homeLinks:hover{
     transform: scale(1.1);
     z-index: 2;
 }
