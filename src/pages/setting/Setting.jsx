@@ -146,19 +146,19 @@ const Settings = ({init}) => {
                             <>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 1</div>
-                                    <input type="text" value = {periodOne} onChange={(e) => setPeriodOne(e.target.value)}/>
+                                    <input type="text" value = {periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 2</div>
-                                    <input type="text" value = {periodTwo} onChange={(e) => setPeriodTwo(e.target.value)}/>
+                                    <input type="text" value = {periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 3</div>
-                                    <input type="text" value = {periodThree} onChange={(e) => setPeriodThree(e.target.value)}/>
+                                    <input type="text" value = {periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 4</div>
-                                    <input type="text" value = {periodFour} onChange={(e) => setPeriodFour(e.target.value)}/>
+                                    <input type="text" value = {periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())}/>
                                 </div>
                             </>
                         }
@@ -166,15 +166,15 @@ const Settings = ({init}) => {
                         <>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 5</div>
-                                    <input type="text" value = {periodFive} onChange={(e) => setPeriodFive(e.target.value)}/>
+                                    <input type="text" value = {periodFive} onChange={(e) => setPeriodFive(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 6</div>
-                                    <input type="text" value = {periodSix} onChange={(e) => setPeriodSix(e.target.value)}/>
+                                    <input type="text" value = {periodSix} onChange={(e) => setPeriodSix(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 7</div>
-                                    <input type="text" value = {periodSeven} onChange={(e) => setPeriodSeven(e.target.value)}/>
+                                    <input type="text" value = {periodSeven} onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())}/>
                                 </div>
                         </>
                         }

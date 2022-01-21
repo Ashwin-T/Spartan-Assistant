@@ -13,7 +13,7 @@ h5{
 }
 
 .importantLinks{
-    width: 25vw;
+    width: 40vh;
     height: 7vh;
     background-color:var(--background-color) !important;
     margin: 2vh 3vw;
@@ -30,7 +30,7 @@ h5{
 }
 
 .importantLinks h3{
-    color: var(--alternate-color) !important;
+    color: black !important;
     margin: 0;
     padding: 0;
 }

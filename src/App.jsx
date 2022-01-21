@@ -32,7 +32,7 @@ const App = () =>{
     
   } , [])
 
-  // window.localStorage.clear(); // for testing
+  //window.localStorage.clear(); // for testing
 
 
   const imgVariants = {
