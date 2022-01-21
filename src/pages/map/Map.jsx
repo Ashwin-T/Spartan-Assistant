@@ -182,24 +182,19 @@ const Map = () => {
 
         const periodsLocal = localStorage.getItem('periods');  
         console.log(periodsLocal);
-        let periodsToday =[]
-        getPeriodsOnDay(new Date('11/15/2021')).then(result => {
-            periodsToday = result
-            console.log(periodsToday)
+        let resultArr = []
+
+
+        getPeriodsOnDay(new Date('01/21/2022')).then(result => {
+            for(let i = 0; i < result.length; i++){
+                resultArr.push(periodsLocal[result[i].period]);
+            }
+            console.log(resultArr);
         }) //change to moment().format('L') during school days
 
 
-        // let dailyCoords = [];
+        
 
-        const roomsToday = [];
-        for(let i = 0; i < periodsToday.length; i++){
-            for(let j = 0; i < periodsLocal.length; i++){
-                if(periodsToday[i].period === periodsLocal[j]){
-                    roomsToday.push(periodsToday[i])
-                    console.log('added')
-                }
-            }
-        }
 
         return (
             <>

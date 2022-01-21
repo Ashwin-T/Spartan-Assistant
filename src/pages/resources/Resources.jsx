@@ -21,24 +21,24 @@ const Resources = () => {
             description: 'Google Classroom is a free online course management tool for teachers and students.',
             image: 'images/google-classroom-logo.png'
         },
-        {
-            name: 'Periods.io',
-            link: 'https://periods.io',
-            description: 'Manage your time more effectively by tracking the remaining time in class',
-            image: 'images/periodsioLogo.png'
-        },
+        // {
+        //     name: 'Periods.io',
+        //     link: 'https://periods.io',
+        //     description: 'Manage your time more effectively by tracking the remaining time in class',
+        //     image: 'images/periodsioLogo.png'
+        // },
         {
             name: 'Mvhs.io',
             link: 'https://mvhs.io',
             description: 'Mvhs.io is a versitle app for MVHS staff and students.',
             image: 'images/mvhsioLogo.png'
         },
-        {
-            name: 'MVHS Website',
-            link: 'https://mvhs.mvla.net',
-            description: 'MVHS Offical Website',
-            image: 'images/mvhslogo.png'
-        }
+        // {
+        //     name: 'MVHS Website',
+        //     link: 'https://mvhs.mvla.net',
+        //     description: 'MVHS Offical Website',
+        //     image: 'images/mvhslogo.png'
+        // }
     ]
     
     return(
