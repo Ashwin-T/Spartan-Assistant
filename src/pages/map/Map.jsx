@@ -4,7 +4,6 @@ import { getPeriodsOnDay } from 'mvhs-schedule'
 
 import { FaRoute, FaDirections } from 'react-icons/fa';
 import {IoIosNavigate} from 'react-icons/io';
-import moment from 'moment';
 import * as roomData from "../../data/Rooms.json";
 
 import Navbar from "../../components/navbar/Navbar";

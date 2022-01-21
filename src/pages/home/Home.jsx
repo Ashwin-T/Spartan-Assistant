@@ -5,7 +5,10 @@ import {useEffect, useState} from 'react'
 import moment from 'moment';
 import Loading from '../../components/loading/Loading';
 import './home.css';
-
+import {FaDirections} from 'react-icons/fa';
+import {Link} from 'react-router-dom';
+import {BsFillPeopleFill} from 'react-icons/bs';
+import {FiSettings} from 'react-icons/fi';
 const Home = () => {
 
     const auth = getAuth(app);
@@ -25,26 +28,6 @@ const Home = () => {
         setLoading(false);
     }, [])
 
-    const links = [
-        {
-            name: 'Periods.io',
-            link: 'https://periods.io',
-            description: 'Manage your time more effectively by tracking the remaining time in class',
-            image: 'images/periodsioLogo.png'
-        },
-        {
-            name: 'Mvhs.io',
-            link: 'https://mvhs.io',
-            description: 'Mvhs.io is a versitle app for MVHS staff and students.',
-            image: 'images/mvhsioLogo.png'
-        },
-        {
-            name: 'MVHS Website',
-            link: 'https://mvhs.mvla.net',
-            description: 'MVHS Offical Website',
-            image: 'images/mvhslogo.png'
-        }
-    ]
 
 
     return (
@@ -55,15 +38,19 @@ const Home = () => {
                     <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
                     <h3>Today is: {today}</h3>
-                    <div className = 'flexbox center homeLinks'>
-                            {links.map((link, index) => {
-                                return (
-                                    <a key = {index} className="flexbox align-items-center importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
-                                        <img src={link.image} alt={link.name} /> 
-                                        <h3>{link.name}</h3>
-                                    </a>
-                                )
-                            })}
+                    <div className = 'flexbox center'>
+                            <Link className = 'flexbox center importantLinks' to = {{pathname: '/map'}}>
+                                <FaDirections style = {{color: 'dodgerblue'}} size = {35}/>
+                                <h3>Find Your Classes</h3>
+                            </Link>
+                            <Link className = 'flexbox center importantLinks' to = {{pathname: '/resources'}}>
+                                <BsFillPeopleFill style = {{color: 'green'}}size = {35}/>
+                                <h3>Resources to Help</h3>
+                            </Link>
+                            <Link className = 'flexbox center importantLinks' to = {{pathname: '/settings'}}>
+                                <FiSettings style = {{color: 'grey'}}size = {35}/>
+                                <h3>Update Your Settings</h3>
+                            </Link>
                     </div>
                 </div>
             : <Loading />}
