@@ -44,18 +44,19 @@ const Resources = () => {
     return(
         <>
         <div className="flexbox column center">
-            <div className="flexbox column container">
+            <div className="container center">
                 <h1>Resources</h1>
 
                 <div className="flexbox row center">
                     <div className="flexbox faq-container">
                         
                     </div>
-                    <div className="flexbox link-container">
+                    <div className="link-container">
                         <h3 style={{textAlign: 'center', width: 100+"%"}}>Links</h3>
                         {links.map((link, index) => {
                             return (
-                                <a key = {index} className="flexbox align-items-right importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
+                                <a key = {index} className="flexbox importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
+                                    <img src={link.image}></img>
                                     <h3>{link.name}</h3>
                                 </a>
                             )
