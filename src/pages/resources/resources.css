@@ -9,6 +9,11 @@
     padding: 7px;
     align-items: center;
 }
+.importantLinks > img{
+    height: 100%;
+    clip-path: circle();
+    margin-right: 20px;
+}
 
 .faq-container{
     width: 50%;
@@ -16,4 +21,9 @@
 
 .link-container{
     width: 50%;
+    overflow-y: scroll;
+}
+
+.titleResources{
+    margin-top: 10px;
 }
