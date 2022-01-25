@@ -14,7 +14,7 @@ h5{
 
 .homeLinks{
     width: 40vh;
-    height: 7vh;
+    height: 8vh;
     background-color: #F3F3F3 !important;
     border-radius: 35px;
     transition: all 0.1s ease;
@@ -27,7 +27,6 @@ h5{
     width: 45px;
     clip-path: circle();
 }
-
 .homeLinks h3{
     color: black !important;
 }
@@ -56,17 +55,15 @@ h5{
     }
 
       
-    .importantLinks{
+    .homeLinks{
         width: 65vw;
-        height: 7vh;
+        height: 5vh;
     }
     
 
-    .importantLinks img{
+    .homeLinks img{
         width: 35px;
         clip-path: circle();
-    }
-  
-
+    }    
     
 }

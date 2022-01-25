@@ -18,13 +18,20 @@ const Home = () => {
     const [today, setToday] = useState(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
     const [loading, setLoading] = useState(false);
-
+    const [linkStyle, setLinkStyle] = useState()
 
     useEffect(() => {
 
         setLoading(true);
 
         setToday(moment().format('dddd') + " " + moment().format("MMM Do"));
+        
+        if(window.innerWidth > 786){
+            setLinkStyle('wrap')
+        }
+        else{
+            setLinkStyle('')
+        }
 
         setLoading(false);
     }, [])
@@ -39,7 +46,7 @@ const Home = () => {
                     <h1>Welcome {user.displayName.split(" ")[0]}!</h1>
 
                     <h3>Today is: {today}</h3>
-                    <div className = 'flexbox column center'>
+                    <div className = {'links flexbox column center ' + linkStyle} >
                             <Link className = 'flexbox center homeLinks' to = {{pathname: '/map'}}>
                                 <FaDirections style = {{color: 'dodgerblue'}} size = {30}/>
                                 <h3>Find Your Classes</h3>
@@ -54,7 +61,7 @@ const Home = () => {
                             </Link>
                             {
                                 localStorage.getItem('freshmen') === 'true' && 
-                                <Link className = 'flexbox center importantLinks' to = {{pathname: '/settings'}}>
+                                <Link className = 'flexbox center homeLinks' to = {{pathname: '/settings'}}>
                                     <ImHangouts style = {{color: 'green'}}size = {30}/>
                                     <h3>Chat With Your Pod</h3>
                             </Link>

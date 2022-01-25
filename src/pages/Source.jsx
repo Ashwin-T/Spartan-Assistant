@@ -10,16 +10,14 @@ import Resources from './resources/Resources';
 import {useState, useEffect} from 'react';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
+const db = getFirestore();
+const auth = getAuth();
 
 const Source = () => {
-    const [dontRedirect, setDontRedirect] = useState(true);
+    const [dontRedirect, setDontRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const db = getFirestore();
-
-        const auth = getAuth();
-
         setLoading(true);
 
         const checkData = async () => {
@@ -29,17 +27,17 @@ const Source = () => {
             console.log(getAuth().currentUser.uid)
 
             if (docSnap.exists()) {
-                localStorage.setItem('periods', `${docSnap.data().periods}`);
+                localStorage.setItem('periods', JSON.stringify(docSnap.data().periods));
                 setDontRedirect(true);
             } else {
             // doc.data() will be undefined in this case
             setDontRedirect(false);
             }
+            setLoading(false);
+
         }
 
         checkData();
-
-        setLoading(false);
 
     }, [])
     

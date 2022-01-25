@@ -34,11 +34,6 @@ const FreshmenChat = () => {
          );
     }
 
-
-    const sendChats = () => {
-        
-    }
-     
     
     return (  
             <div className="flexbox column center">

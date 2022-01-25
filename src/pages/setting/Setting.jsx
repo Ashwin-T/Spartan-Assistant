@@ -49,7 +49,7 @@ const Settings = ({init}) => {
                 setPeriodSix(docSnap.data().periods[5]);
                 setPeriodSeven(docSnap.data().periods[6]);
 
-                localStorage.setItem('periods', `${docSnap.data().periods}`);
+                localStorage.setItem('periods', JSON.stringify(`${docSnap.data().periods}`));
 
             } else {
             // doc.data() will be undefined in this case

@@ -33,18 +33,14 @@ const Resources = () => {
             description: 'Mvhs.io is a versitle app for MVHS staff and students.',
             image: 'images/mvhsioLogo.png'
         },
-        {
-            name: 'MVHS Website',
-            link: 'https://mvhs.mvla.net',
-            description: 'MVHS Offical Website',
-            image: 'images/mvhslogo.png'
-        }
+
     ]
     
     return(
         <>
         <div className="flexbox column center">
             <div className="container center">
+                <br/>
                 <h1 className="titleResources">Resources</h1>
 
                 <div className="flexbox row center">
@@ -56,7 +52,7 @@ const Resources = () => {
                         {links.map((link, index) => {
                             return (
                                 <a key = {index} className="flexbox importantLinks" href={link.link} target="_blank" rel="noopener noreferrer">
-                                    <img src={link.image}></img>
+                                    <img src={link.image} alt = 'logo for icon' />
                                     <h3>{link.name}</h3>
                                 </a>
                             )

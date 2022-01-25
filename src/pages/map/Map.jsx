@@ -9,6 +9,7 @@ import * as roomData from "../../data/Rooms.json";
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
 
+import moment from 'moment';
 import './map.css';
 // import * as otherData from "./Data/other.json";
 
@@ -41,7 +42,7 @@ const Map = () => {
     const [singleDirectionStyle, setSingleDirectionStyle] = useState({color: 'dodgerblue'});
     const [scheduleDirectionStyle, setScheduleDirectionStyle] = useState({color: 'dodgerblue'});
 
-    const schedule = [606, 104, 201]
+    const [schedule, setSchedule] = useState([]);
 
     const calculateZoom =()=>{//this sets the zoom of the map so it looks ok on mobile and computer
         if(window.innerWidth < 768){// 600 is the borderish from phone to computer 
@@ -129,7 +130,6 @@ const Map = () => {
     
     const MarkerPointsOneWay = ({currentRoom, findingRoom}) => {//marker for searched class
         
-
         return ( 
         <>
 
@@ -180,24 +180,54 @@ const Map = () => {
 
     const MarkerPointsSchedule = () => {//marker for searched class
 
-        const periodsLocal = localStorage.getItem('periods');  
-        console.log(periodsLocal);
-        let resultArr = []
+        const periodsLocal = JSON.parse(localStorage.getItem('periods'));
+        let resultArr = []  
+        let roomObjects = [];
 
-
-        getPeriodsOnDay(new Date('01/21/2022')).then(result => {
+        getPeriodsOnDay(new Date('1/21/2022')).then(result => {
             for(let i = 0; i < result.length; i++){
-                resultArr.push(periodsLocal[result[i].period]);
+                resultArr.push(periodsLocal[result[i].period - 1]);
             }
-            console.log(resultArr);
+        
+            for(let i = 0; i < resultArr.length; i++){
+                if(resultArr[i] !== undefined){
+                    roomData.features.forEach((room)=>{//pushed a
+                        if(room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]){
+                            roomObjects.push(room.geometry.coordinates)
+                        }
+                    })
+                }
+            }     
+            
+            setSchedule(roomObjects);
+
+            
         }) //change to moment().format('L') during school days
 
 
         
-
-
+        
         return (
             <>
+
+                {
+                    schedule.map((room)=>{
+                        return(
+                            <>
+
+                            <Popup key = {room.properties.name}
+                                longitude={room.geometry.coordinates[0]}
+                                latitude={room.geometry.coordinates[1]}
+                                closeButton= {false}
+                                closeOnClick={false}
+                                anchor="bottom" 
+                                >
+                                {room.properties.name}
+                                </Popup>
+                            </>
+                        )
+                    })
+                }
 
             </>
         )   

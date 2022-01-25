@@ -1,8 +1,8 @@
 .importantLinks{
-    width: 80%;
+    width: 75%;
     height: 7vh;
     background-color:var(--background-color) !important;
-    margin: 2vh 3vw;
+    margin: 2vh 4vw;
     border-radius: 35px;
     transition: all 0.1s ease;
     cursor: pointer;
@@ -10,10 +10,11 @@
     align-items: center;
 }
 .importantLinks > img{
-    height: 100%;
     clip-path: circle();
-    margin-right: 20px;
+    margin-right: 35px;
+    width: 50px;
 }
+
 
 .faq-container{
     width: 50%;
@@ -22,6 +23,9 @@
 .link-container{
     width: 50%;
     overflow-y: scroll;
+}
+.link-container::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
 }
 
 .titleResources{
