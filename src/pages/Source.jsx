@@ -31,7 +31,7 @@ const Source = () => {
                 setDontRedirect(true);
             } else {
             // doc.data() will be undefined in this case
-            setDontRedirect(false);
+                setDontRedirect(false);
             }
             setLoading(false);
 

@@ -31,12 +31,10 @@ h5{
     color: black !important;
 }
 
-.homeLinks :nth-child(1){
+.homeLinks >*{
     margin: 0 1.5vw;
 }
-.homeLinks :nth-child(2){
-    margin: 0 2vw;
-}
+
 
 .homeLinks:hover{
     transform: scale(1.1);

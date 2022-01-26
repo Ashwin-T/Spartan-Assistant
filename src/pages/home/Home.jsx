@@ -61,10 +61,10 @@ const Home = () => {
                             </Link>
                             {
                                 localStorage.getItem('freshmen') === 'true' && 
-                                <Link className = 'flexbox center homeLinks' to = {{pathname: '/settings'}}>
+                                <a className = 'flexbox center homeLinks' href = 'https://mail.google.com/chat/u/0/#chat/welcome' target = '_blank' rel="noreferrer">
                                     <ImHangouts style = {{color: 'green'}}size = {30}/>
                                     <h3>Chat With Your Pod</h3>
-                            </Link>
+                                </a>
                             }
                     </div>
                 </div>
