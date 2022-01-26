@@ -46,7 +46,6 @@ const Home = () => {
                             <div className='right-triangle'></div>
                             <div className='action-container'>
                                 <h3>Actions</h3>
-
                                 <div className={"links flexbox column center " + linkStyle}>
                                     <Link className='flexbox homeLinks' to={{ pathname: "/map" }}>
                                         <FaDirections style={{ color: "dodgerblue" }} size={30} />

@@ -34,7 +34,7 @@ const Navbar = ({navType}) => {
     }
 
     useEffect(() => {
-
+        
         const getData = async() => { 
             const docRef = doc(getFirestore(), "users", getAuth().currentUser.uid);
             const docSnap = await getDoc(docRef);
@@ -44,6 +44,9 @@ const Navbar = ({navType}) => {
                     setFreshmen(true)
                     localStorage.setItem('freshmen', true)
                 }
+                else{
+                    localStorage.setItem('freshmen', false)
+                }
             } else {
             // doc.data() will be undefined in this case
             }
@@ -52,29 +55,7 @@ const Navbar = ({navType}) => {
         getData()
     } , [])
 
-    const content = freshmen ? [
-        {
-            name: 'Map',
-            icon: <SiGooglemaps size = {35}/>,
-            link: '/map'
-        },
-        {
-            name: 'Chat',
-            icon: <MdQuestionAnswer size = {35}/>,
-            link: '/chat',
-        },
-        {
-            name: 'Resources',
-            icon: <FaHandsHelping size = {35}/>,
-            link: '/resources',
-        },
-        {
-            name: 'Settings', 
-            icon: <MdSettings size = {35}/>,
-            link: '/settings'
-        }
-        
-    ] : [
+    const content = [
         {
             name: 'Map',
             icon: <SiGooglemaps size = {35}/>,
@@ -109,6 +90,8 @@ const Navbar = ({navType}) => {
                                 );
                             })
                         }
+
+                        {freshmen && <a href = 'https://mail.google.com/chat/u/0/#chat/welcome' target = '_blank' rel="noreferrer"><MdQuestionAnswer size = {35}/></a>}
                         
                         <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${getAuth().currentUser.photoURL}`} /></Link>
                         
