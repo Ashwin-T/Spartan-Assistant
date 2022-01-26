@@ -59,6 +59,12 @@ const Home = () => {
                                         <FiSettings style={{ color: "grey" }} size={30} />
                                         <h3>Update Settings</h3>
                                     </Link>
+                                    {localStorage.getItem("freshmen") === "true" && (
+                                    <Link className='flexbox homeLinks' to={{ pathname: "/settings" }}>
+                                        <ImHangouts style={{ color: "green" }} size={30} />
+                                        <h3>Chat With Your Pod</h3>
+                                    </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>
