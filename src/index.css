@@ -1,19 +1,21 @@
 html {
-    --background-color: #f5f5f5;
+    --background-color: rgb(255, 255, 255);
     --alternate-background-color: white;
-    --alternate-color: #D7BE69;
+    --alternate-color: #ddbd55;
+    --alternate-color-transparent: #fff2c8;
+
     --content-color: black;
-    --shadow-color: #d3d3d3 ;
+    --shadow-color: #d3d3d3;
 }
 
-h1{ 
-    margin:0
+h1 {
+    margin: 0;
 }
-h2{
-    margin:0
+h2 {
+    margin: 0;
 }
 
-.wrap{
+.wrap {
     flex-wrap: wrap;
 }
 
@@ -23,60 +25,60 @@ body {
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-
 }
-.container{
+.container {
     width: 100%;
     height: 100%;
 }
-a{
+a {
     text-decoration: none !important;
     color: var(--content-color) !important;
 }
-
-.container{
+.full-size {
+    width: 100%;
+    height: 100%;
+}
+.container {
     width: 70vw;
     height: 80vh;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color:var(--alternate-background-color) !important;
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+    background-color: var(--alternate-background-color) !important;
     border-radius: 25px;
 }
 
-
-.flexbox{
+.flexbox {
     display: flex;
     flex-wrap: wrap;
 }
-.column{
+.column {
     flex-direction: column;
 }
-.center{
+.center {
     text-align: center;
     justify-content: center;
     align-items: center;
 }
 
-.space-between{
+.space-between {
     justify-content: space-between;
 }
 
-.align-items-center{
+.align-items-center {
     align-items: center;
 }
 
-.onLoad{
+.onLoad {
     width: 100vw;
     height: 100vh;
 }
 
-.onLoad img{
+.onLoad img {
     width: 50vh;
     transition: all 2s ease-in-out;
 }
 
-
 @media only screen and (max-width: 786px) {
-    .container{
+    .container {
         width: 85vw !important;
     }
 }
