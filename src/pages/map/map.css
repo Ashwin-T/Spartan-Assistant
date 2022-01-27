@@ -120,30 +120,8 @@
         left: 1rem;
     }
 
-    .controlContainer > * {
-        /* padding: 0.25vh 0; */
-    }
-    .controlContainer h3 {
-        /* font-size: 1.5vh; */
-    }
-
-    .controlContainer .go {
-        /* width: 25vw;
-        height: 5vh; */
-    }
+    
     .refreshIcon {
         font-size: 7vw;
-    }
-}
-
-@media only screen and (max-width: 375px) {
-    .mapControls {
-        /* height: 9vh; */
-    }
-}
-
-@media only screen and (max-width: 350px) {
-    .mapControls {
-        /* height: 15vh; */
     }
 }

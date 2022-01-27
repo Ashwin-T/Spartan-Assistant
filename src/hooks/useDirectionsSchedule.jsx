@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const useDirections = (currentRoom, findingRoom) => {
+const useDirectionsSchedule = (arrayOfItems) => {
 
     const [directions, setDirections] = useState([]);
 

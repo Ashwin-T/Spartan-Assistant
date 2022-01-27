@@ -11,6 +11,7 @@ import useDirections from "../../hooks/useDirections";
 
 import moment from "moment";
 import "./map.css";
+import './mapbox-gl.css';
 // import * as otherData from "./Data/other.json";
 
 //changing the map location by re-orient
@@ -28,19 +29,25 @@ const Map = () => {
 
     const [viewPort, setViewPort] = useState({}); // sets initial value of 'view port' to empty js object. viewport will help us setd
 
-    const [currentRoom, setCurrentRoom] = useState({});
-    const [findingRoom, setFindingRoom] = useState({});
+    const [currentRoom, setCurrentRoom] = useState({
+
+    });
+    const [findingRoom, setFindingRoom] = useState({
+
+    });
 
     const inputCurrentRoom = useRef(null);
     const inputFindingRoom = useRef(null);
 
     const [singleDirectionsToggle, setSingleDirectionsToggle] = useState(false);
-    const [scheduleDirectionToggle, setScheduleDirectionToggle] = useState(false);
+    const [scheduleDirectionToggle, setScheduleDirectionToggle] = useState(true);
 
     const [singleDirectionStyle, setSingleDirectionStyle] = useState({ color: "dodgerblue" });
     const [scheduleDirectionStyle, setScheduleDirectionStyle] = useState({ color: "dodgerblue" });
 
     const [schedule, setSchedule] = useState([]);
+    const colorArray = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#00ffff", "#ff00ff"];
+    
 
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
@@ -72,6 +79,7 @@ const Map = () => {
             height: "100vh",
             bearing: 90,
         });
+
     }, [zoomX, lon]); // the useEffect will run on start-up and add data to the viewport object
 
     const formChange1 = (room) => {
@@ -155,41 +163,17 @@ const Map = () => {
     const MarkerPointsSchedule = () => {
         //marker for searched class
 
-        const periodsLocal = JSON.parse(localStorage.getItem("periods"));
-        let resultArr = [];
-        let roomObjects = [];
-
-        getPeriodsOnDay(new Date("1/21/2022")).then((result) => {
-            for (let i = 0; i < result.length; i++) {
-                resultArr.push(periodsLocal[result[i].period - 1]);
-            }
-
-            for (let i = 0; i < resultArr.length; i++) {
-                if (resultArr[i] !== undefined) {
-                    roomData.features.forEach((room) => {
-                        //pushed a
-                        if (room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]) {
-                            roomObjects.push(room.geometry.coordinates);
-                        }
-                    });
-                }
-            }
-
-            setSchedule(roomObjects);
-        }); //change to moment().format('L') during school days
-
         return (
-            <>
-                {schedule.map((room) => {
+            <>               
+                {/* {schedule.map((room, index) => {
                     return (
-                        <>
-                            <Popup key={room.properties.name} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
-                                {room.properties.name}
-                            </Popup>
-                        </>
+                        <Popup key={index} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
+                            {room.properties.name}
+                        </Popup>
                     );
-                })}
+                })}                 */}
             </>
+
         );
     };
 
@@ -207,19 +191,44 @@ const Map = () => {
         }
     };
 
-    const handleScheduleDirections = () => {
+    const handleScheduleDirections = async() => {
         setSingleDirectionsToggle(false);
         setSubmittedRoom(false);
-        setSingleDirectionStyle({ color: "dodgerblue" });
+
+        if (!scheduleDirectionToggle) {
+            setScheduleDirectionStyle({ color: "dodgerblue" });
+            setSubmittedSchedule(false);
+
+        } else {
+            setScheduleDirectionStyle({ color: "#D7BE69" });
+            const periodsLocal = JSON.parse(localStorage.getItem("periods"));
+            console.log(periodsLocal);
+            let resultArr = [];
+            let roomObjects = [];
+    
+            await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
+                for (let i = 0; i < result.length; i++) {
+                    resultArr.push(periodsLocal[result[i].period - 1]);
+                }
+                for (let i = 0; i < resultArr.length; i++) {
+                    if (resultArr[i] !== undefined) {
+                        roomData.features.forEach((room) => {
+                            if (room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]) {
+                                roomObjects.push(room);
+                            }
+                        });
+                    }
+                }        
+                setSchedule(roomObjects);
+                console.log(roomObjects);
+            }); //change to moment().format('L') during school days
+            setSubmittedSchedule(true);
+        }
 
         setScheduleDirectionToggle(!scheduleDirectionToggle);
 
-        if (scheduleDirectionToggle) {
-            setScheduleDirectionStyle({ color: "dodgerblue" });
-        } else {
-            setScheduleDirectionStyle({ color: "#D7BE69" });
-            setSubmittedSchedule(true);
-        }
+
+       
     };
 
     return (
@@ -236,18 +245,6 @@ const Map = () => {
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} />}
                 {submittedSchedule && <MarkerPointsSchedule />}
 
-                {/*  START OF TESTING */}
-
-                {/* <Marker longitude={-122.06804168193189}
-                                    latitude={37.36093065237892}
-                            >
-                                <div className="mapIcon" >
-                                    <div className = 'searchMarkerFind'></div>
-                                </div>
-                            </Marker> */}
-
-                {/*  END OF TESTING */}
-
                 <div className='flexbox space-between'>
                     {singleDirectionsToggle && window.innerWidth > 768 && (
                         <div className=' controlContainer'>
@@ -263,12 +260,16 @@ const Map = () => {
                         </div>
                     )}
 
-                    {scheduleDirectionToggle && window.innerWidth > 768 && (
+                    {!scheduleDirectionToggle && window.innerWidth > 768 && (
                         <div className='flexbox column center controlContainer'>
                             <h2>Daily Schedule Route</h2>
                             <h3>Todays Periods</h3>
-                            {schedule.map((period, index) => {
-                                return <li key={index}>{period}</li>;
+                            {schedule.map((room, index) => {
+                                return (
+                                    <li key={index}>
+                                        {room.properties.name}
+                                    </li>
+                                );
                             })}
                         </div>
                     )}

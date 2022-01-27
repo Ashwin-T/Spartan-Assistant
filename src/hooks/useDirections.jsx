@@ -12,13 +12,17 @@ const useDirections = (currentRoom, findingRoom) => {
          
             
             const directionsObj = {
-                type: 'Feature',
-                properties: {},
-                geometry: {
-                    type: 'LineString',
-                    coordinates: dataArray.data.routes[0].geometry.coordinates
-                }
-                
+                type: 'FeatureCollection',
+                features: [
+                    {
+                        type: 'Feature',
+                        properties: {},
+                        geometry: {
+                            type: 'LineString',
+                            coordinates: dataArray.data.routes[0].geometry.coordinates
+                        }
+                    }
+                ]
             }
 
             await setDirections(directionsObj);

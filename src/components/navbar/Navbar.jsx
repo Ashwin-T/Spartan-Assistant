@@ -45,6 +45,7 @@ const Navbar = ({navType}) => {
                     localStorage.setItem('freshmen', true)
                 }
                 else{
+                    setFreshmen(false)
                     localStorage.setItem('freshmen', false)
                 }
             } else {
