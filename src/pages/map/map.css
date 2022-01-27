@@ -1,59 +1,75 @@
-.mapPageContainer{
+.mapPageContainer {
     margin: 0;
     width: 100vw;
     height: 100%;
 }
 
-.mapControls{
-    width: 25vw;
-    height: 10vh;
+.mapControls {
+    position: absolute;
+    bottom: 5rem;
+    left: 5rem;
     background-color: var(--alternate-background-color) !important;
-    margin: 3vh 5vw;
-    border: 5px solid var(--alternate-color) !important;
-    border-radius: 35px !important;
+    /* margin: 3vh 5vw; */
+    border-radius: 5rem;
+    box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
+    border: 1px solid rgb(0, 0, 0, 0.12);
 }
 
-.mapControls > *{
-    padding: 0 2.25vw;
+.mapControls > * {
+    padding: 1rem;
+}
+.mapControls svg:hover {
+    fill: var(--alternate-color);
+}
+.mapControls svg {
+    transition: fill 0.2s;
 }
 
-.content{
+.content {
     margin: 15vh 0;
 }
 
-.controlContainer h1{
+.controlContainer h1 {
     text-align: center;
     border-bottom: 3px solid var(--alternate-color);
 }
 
-.controlContainer .go{
-    width: 7vw;
-    height: 5vh;
-    margin: 1vh 0; 
+.controlContainer .go {
     outline: none;
-    border-radius: 35px; 
-    border: 3px solid var(--alternate-color);
-    background-color: var(--alternate-background-color);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid var(--alternate-color);
+    background-color: var(--alternate-color-transparent);
     transition: all 0.3s ease;
+}
+.controlContainer > div {
     display: flex;
+    width: 100%;
     justify-content: center;
-    align-items: center;
 }
 
-.controlContainer{
-    height: 40vh;
-    width: 25vw;
+.controlContainer {
+    /* height: 40vh;
+    width: 25vw; */
+    position: absolute;
+    bottom: 11rem;
+    left: 5rem;
+
     background-color: var(--alternate-background-color) !important;
     border-radius: 35px;
-    border: 5px solid var(--alternate-color) !important;
+    border: 1px solid rgb(0, 0, 0, 0.12);
     background-color: var(--alternate-background-color);
-    margin: 3vh 5vw;
+    box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
+    padding: 2rem;
     z-index: 1;
 }
-
-
-
-.controlButton{
+.controlContainer > h3 {
+    text-align: left;
+}
+.controlButton {
     background-color: var(--alternate-background-color) !important;
     cursor: pointer;
     border-radius: 50%;
@@ -62,12 +78,12 @@
     color: dodgerblue;
 }
 
-.controlContainer .go:hover{   
+.controlContainer .go:hover {
     background-color: var(--alternate-color);
 }
 
-.controlContainer input{
-    width: 10vw;
+.controlContainer input {
+    width: 100%;
     height: 2vh;
     outline: none;
     border: none;
@@ -75,59 +91,59 @@
     font-size: 2vh;
 }
 
-.mapIcon > *{
+.mapIcon > * {
     border-radius: 50%;
     width: 12px;
     height: 12px;
     border: 2px solid white;
 }
 
-.searchMarkerCurrent{
+.searchMarkerCurrent {
     background: dodgerblue !important;
 }
 
-.searchMarkerFind{
+.searchMarkerFind {
     background: red !important;
 }
 
 @media only screen and (max-width: 768px) {
-
-    .mapControls{
-        width: 65vw;
-        height: 7.75vh;;
+    .mapControls {
+        /* width: 65vw;
+        height: 7.75vh; */
+        left: 1rem;
     }
 
-    .controlContainer{
-        width: 100vw;
+    .controlContainer {
+        /* width: 100vw;
         height: 25vh;
-        margin-top: 15vh;   
+        margin-top: 15vh; */
+        left: 1rem;
     }
 
-    .controlContainer > *{
-        padding: 0.25vh 0
+    .controlContainer > * {
+        /* padding: 0.25vh 0; */
     }
-    .controlContainer h3{
-        font-size: 1.5vh;
-    }
-
-    .controlContainer .go{
-        width: 25vw;
-        height: 5vh;
-    }
-    .refreshIcon{
-        font-size:7vw;
+    .controlContainer h3 {
+        /* font-size: 1.5vh; */
     }
 
+    .controlContainer .go {
+        /* width: 25vw;
+        height: 5vh; */
+    }
+    .refreshIcon {
+        font-size: 7vw;
+    }
 }
 
 @media only screen and (max-width: 375px) {
-    .mapControls{
-        height: 9vh;
+    .mapControls {
+        /* height: 9vh; */
     }
 }
 
 @media only screen and (max-width: 350px) {
-    .mapControls{
-        height: 15vh;;
+    .mapControls {
+        /* height: 15vh; */
     }
 }

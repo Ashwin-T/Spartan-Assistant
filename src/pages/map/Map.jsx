@@ -1,115 +1,111 @@
-import { useState, useEffect, useRef } from 'react';
-import ReactMapGL, {Marker, Layer, Source, Popup} from 'react-map-gl';
-import { getPeriodsOnDay } from 'mvhs-schedule'
+import { useState, useEffect, useRef } from "react";
+import ReactMapGL, { Marker, Layer, Source, Popup } from "react-map-gl";
+import { getPeriodsOnDay } from "mvhs-schedule";
 
-import { FaRoute, FaDirections } from 'react-icons/fa';
-import {IoIosNavigate} from 'react-icons/io';
+import { FaRoute, FaDirections } from "react-icons/fa";
+import { IoIosNavigate } from "react-icons/io";
 import * as roomData from "../../data/Rooms.json";
 
 import Navbar from "../../components/navbar/Navbar";
 import useDirections from "../../hooks/useDirections";
 
-import moment from 'moment';
-import './map.css';
+import moment from "moment";
+import "./map.css";
 // import * as otherData from "./Data/other.json";
 
 //changing the map location by re-orient
 
 const Map = () => {
-
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools  center location
 
-    const [restRoom, setRestRoom] = useState('');//sets initial value of 'search'
-    const [findRoom, setFindRoom] = useState('');//sets initial value of 'search'
+    const [restRoom, setRestRoom] = useState(""); //sets initial value of 'search'
+    const [findRoom, setFindRoom] = useState(""); //sets initial value of 'search'
 
     const [submittedRoom, setSubmittedRoom] = useState(false);
     const [submittedSchedule, setSubmittedSchedule] = useState(false);
 
-    const [viewPort, setViewPort] = useState({});// sets initial value of 'view port' to empty js object. viewport will help us setd
-
+    const [viewPort, setViewPort] = useState({}); // sets initial value of 'view port' to empty js object. viewport will help us setd
 
     const [currentRoom, setCurrentRoom] = useState({});
     const [findingRoom, setFindingRoom] = useState({});
-    
+
     const inputCurrentRoom = useRef(null);
     const inputFindingRoom = useRef(null);
 
     const [singleDirectionsToggle, setSingleDirectionsToggle] = useState(false);
     const [scheduleDirectionToggle, setScheduleDirectionToggle] = useState(false);
 
-    const [singleDirectionStyle, setSingleDirectionStyle] = useState({color: 'dodgerblue'});
-    const [scheduleDirectionStyle, setScheduleDirectionStyle] = useState({color: 'dodgerblue'});
+    const [singleDirectionStyle, setSingleDirectionStyle] = useState({ color: "dodgerblue" });
+    const [scheduleDirectionStyle, setScheduleDirectionStyle] = useState({ color: "dodgerblue" });
 
     const [schedule, setSchedule] = useState([]);
 
-    const calculateZoom =()=>{//this sets the zoom of the map so it looks ok on mobile and computer
-        if(window.innerWidth < 768){// 600 is the borderish from phone to computer 
-            return 16.35
+    const calculateZoom = () => {
+        //this sets the zoom of the map so it looks ok on mobile and computer
+        if (window.innerWidth < 768) {
+            // 600 is the borderish from phone to computer
+            return 16.35;
         }
-        return 17
-    }
+        return 17;
+    };
 
-    const calculateCenter = ()=>{//this sets the center of the map so it looks ok on mobile and computer
-        if(window.innerWidth < 768){// 600 is the borderish from phone to computer
-            return -122.06586285921868
+    const calculateCenter = () => {
+        //this sets the center of the map so it looks ok on mobile and computer
+        if (window.innerWidth < 768) {
+            // 600 is the borderish from phone to computer
+            return -122.06586285921868;
         }
-        return -122.06656285921868
-    }
+        return -122.06656285921868;
+    };
 
-    
     const lon = calculateCenter();
     const zoomX = calculateZoom();
 
-    useEffect(()=>{     
+    useEffect(() => {
         setViewPort({
             latitude: 37.360205578662605,
             longitude: lon,
             zoom: zoomX,
             width: "100vw",
             height: "100vh",
-            bearing: 90
-        })
+            bearing: 90,
+        });
+    }, [zoomX, lon]); // the useEffect will run on start-up and add data to the viewport object
 
-    }, [zoomX,lon])// the useEffect will run on start-up and add data to the viewport object
+    const formChange1 = (room) => {
+        setSubmittedRoom(false);
+        setRestRoom(room);
+    };
 
-   
-    const formChange1 = (room)=>{
-        setSubmittedRoom(false)
-        setRestRoom(room) 
-    }
+    const formChange2 = (room) => {
+        setSubmittedRoom(false);
+        setFindRoom(room); //sets searched to variable
+    };
 
-    const formChange2 = (room)=>{
-        setSubmittedRoom(false)
-        setFindRoom(room)//sets searched to variable
-    }
+    const handleMap = async () => {
+        let currentRoom = {},
+            findingRoom = {};
 
-
-    const handleMap = async()=>{
-        let currentRoom = {}, findingRoom = {};
-        
-        roomData.features.forEach((room)=>{//pushed a
-            if(room.properties.name === restRoom || room.properties.name2 === restRoom){
-                currentRoom = room
-                setCurrentRoom(room);     
+        roomData.features.forEach((room) => {
+            //pushed a
+            if (room.properties.name === restRoom || room.properties.name2 === restRoom) {
+                currentRoom = room;
+                setCurrentRoom(room);
             }
 
-            if(room.properties.name === findRoom || room.properties.name2 === findRoom){
-                findingRoom = room
+            if (room.properties.name === findRoom || room.properties.name2 === findRoom) {
+                findingRoom = room;
                 setFindingRoom(room);
             }
-        })
+        });
 
-
-        if('type' in currentRoom && 'type' in findingRoom){
-        
-            setSubmittedRoom(true)
+        if ("type" in currentRoom && "type" in findingRoom) {
+            setSubmittedRoom(true);
             handleSingleDirection();
-
-        }
-        else{
-            alert('Please enter a valid room name')
+        } else {
+            alert("Please enter a valid room name");
         }
 
         setViewPort({
@@ -118,173 +114,131 @@ const Map = () => {
             zoom: zoomX,
             width: "100vw",
             height: "100vh",
-            bearing: 90
-        })
-
-    }
+            bearing: 90,
+        });
+    };
 
     //important notice: do we want which style
 
-    
+    const MarkerPointsOneWay = ({ currentRoom, findingRoom }) => {
+        //marker for searched class
 
-    
-    const MarkerPointsOneWay = ({currentRoom, findingRoom}) => {//marker for searched class
-        
-        return ( 
-        <>
-
-            <Source id="directionLayer" type="geojson" data={useDirections(currentRoom, findingRoom)}>
-                <Layer type="line" source="my-data" paint = {{"line-color": "dodgerblue","line-width": 5}}/>
-            </Source>
-
-            <Marker longitude={currentRoom.geometry.coordinates[0]}
-                    latitude={currentRoom.geometry.coordinates[1]}
-            >
-                <div className="mapIcon">
-                    <div className = 'searchMarkerCurrent'></div>
-                </div>
-
-                
-            </Marker>
-
-
-            <Marker longitude={findingRoom.geometry.coordinates[0]}
-                    latitude={findingRoom.geometry.coordinates[1]}
-            >
-                <div className="mapIcon">
-                    <div className = 'searchMarkerFind'></div>
-                </div>
-            </Marker>
-
-            <Popup
-                longitude={currentRoom.geometry.coordinates[0]}
-                latitude={currentRoom.geometry.coordinates[1]}
-                closeButton= {false}
-                closeOnClick={false}
-                anchor="bottom" 
-            >
-            {currentRoom.properties.name}
-            </Popup>
-
-            <Popup
-                longitude={findingRoom.geometry.coordinates[0]}
-                latitude={findingRoom.geometry.coordinates[1]}
-                closeButton= {false}
-                closeOnClick={false}
-                anchor="bottom" 
-            >
-            {findingRoom.properties.name}
-            </Popup>
-        </> ); 
-    }
-
-    const MarkerPointsSchedule = () => {//marker for searched class
-
-        const periodsLocal = JSON.parse(localStorage.getItem('periods'));
-        let resultArr = []  
-        let roomObjects = [];
-
-        getPeriodsOnDay(new Date('1/21/2022')).then(result => {
-            for(let i = 0; i < result.length; i++){
-                resultArr.push(periodsLocal[result[i].period - 1]);
-            }
-        
-            for(let i = 0; i < resultArr.length; i++){
-                if(resultArr[i] !== undefined){
-                    roomData.features.forEach((room)=>{//pushed a
-                        if(room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]){
-                            roomObjects.push(room.geometry.coordinates)
-                        }
-                    })
-                }
-            }     
-            
-            setSchedule(roomObjects);
-
-            
-        }) //change to moment().format('L') during school days
-
-
-        
-        
         return (
             <>
+                <Source id='directionLayer' type='geojson' data={useDirections(currentRoom, findingRoom)}>
+                    <Layer type='line' source='my-data' paint={{ "line-color": "dodgerblue", "line-width": 5 }} />
+                </Source>
 
-                {
-                    schedule.map((room)=>{
-                        return(
-                            <>
+                <Marker longitude={currentRoom.geometry.coordinates[0]} latitude={currentRoom.geometry.coordinates[1]}>
+                    <div className='mapIcon'>
+                        <div className='searchMarkerCurrent'></div>
+                    </div>
+                </Marker>
 
-                            <Popup key = {room.properties.name}
-                                longitude={room.geometry.coordinates[0]}
-                                latitude={room.geometry.coordinates[1]}
-                                closeButton= {false}
-                                closeOnClick={false}
-                                anchor="bottom" 
-                                >
-                                {room.properties.name}
-                                </Popup>
-                            </>
-                        )
-                    })
-                }
+                <Marker longitude={findingRoom.geometry.coordinates[0]} latitude={findingRoom.geometry.coordinates[1]}>
+                    <div className='mapIcon'>
+                        <div className='searchMarkerFind'></div>
+                    </div>
+                </Marker>
 
+                <Popup longitude={currentRoom.geometry.coordinates[0]} latitude={currentRoom.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
+                    {currentRoom.properties.name}
+                </Popup>
+
+                <Popup longitude={findingRoom.geometry.coordinates[0]} latitude={findingRoom.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
+                    {findingRoom.properties.name}
+                </Popup>
             </>
-        )   
-    }
+        );
+    };
 
-    const handleSingleDirection = ()=>{
+    const MarkerPointsSchedule = () => {
+        //marker for searched class
+
+        const periodsLocal = JSON.parse(localStorage.getItem("periods"));
+        let resultArr = [];
+        let roomObjects = [];
+
+        getPeriodsOnDay(new Date("1/21/2022")).then((result) => {
+            for (let i = 0; i < result.length; i++) {
+                resultArr.push(periodsLocal[result[i].period - 1]);
+            }
+
+            for (let i = 0; i < resultArr.length; i++) {
+                if (resultArr[i] !== undefined) {
+                    roomData.features.forEach((room) => {
+                        //pushed a
+                        if (room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]) {
+                            roomObjects.push(room.geometry.coordinates);
+                        }
+                    });
+                }
+            }
+
+            setSchedule(roomObjects);
+        }); //change to moment().format('L') during school days
+
+        return (
+            <>
+                {schedule.map((room) => {
+                    return (
+                        <>
+                            <Popup key={room.properties.name} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
+                                {room.properties.name}
+                            </Popup>
+                        </>
+                    );
+                })}
+            </>
+        );
+    };
+
+    const handleSingleDirection = () => {
         setScheduleDirectionToggle(false);
         setSubmittedSchedule(false);
-        setScheduleDirectionStyle({color: 'dodgerblue'})
+        setScheduleDirectionStyle({ color: "dodgerblue" });
 
-        setSingleDirectionsToggle(!singleDirectionsToggle)
+        setSingleDirectionsToggle(!singleDirectionsToggle);
 
-        if(singleDirectionsToggle){
-            setSingleDirectionStyle({color: 'dodgerblue'})
+        if (singleDirectionsToggle) {
+            setSingleDirectionStyle({ color: "dodgerblue" });
+        } else {
+            setSingleDirectionStyle({ color: "#D7BE69" });
         }
-        else{
-            setSingleDirectionStyle({color: '#D7BE69'})
-        }
+    };
 
-    }
-
-    const handleScheduleDirections = ()=>{
+    const handleScheduleDirections = () => {
         setSingleDirectionsToggle(false);
         setSubmittedRoom(false);
-        setSingleDirectionStyle({color: 'dodgerblue'})
+        setSingleDirectionStyle({ color: "dodgerblue" });
 
-        setScheduleDirectionToggle(!scheduleDirectionToggle)
-        
-        if(scheduleDirectionToggle){
-            setScheduleDirectionStyle({color: 'dodgerblue'})
-        }
-        else{
-            setScheduleDirectionStyle({color: '#D7BE69'})
-            setSubmittedSchedule(true)
-        }
+        setScheduleDirectionToggle(!scheduleDirectionToggle);
 
-    }
-    
+        if (scheduleDirectionToggle) {
+            setScheduleDirectionStyle({ color: "dodgerblue" });
+        } else {
+            setScheduleDirectionStyle({ color: "#D7BE69" });
+            setSubmittedSchedule(true);
+        }
+    };
+
     return (
-        <div className="flexbox mapPageContainer">
-
+        <div className='flexbox mapPageContainer'>
             <ReactMapGL
-                            {...viewPort}
-                            mapStyle = "mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n"
-                            mapboxApiAccessToken = "pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w"
-                            onViewportChange={viewPort => setViewPort(viewPort)}
-                            // onClick = {handleLocation}
-                            > 
+                {...viewPort}
+                mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
+                mapboxApiAccessToken='pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
+                onViewportChange={(viewPort) => setViewPort(viewPort)}
+                // onClick = {handleLocation}
+            >
+                <Navbar navType={1} />
 
-                        <Navbar navType = {1}/>                    
+                {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} />}
+                {submittedSchedule && <MarkerPointsSchedule />}
 
-                        {(submittedRoom) && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} />}
-                        {(submittedSchedule) && <MarkerPointsSchedule />}
+                {/*  START OF TESTING */}
 
-                        {/*  START OF TESTING */}
-
-                            {/* <Marker longitude={-122.06804168193189}
+                {/* <Marker longitude={-122.06804168193189}
                                     latitude={37.36093065237892}
                             >
                                 <div className="mapIcon" >
@@ -292,79 +246,85 @@ const Map = () => {
                                 </div>
                             </Marker> */}
 
-                        {/*  END OF TESTING */}
+                {/*  END OF TESTING */}
 
-                    
-
-                        <div className="flexbox space-between">
-
-                            {singleDirectionsToggle && window.innerWidth > 768 && 
-                                <div className="flexbox column center controlContainer">
-                                    <h3>What Room Are You In Right Now?</h3>
-                                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
-                                    <h3>What Room Are You Going To?</h3>
-                                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
-                                    <div>
-                                        <button className = 'go' onClick = {handleMap}>Navigate!</button>
-                                    </div>
-                                </div>
-                            } 
-
-                            {scheduleDirectionToggle && window.innerWidth > 768 && 
-                                <div className="flexbox column center controlContainer">
-                                    <h2>Daily Schedule Route</h2>
-                                    <h3>Todays Periods</h3>
-                                    {
-                                        schedule.map((period, index)=>{
-                                            return <li key = {index}>{period}</li>
-                                        })
-                                    }
-                                </div>
-                            } 
-
-                            
-                            <div className="flexbox center mapControls">
-                                <div className="flexbox center column">
-                                    <button onClick = {()=>{setViewPort({
-                                                                latitude: 37.360205578662605,
-                                                                longitude: lon,
-                                                                zoom: zoomX,
-                                                                width: "100vw",
-                                                                height: "100vh",
-                                                                bearing: 90
-                                                            })}} 
-                                className="controlButton"> <IoIosNavigate size = {40}/></button>
-                             </div>
-
-                            <div className="flexbox center column">
-                                <button className="controlButton" onClick = {handleSingleDirection}> <FaDirections size = {40} style = {singleDirectionStyle}/></button>
+                <div className='flexbox space-between'>
+                    {singleDirectionsToggle && window.innerWidth > 768 && (
+                        <div className=' controlContainer'>
+                            <h3>Starting Room: </h3>
+                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='103' onChange={(e) => formChange1(e.target.value)} />
+                            <h3>Ending Room: </h3>
+                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='413' onChange={(e) => formChange2(e.target.value)} />
+                            <div>
+                                <button className='go' onClick={handleMap}>
+                                    Navigate
+                                </button>
                             </div>
+                        </div>
+                    )}
 
-                            <div className="flexbox center column">
-                                <button className="controlButton" onClick = {handleScheduleDirections}> <FaRoute size = {40} style = {scheduleDirectionStyle}/></button>
-                            </div>
-                                
-                            </div>
+                    {scheduleDirectionToggle && window.innerWidth > 768 && (
+                        <div className='flexbox column center controlContainer'>
+                            <h2>Daily Schedule Route</h2>
+                            <h3>Todays Periods</h3>
+                            {schedule.map((period, index) => {
+                                return <li key={index}>{period}</li>;
+                            })}
+                        </div>
+                    )}
 
-                            {singleDirectionsToggle && window.innerWidth < 768 && 
-                                <div className="flexbox column center controlContainer">
-                                    <h3>What Room Are You In Right Now?</h3>
-                                    <input ref={inputCurrentRoom} value = {restRoom} type = 'text' className  = 'findRoom' onChange = {(e)=>formChange1(e.target.value)}/>
-                                    <h3>What Room Are You Going To?</h3>
-                                    <input ref={inputFindingRoom} value = {findRoom} type = 'text' className = 'findRoom' onChange = {(e)=>formChange2(e.target.value)}/>
-                                    <div>
-                                        <button className = 'go' onClick = {handleMap}>Navigate!</button>
-                                    </div>
-                                </div>
-                            } 
-
+                    {/* TODO: Add better styling */}
+                    <div className='flexbox center mapControls'>
+                        <div className='flexbox center column'>
+                            <button
+                                onClick={() => {
+                                    setViewPort({
+                                        latitude: 37.360205578662605,
+                                        longitude: lon,
+                                        zoom: zoomX,
+                                        width: "100vw",
+                                        height: "100vh",
+                                        bearing: 90,
+                                    });
+                                }}
+                                className='controlButton'>
+                                {" "}
+                                <IoIosNavigate size={40} />
+                            </button>
                         </div>
 
-            </ReactMapGL>
+                        <div className='flexbox center column'>
+                            <button className='controlButton' onClick={handleSingleDirection}>
+                                {" "}
+                                <FaDirections size={40} style={singleDirectionStyle} />
+                            </button>
+                        </div>
 
-                
-        </div>     
-    ) 
-}
- 
+                        <div className='flexbox center column'>
+                            <button className='controlButton' onClick={handleScheduleDirections}>
+                                {" "}
+                                <FaRoute size={40} style={scheduleDirectionStyle} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {singleDirectionsToggle && window.innerWidth < 768 && (
+                        <div className=' controlContainer'>
+                            <h3>Starting Room:</h3>
+                            <input ref={inputCurrentRoom} value={restRoom} placeholder='103' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
+                            <h3>Ending Room:</h3>
+                            <input ref={inputFindingRoom} value={findRoom} placeholder='413' type='text' className='findRoom' onChange={(e) => formChange2(e.target.value)} />
+                            <div>
+                                <button className='go' onClick={handleMap}>
+                                    Navigate
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </ReactMapGL>
+        </div>
+    );
+};
+
 export default Map;
