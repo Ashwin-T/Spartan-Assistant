@@ -165,13 +165,13 @@ const Map = () => {
 
         return (
             <>               
-                {/* {schedule.map((room, index) => {
+                {schedule.filter(room => room.properties.name !== 'free').map((room, index) => {
                     return (
                         <Popup key={index} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
                             {room.properties.name}
                         </Popup>
                     );
-                })}                 */}
+                })}                
             </>
 
         );
@@ -199,17 +199,19 @@ const Map = () => {
             setScheduleDirectionStyle({ color: "dodgerblue" });
             setSubmittedSchedule(false);
 
-        } else {
+        }else {
             setScheduleDirectionStyle({ color: "#D7BE69" });
             const periodsLocal = JSON.parse(localStorage.getItem("periods"));
             console.log(periodsLocal);
-            let resultArr = [];
-            let roomObjects = [];
     
             await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
+                let resultArr = [];
+                let roomObjects = [];
+
                 for (let i = 0; i < result.length; i++) {
                     resultArr.push(periodsLocal[result[i].period - 1]);
                 }
+                console.log(resultArr);
                 for (let i = 0; i < resultArr.length; i++) {
                     if (resultArr[i] !== undefined) {
                         roomData.features.forEach((room) => {

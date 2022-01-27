@@ -77,8 +77,8 @@ const Settings = ({init}) => {
             gradYear: gradYear,
           })
         localStorage.setItem('allow', 'true');
-        localStorage.setItem('periods', JSON.stringify(periods));
-
+        localStorage.setItem('periods', JSON.stringify([...periods]));
+        
         const isFreshmen = (gradYear === '2025') ? true : false;
         localStorage.setItem('freshmen', isFreshmen);
         window.location.reload();

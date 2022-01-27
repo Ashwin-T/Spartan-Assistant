@@ -24,10 +24,8 @@ const Source = () => {
             const docRef = doc(db, "users", auth.currentUser.uid);
             const docSnap = await getDoc(docRef);
 
-            console.log(getAuth().currentUser.uid)
-
             if (docSnap.exists()) {
-                localStorage.setItem('periods', JSON.stringify(docSnap.data().periods));
+                localStorage.setItem('periods', JSON.stringify([...docSnap.data().periods]));
                 setDontRedirect(true);
             } else {
             // doc.data() will be undefined in this case
