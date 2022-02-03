@@ -92,8 +92,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .left, .right{
+        width: calc(100% - 50px) !important;
+    }
     .left{
-        width: 100% !important;
         height: 25% !important;
     }
 
@@ -107,8 +109,11 @@
         font-size: 2vh !important;
     }
     .right{
-        width: 100% !important;
         height: 75% !important;
+        overflow: scroll;
+        padding-top: 50px;
+        display: flex;
+        justify-content: flex-start !important;
     }
     .side-container{
         overflow: hidden !important;
