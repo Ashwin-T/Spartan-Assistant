@@ -118,7 +118,7 @@ const Map = () => {
             latitude: 37.360205578662605,
             longitude: lon,
             zoom: zoomX,
-            width: "100vw",
+            width: "100%",
             height: "100vh",
             bearing: 90,
         });
@@ -276,7 +276,7 @@ const Map = () => {
                             </button>
                         </div>
                         <div className="flexbox center column">
-                            <button className='controlButton' onClick={()=>navigate('../staticmap')}>
+                            <button className='controlButton' onClick={()=>navigate('/staticmap')}>
                                 {" "}
                                 <MdMap size={40}/>
                             </button>
