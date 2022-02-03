@@ -24,7 +24,7 @@ const Settings = ({init}) => {
     const [periodSeven, setPeriodSeven] = useState('');
 
     const [page, setPage] = useState(0);
-    const [title, setTitle] = useState('Lets Update Your Settings');
+    const [title, setTitle] = useState("Let's Update Your Settings");
     const styleName = useMobileState() ? 'column' : '';
 
     const db = getFirestore();
