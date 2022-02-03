@@ -37,7 +37,6 @@ const MarkerPointsOneWay = ({schedule, ok , raw}) => {
                 ]
             }
 
-            
             await setDirections(directionsObj);
 
             setLoading(false);
@@ -64,7 +63,7 @@ const MarkerPointsOneWay = ({schedule, ok , raw}) => {
             <>
                 {ok && 
                 <Source id='directionLayer' type='geojson' data={directions}>
-                    <Layer type='line' source='my-data' paint={{ "line-color": "green", "line-width": 5 }} />
+                    <Layer type='line' source='my-data' paint={{ "line-color": 'green', "line-width": 5 }} />
                 </Source>}
                 {schedule.filter(room => room.properties.name !== 'free').map((room, index) => {
                     return (
