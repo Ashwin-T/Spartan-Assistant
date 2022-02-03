@@ -118,7 +118,7 @@ const Map = () => {
             latitude: 37.360205578662605,
             longitude: lon,
             zoom: zoomX,
-            width: "100vw",
+            width: "100%",
             height: "100vh",
             bearing: 90,
         });
@@ -217,9 +217,9 @@ const Map = () => {
                     {singleDirectionsToggle && window.innerWidth > 768 && (
                         <div className=' controlContainer'>
                             <h3>Starting Room: </h3>
-                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='103' onChange={(e) => formChange1(e.target.value)} />
+                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='Room number...' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room: </h3>
-                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='413' onChange={(e) => formChange2(e.target.value)} />
+                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='Room number...' onChange={(e) => formChange2(e.target.value)} />
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
@@ -276,7 +276,7 @@ const Map = () => {
                             </button>
                         </div>
                         <div className="flexbox center column">
-                            <button className='controlButton' onClick={()=>navigate('../staticmap')}>
+                            <button className='controlButton' onClick={()=>navigate('/staticmap')}>
                                 {" "}
                                 <MdMap size={40}/>
                             </button>

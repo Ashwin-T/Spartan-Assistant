@@ -4,6 +4,7 @@ import './setting.css'
 import useMobileState from '../../hooks/useMobileState';
 import { doc, getFirestore, setDoc , getDoc} from "firebase/firestore"; 
 import * as roomData from "../../data/Rooms.json";
+import { useNavigate } from 'react-router-dom';
 
  
 // Add a new document in collection "cities"
@@ -12,6 +13,7 @@ const Settings = ({init}) => {
 
     //settings have preview of graduation year, and schecule of rooms
 
+    const navigate = useNavigate();
 
     const [gradYear, setGradYear] = useState(2022);
 
@@ -75,13 +77,13 @@ const Settings = ({init}) => {
             name: getAuth().currentUser.displayName,
             periods: periods,
             gradYear: gradYear,
-          })
+        });
         localStorage.setItem('allow', 'true');
         localStorage.setItem('periods', JSON.stringify([...periods]));
         
         const isFreshmen = (gradYear === '2025') ? true : false;
         localStorage.setItem('freshmen', isFreshmen);
-        window.location.reload();
+        navigate('/');
     }
 
     const changePage = () => {
