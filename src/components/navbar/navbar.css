@@ -1,19 +1,41 @@
 nav {
     width: 90%;
-    height: 5rem;
-    margin-top: 1rem;
     background-color: var(--alternate-background-color) !important;
-    border-radius: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: rgba(13, 38, 76, 0.19) 0px 9px 20px;
+    box-shadow: 0px 5px 18px rgba(13, 38, 76, 0.19);
     z-index: 2;
-    padding: 0.25rem;
+    border-radius: 5rem;
+    padding: 10px;
+}
+.nav-wrapper{
+    width: 100%;
+    display: flex !important;
 }
 .default {
-    width: 90% !important;
-    margin: 3vh 1vw;
+    width: 100%;
+    min-width: 270px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.home-link{
+    margin-left: 0 !important;
+}
+
+.default div{
+    display: flex;
+    flex-direction: row;
+}
+
+.default div a{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .open {
@@ -21,11 +43,17 @@ nav {
     margin: 3vh 1vw;
 }
 
+nav div{
+    height: 45px;
+}
+
 nav a {
     text-decoration: none;
     color: var(--content-color) !important;
-    margin: 0 1.25vw;
     cursor: pointer;
+    height: 45px;
+    width: 45px;
+    margin-left: 12px;
 }
 
 nav button {
@@ -42,11 +70,17 @@ nav .profile {
     clip-path: circle();
 }
 
+.default div a > img{
+    width: 45px !important;
+    height: 45px !important;
+}
+
 nav img {
-    width: 50px;
+    width: 45px;
+    height: 45px;
 }
 nav svg:hover {
-    transform: rotate(30deg);
+    transform: scale(1.2);
 }
 nav svg {
     transition: transform 0.25s;
@@ -54,13 +88,4 @@ nav svg {
 .dropdown {
     margin: 0 1.25vw;
     cursor: pointer;
-}
-
-@media only screen and (max-width: 768px) {
-    nav img {
-        width: 5vh !important;
-    }
-    nav {
-        height: 4rem;
-    }
 }

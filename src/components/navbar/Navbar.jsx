@@ -77,13 +77,13 @@ const Navbar = ({navType}) => {
 
 
     return (  
-        <div className="flexbox column center">
+        <div className="nav-wrapper">
             <nav className= {styleType}>
-                <Link to = "/"><img alt = 'logo' src = 'images/logoNav.png' /></Link>
+                <Link to = "/" className="home-link"><img alt = 'logo' src = 'images/logoNav.png' /></Link>
 
                 {type === 1 ? 
                 
-                    <div>
+                    <div className="icon-wrapper">
                         {
                             content.map((item, index) => {
                                 return(
