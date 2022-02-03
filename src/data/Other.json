@@ -5,7 +5,7 @@
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": []
+            "coordinates": [-122.06823305797388, 37.35924830068177]
           },
           "properties": {
             "name" : "Bike Rack",
@@ -16,7 +16,7 @@
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": []
+              "coordinates": [-122.06625112990642, 37.360707960267256]
             },
             "properties": {
               "name" : "Bike Rack",
@@ -24,10 +24,32 @@
             }
         },
         {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-122.0659017898563, 37.359150034924085]
+          },
+          "properties": {
+            "name" : "Bike Rack",
+            "key": "3"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-122.0659017898563, 37.359150034924085]
+          },
+          "properties": {
+            "name" : "Bike Rack",
+            "key": "3"
+          }
+        },
+        {
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": []
+              "coordinates": [-122.06567322343282, 37.36072023591453]
             },
             "properties": {
               "name" : "Student Parking"
@@ -37,29 +59,7 @@
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": []
-            },
-            "properties": {
-              "name" : "Electic Car Charging Station",
-              "key" : "1"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": []
-            },
-            "properties": {
-              "name" : "Electic Car Charging Station",
-              "key" : "2"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": []
+              "coordinates": [-122.06638565934448, 37.360460931533886]
             },
             "properties": {
               "name" : "Vending Machine",
@@ -70,7 +70,7 @@
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": []
+              "coordinates": [-122.06820563770003, 37.35959100443466]
             },
             "properties": {
               "name" : "Vending Machine",
@@ -80,15 +80,24 @@
         {
             "type": "Feature",
             "geometry": {
-              "type": "Point",
+              "type": "Area",
               "coordinates": []
             },
             "properties": {
-              "name" : "Vending Machine",
-              "key" : "3"
+              "name" : "Construction Zone",
+              "key" : "1"
             }
-        }
-
-
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Area",
+            "coordinates": []
+          },
+          "properties": {
+            "name" : "Construction Zone",
+            "key" : "2"
+          }
+      }
     ]
 }
