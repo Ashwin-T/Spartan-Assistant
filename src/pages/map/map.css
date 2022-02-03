@@ -114,6 +114,31 @@
     vertical-align: bottom;
     height: auto;
 }
+.back-arrow-wrapper{
+    position: fixed !important;
+    top: 150px;
+    left: 6.5vw;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.125);
+    backdrop-filter: blur(5px);
+    border-radius: 5rem;
+    z-index: 2;
+}
+.back-arrow-wrapper > * { 
+    transform: translateX(-2px);
+}
+.back-arrow-wrapper:hover{
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+.back-arrow-wrapper > *:hover{
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 768px) {
     .mapControls {
