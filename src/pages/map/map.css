@@ -18,9 +18,7 @@
 .mapControls > * {
     padding: 1rem;
 }
-.mapControls svg:hover {
-    fill: var(--alternate-color);
-}
+
 .mapControls svg {
     transition: fill 0.2s;
 }

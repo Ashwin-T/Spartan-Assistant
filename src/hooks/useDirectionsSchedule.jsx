@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const useDirectionsSchedule = (arrayOfItems) => {
+const directions = (arrayOfItems) => {
 
     const [directions, setDirections] = useState([]);
 
@@ -28,7 +28,7 @@ const useDirectionsSchedule = (arrayOfItems) => {
         }
         getDirections();
     })
-    return (directions)
+    return directions;
 }
  
-export default useDirections;
+export default directions;

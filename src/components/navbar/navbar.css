@@ -46,7 +46,7 @@ nav img {
     width: 50px;
 }
 nav svg:hover {
-    transform: rotate(45deg);
+    transform: rotate(30deg);
 }
 nav svg {
     transition: transform 0.25s;

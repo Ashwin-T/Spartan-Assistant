@@ -42,11 +42,11 @@ const Navbar = ({navType}) => {
             if (docSnap.exists()) {
                 if(docSnap.data().gradYear === "2025"){
                     setFreshmen(true)
-                    localStorage.setItem('freshmen', true)
+                    localStorage.setItem('freshmen', 'true')
                 }
                 else{
                     setFreshmen(false)
-                    localStorage.setItem('freshmen', false)
+                    localStorage.setItem('freshmen', 'false')
                 }
             } else {
             // doc.data() will be undefined in this case

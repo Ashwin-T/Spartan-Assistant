@@ -40,16 +40,6 @@
               "coordinates": []
             },
             "properties": {
-              "name" : "Faculty Parking"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": []
-            },
-            "properties": {
               "name" : "Electic Car Charging Station",
               "key" : "1"
             }

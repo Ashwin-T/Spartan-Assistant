@@ -39,13 +39,12 @@ const Resources = () => {
     return(
         <>
         <div className="flexbox column center">
-            <div className="container center">
-                <br/>
                 <h1 className="titleResources">Resources</h1>
 
                 <div className="flexbox row center">
                     <div className="flexbox faq-container">
-                        
+
+                    
                     </div>
                     <div className="link-container">
                         <h3 style={{textAlign: 'center', width: 100+"%"}}>Links</h3>
@@ -58,9 +57,7 @@ const Resources = () => {
                             )
                         })}
                     </div>
-                    
-                </div>
-                
+                                    
             </div>
         </div>
         </>
