@@ -4,7 +4,7 @@ import Navbar from "../components/navbar/Navbar";
 import Loading from '../components/loading/Loading';
 import Home from './home/Home';
 import Map from './map/Map';
-import Chat from './chat/Chat';
+import StaticMap from './map/StaticMap';
 import Setting from './setting/Setting';
 import Resources from './resources/Resources';
 import {useState, useEffect} from 'react';
@@ -49,7 +49,7 @@ const Source = () => {
                     </>
                 } />
                 <Route exact path="/map" element={<Map />} />
-                <Route exact path="/chat" element={<><Chat /></>}/>
+                <Route exact path="/staticmap" element={<><Navbar navType = {1}/><StaticMap /></>} />
                 <Route exact path="/settings" element={<><Navbar navType = {1}/><Setting init = {false}/></>} />
                 <Route exact path="/resources" element={<><Navbar navType = {1}/><Resources /></>} />
             </Routes>   

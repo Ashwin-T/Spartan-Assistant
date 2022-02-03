@@ -73,7 +73,7 @@
     border-radius: 50%;
     border: none;
     background-color: var(--alternate-background-color);
-    color: dodgerblue;
+    color: dodgerblue !important;
 }
 
 .controlContainer .go:hover {
@@ -102,6 +102,17 @@
 
 .searchMarkerFind {
     background: red !important;
+}
+
+.static-map{
+    overflow: auto;
+    width: 100%;
+    position: relative;
+}
+
+.static-map img{
+    vertical-align: bottom;
+    height: auto;
 }
 
 @media only screen and (max-width: 768px) {

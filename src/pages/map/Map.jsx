@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
 import { FaRoute, FaDirections } from "react-icons/fa";
+import {MdMap} from 'react-icons/md';
 import { IoIosNavigate } from "react-icons/io";
 import * as roomData from "../../data/Rooms.json";
 import { getPeriodsOnDay } from "mvhs-schedule";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../components/navbar/Navbar";
 import MarkerPointsOneWay from "./MarkerPointsOneWay";
 import MarkerPointsSchedule from "./MarkerPointsSchedule";
+
 
 import "./map.css";
 import './mapbox-gl.css';
@@ -20,7 +23,7 @@ const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools  center location
-
+    let navigate = useNavigate();
     const [restRoom, setRestRoom] = useState(""); //sets initial value of 'search'
     const [findRoom, setFindRoom] = useState(""); //sets initial value of 'search'
 
@@ -270,6 +273,12 @@ const Map = () => {
                             <button className='controlButton' onClick={handleScheduleDirections}>
                                 {" "}
                                 <FaRoute size={40} style={scheduleDirectionStyle} />
+                            </button>
+                        </div>
+                        <div className="flexbox center column">
+                            <button className='controlButton' onClick={()=>navigate('../staticmap')}>
+                                {" "}
+                                <MdMap size={40}/>
                             </button>
                         </div>
                     </div>
