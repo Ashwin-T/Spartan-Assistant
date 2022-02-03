@@ -127,7 +127,7 @@ const Settings = ({init}) => {
 
             <div className={`flexbox column center ${init}`}>
 
-                <div className={"flexbox settings container side-container" + styleName}>
+                <div className={"flexbox settings container side-container " + styleName}>
                     <div className="left flexbox column center">
                         <h1>Hey {getAuth().currentUser.displayName.split(' ')[0]}!</h1>
                         <h2>{title}</h2>
