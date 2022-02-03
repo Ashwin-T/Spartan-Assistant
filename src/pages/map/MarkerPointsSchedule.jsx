@@ -2,7 +2,7 @@ import{Popup, Source, Layer } from "react-map-gl";
 import { useEffect, useState } from "react";
 import Loading from '../../components/loading/Loading';
 import axios from 'axios';
-const MarkerPointsOneWay = ({schedule, ok , raw}) => {
+const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
     //marker for searched class
    
     const [directions, setDirections] = useState({});
@@ -12,15 +12,17 @@ const MarkerPointsOneWay = ({schedule, ok , raw}) => {
         
         setLoading(true);
         const getDirections = async () => {
-            
+            const filteredSchedule = schedule.filter(item => item.properties.name !== 'free');
+
             let dataString = 'https://api.mapbox.com/directions/v5/mapbox/walking/';
 
-            for(let i = 0; i < schedule.length; i++){
-                dataString += `${schedule[i].geometry.coordinates[0]},${schedule[i].geometry.coordinates[1]};`;
+            for(let i = 0; i < filteredSchedule.length; i++){
+                dataString += `${filteredSchedule[i].geometry.coordinates[0]},${filteredSchedule[i].geometry.coordinates[1]};`;
             }
             dataString = dataString.slice(0, -1);
 
             dataString += '?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
+            console.log(dataString);
             const dataArray = await axios.get(dataString);
 
             const directionsObj = {
@@ -53,7 +55,7 @@ const MarkerPointsOneWay = ({schedule, ok , raw}) => {
             setDirections({});
         }
 
-    }, [ok, schedule, raw])
+    }, [ok, raw, schedule])
 
     
     return (
@@ -85,4 +87,4 @@ const MarkerPointsOneWay = ({schedule, ok , raw}) => {
     );
 };
 
-export default MarkerPointsOneWay;
+export default MarkerPointsScheduleWay;

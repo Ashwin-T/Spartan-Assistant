@@ -217,9 +217,9 @@ const Map = () => {
                     {singleDirectionsToggle && window.innerWidth > 768 && (
                         <div className=' controlContainer'>
                             <h3>Starting Room: </h3>
-                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='Room number...' onChange={(e) => formChange1(e.target.value)} />
+                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room: </h3>
-                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='Room number...' onChange={(e) => formChange2(e.target.value)} />
+                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
@@ -286,9 +286,9 @@ const Map = () => {
                     {singleDirectionsToggle && window.innerWidth < 768 && (
                         <div className=' controlContainer'>
                             <h3>Starting Room:</h3>
-                            <input ref={inputCurrentRoom} placeholder='103' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
+                            <input ref={inputCurrentRoom} placeholder='806' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room:</h3>
-                            <input ref={inputFindingRoom} placeholder='413' type='text' className='findRoom' onChange={(e) => formChange2(e.target.value)} />
+                            <input ref={inputFindingRoom} placeholder='607' type='text' className='findRoom' onChange={(e) => formChange2(e.target.value)} />
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
