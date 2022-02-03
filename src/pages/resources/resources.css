@@ -2,7 +2,7 @@
     /* width: 75%; */
     height: 7vh;
     background-color: var(--background-color);
-    margin: 2vh 4vw;
+    margin: 2vh 2rem;
     border-radius: 35px;
     transition: all 0.1s ease;
     cursor: pointer;
@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: 3;
 }
 .importantLinks > h3 {
     margin: 0px;
@@ -43,6 +44,7 @@
 .link-container > h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    margin-left: 2rem;
 }
 
 .faq-container {
@@ -55,12 +57,32 @@
     overflow-y: scroll;
     margin-left: 3rem;
 }
+.title-resources-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.right-triangle-resources {
+    width: 0;
+    height: 0;
+    border-right: 4rem solid transparent;
+    border-top: 8rem solid var(--alternate-color-transparent);
+    margin-left: 0px;
+    margin-right: 0px;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    z-index: -1;
+}
 .link-container::-webkit-scrollbar {
     width: 0px; /* Remove scrollbar space */
 }
 
 .titleResources {
-    margin-top: 10px;
+    padding: 0.5rem;
+    margin: 0px;
+    font-size: 4.5rem;
+    background-image: linear-gradient(to right, var(--background-color) 0%, var(--alternate-color-transparent) 50%);
 }
 @media only screen and (max-width: 768px) {
     .faq-container {
@@ -69,5 +91,8 @@
     .link-container {
         width: 100%;
         margin-left: 0px;
+    }
+    .right-triangle-resources {
+        display: none;
     }
 }
