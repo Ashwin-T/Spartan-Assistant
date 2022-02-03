@@ -9,7 +9,7 @@ nav {
     border-radius: 5rem;
     padding: 10px;
 }
-.nav-wrapper{
+.nav-wrapper {
     width: 100%;
     display: flex !important;
 }
@@ -22,16 +22,16 @@ nav {
     margin-right: 16px;
 }
 
-.home-link{
+.home-link {
     margin-left: 0 !important;
 }
 
-.default div{
+.default div {
     display: flex;
     flex-direction: row;
 }
 
-.default div a{
+.default div a {
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -43,7 +43,7 @@ nav {
     margin: 3vh 1vw;
 }
 
-nav div{
+nav div {
     height: 45px;
 }
 
@@ -70,7 +70,7 @@ nav .profile {
     clip-path: circle();
 }
 
-.default div a > img{
+.default div a > img {
     width: 45px !important;
     height: 45px !important;
 }
@@ -80,7 +80,7 @@ nav img {
     height: 45px;
 }
 nav svg:hover {
-    transform: scale(1.2);
+    transform: rotate(20deg);
 }
 nav svg {
     transition: transform 0.25s;

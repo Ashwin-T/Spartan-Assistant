@@ -1,37 +1,32 @@
 {
     "faqs": [
         {
-            "faq": "What is the difference between a 'free' and 'paid' account?",
-            "answer": "A free account is a free account. A paid account is a paid account. You can choose to have a free account or a paid account. If you choose to have a free account, you will not be charged for any services. If you choose to have a paid account, you will be charged for services. You can cancel your account at any time."   
+            "faq": "What activities to get involved in",
+            "answer": "Now is your chance to branch out, try new things, discover passions, and make new friends! Your high school counselor may have a list of all the extracurriculars offered by your new school. Take a look, and take note of the clubs and teams you might want to try. Specifically for MVHS: an updated list of clubs and information about sports and other programs may be found on the MVHS website."
         },
         {
-            "faq" : "What activities to get involved in",
-            "answer" : "Now is your chance to branch out, try new things, discover passions, and make new friends! Your high school counselor may have a list of all the extracurriculars offered by your new school. Take a look, and take note of the clubs and teams you might want to try. Specifically for MVHS: an updated list of clubs and information about sports and other programs may be found on the MVHS website."
+            "faq": "What are clubs and how can I get involved?",
+            "answer": "Clubs are a great way for students to participate in activities they enjoy, learn new skills, and meet new people. High school clubs can cover a wide variety of topics, from math to skiing to protecting the environment and more. Clubs are places to meet people with unique interest which may just align with yours. Clubs will be on the website, and you can find a list of clubs on the MVHS website or contact the club president(s) via email!"
         },
         {
-            "faq" : "What are clubs and how can I get involved?",
-            "answer" : "Clubs are a great way for students to participate in activities they enjoy, learn new skills, and meet new people. High school clubs can cover a wide variety of topics, from math to skiing to protecting the environment and more. Clubs are places to meet people with unique interest which may just align with yours. Clubs will be on the website, and you can find a list of clubs on the MVHS website or contact the club president(s) via email!"
+            "faq": "Which AP courses should I consider taking?",
+            "answer": "Our schools offer AP classes to most students starting sophomore year. These classes are more advanced and allow you to earn college credit in the form of AP testing. Inquire about these classes as a high school freshman. Learning about AP classes early on, you’ll know what to do when the time comes to register for them. Consider taking AP classes only in the subjects you are interested in to avoid burning out or taking too many classes."
         },
         {
-            "faq" : "Which AP courses should I consider taking?",
-            "answer" : "Our schools offer AP classes to most students starting sophomore year. These classes are more advanced and allow you to earn college credit in the form of AP testing. Inquire about these classes as a high school freshman. Learning about AP classes early on, you’ll know what to do when the time comes to register for them. Consider taking AP classes only in the subjects you are interested in to avoid burning out or taking too many classes."
+            "faq": "Where can I get help if I’m struggling with a class?",
+            "answer": "There is no shame in asking for help. Most, if not all, students in high school need help with their classes at one point or another. Our school offers tutors as well as tutorial periods so that you can drop by teachers rooms"
         },
         {
-            "faq" : "Where can I get help if I’m struggling with a class?",
-            "answer" : "There is no shame in asking for help. Most, if not all, students in high school need help with their classes at one point or another. Our school offers tutors as well as tutorial periods so that you can drop by teachers rooms"
-        },
-        {
-            "faq" : "Which courses do I need to make sure I graduate?",
-            "answer" : "When you meet with your high school counselor, make sure you’re registered for classes on the right track for graduation. Though you are only a high school freshman, it’s good to make a plan and know where you’re headed. In your MVLA planner, there is a list of requirements for high school graduation, CSU entrance, and CSU entrance."
+            "faq": "Which courses do I need to make sure I graduate?",
+            "answer": "When you meet with your high school counselor, make sure you’re registered for classes on the right track for graduation. Though you are only a high school freshman, it’s good to make a plan and know where you’re headed. In your MVLA planner, there is a list of requirements for high school graduation, CSU entrance, and CSU entrance."
         },
         {
             "faq": "What other resources does MVHS have?",
             "answer": "MVHS has a lot of resources that will help students, including counseling, tutoring, activities, college counseling, and more!"
         },
         {
-            "faq" : "Who created this application?",
-            "answer" : "This application was created by students at MVHS with a purpose to help students find resources and information about their school. Created by Ashwin Talwlkar and Taiga Narusawa. Special Thanks to Mr.Nyugen, Mrs. Camarillo, Wyatt Cowley, Zephyr Jones, Aiden Smith, and Jackson Otto for assistance through the development of this application." 
+            "faq": "Who created this application?",
+            "answer": "This application was created by students at MVHS with a purpose to help students find resources and information about their school. Created by Ashwin Talwlkar and Taiga Narusawa. Special Thanks to Wyatt Cowley, Mr. Nyugen, Mrs. Camarillo, Zephyr Jones, Aiden Smith, Jackson Otto, and Justin Lee for assistance through the development of this application."
         }
-
     ]
 }

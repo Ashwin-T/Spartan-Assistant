@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap");
+
 html {
     --background-color: rgb(255, 255, 255);
     --alternate-background-color: white;
@@ -22,7 +24,9 @@ h2 {
 body {
     background-color: var(--background-color);
     color: var(--content-color);
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    /* font-family: "Roboto", Helvetica, Arial, sans-serif; */
+    font-family: "Lato", sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin: 0;
     padding: 0;
 }

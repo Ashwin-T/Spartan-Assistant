@@ -16,12 +16,20 @@ h5 {
     height: 5rem;
     /* background-color: #f3f3f3 !important; */
     border-radius: 5rem;
-    transition: all 0.1s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     margin: 1rem 0;
     flex-direction: row;
     align-items: center;
     box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
+}
+.homeLinks:hover {
+    transform: scale(1.025);
+    z-index: 2;
+}
+.homeLinks:focus {
+    transform: scale(0.975);
+    z-index: 2;
 }
 .welcome-container {
     width: calc(40% - 5rem);
@@ -75,15 +83,6 @@ h5 {
 }
 .homeLinks :nth-child(2) {
     margin: 0 0.5rem;
-}
-
-.homeLinks:hover {
-    transform: scale(1.025);
-    z-index: 2;
-}
-.homeLinks:focus {
-    transform: scale(0.975);
-    z-index: 2;
 }
 
 @media only screen and (max-width: 786px) {
