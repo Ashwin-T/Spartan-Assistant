@@ -38,7 +38,7 @@ const Home = () => {
             <div>
                 {!loading ? (
                     <div>
-                        <div className='flexbox row full-size'>
+                        <div className='flexbox row wrap full-size'>
                             <div className='welcome-container'>
                                 <h1>Welcome, {user.displayName.split(" ")[0]}.</h1>
                                 <h3>Have a great {today.split(" ")[0]}</h3>

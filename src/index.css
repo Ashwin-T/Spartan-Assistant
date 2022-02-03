@@ -83,6 +83,6 @@ a {
 
 @media only screen and (max-width: 786px) {
     .container {
-        width: 85vw !important;
+        /* width: 85vw !important; */
     }
 }

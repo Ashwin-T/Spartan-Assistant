@@ -87,12 +87,14 @@ h5 {
 
 @media only screen and (max-width: 786px) {
     h1 {
-        font-size: 12vw;
+        font-size: 3.5rem !important;
     }
 
     .homeLinks {
         width: 65vw;
-        /* height: 5vh; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap !important;
     }
 
     .homeLinks img {
@@ -104,12 +106,23 @@ h5 {
     }
     .welcome-container {
         width: 100%;
-        height: calc(60vh - 6.5rem);
+        min-height: calc(60vh - 6.5rem);
+        height: fit-content;
         padding-left: 2rem;
         padding-right: 2rem;
     }
+    .welcome-container h3{
+        margin-bottom: 16px;
+    }
     .action-container {
+        width: 100vw !important;
         padding-left: 2rem;
         padding-right: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .action-container h3{
+        text-align: center;
     }
 }
