@@ -1,8 +1,8 @@
 .settings .left{
-    width: 50%;
+    width: calc(50% - 50px);
     background-color: var(--alternate-color);
-    border-radius: 25px 0 0 25px;
     color: var(--alternate-background-color) !important;
+    padding: 25px;
 }
 
 .settings .left > *{
@@ -19,7 +19,8 @@
 }
 
 .settings .right{
-    width: 50%;
+    width: calc(50% - 50px);
+    padding: 25px;
 }
 
 .settings .right > *{
@@ -27,52 +28,57 @@
     color: var(--content-color) !important;
 }
 
-.settings .right input[type="number"]{
-    width: 35%;
-    height: 3%;
-    font-size: 2vh;
+.side-container{
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.settings .right .year-input{
+    width: 8rem;
+    font-size: 16px;
     padding: 15px;
-    border-radius: 25px;
     outline: none;
     margin-bottom: 5vh;
-    border: 5px solid var(--content-color);
-
+    margin-top: 3vh;
+    border: 2px solid var(--content-color);
+    border-radius: 8px;
+    transition: 0.15s;
 }
 
-.settings .right input[type="number"]:focus{
-    border: 5px solid var(--alternate-color);
+.settings .right .year-input:focus{
+    border-color: var(--alternate-color);
 }
-.scheduleInputs input[type="text"]{
-    width: 25vh;
+.scheduleInputs .info-input{
+    width: 11rem;
+    transition: 0.15s;
     height: 1vh;
-    font-size: 1.75vh;
+    font-size: 14px;
     padding: 15px;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    border-bottom: 3.5px solid grey;
+    border-bottom: 3px solid grey;
 }
 
-.scheduleInputs input[type="text"]:focus{
-    border-bottom: 3.5px solid var(--alternate-color);
+.scheduleInputs .info-input:focus{
+    border-bottom-color: var(--alternate-color);
 }
 
-.right button{
+.right .submit-button{
     background-color: var(--alternate-color);
     color: var(--alternate-background-color) !important;
-    font-size: 2vh;
-    padding: 15px;
-    border-radius: 25px;
+    font-size: 16px;
+    padding: 16px 3rem;
     outline: none;    
-    width: 20vh;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: 0.15s;
+    border-radius: 8px;
 }
-.right button:hover{
-    transform: scale(1.1);
+.right .submit-button:hover{
+    transform: scale(1.08);
 }
 .periodTitle{
     margin: 0 0 1vh 0;
@@ -89,7 +95,6 @@
     .left{
         width: 100% !important;
         height: 25% !important;
-        border-radius: 25px 25px 0 0 !important;
     }
 
     .settings h1{
@@ -104,5 +109,9 @@
     .right{
         width: 100% !important;
         height: 75% !important;
+    }
+    .side-container{
+        overflow: hidden !important;
+        border-radius: 20px;
     }
 }

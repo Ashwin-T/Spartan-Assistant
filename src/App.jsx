@@ -14,7 +14,7 @@ const App = () =>{
 
   const auth = getAuth(app);
   const [user, loading, error] = useAuthState(auth);
-  //auth.signOut();
+  // auth.signOut();
 
   const [allow, setAllow] = useState(false);
 

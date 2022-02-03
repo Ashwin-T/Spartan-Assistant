@@ -15,7 +15,7 @@ const Settings = ({init}) => {
 
     const [gradYear, setGradYear] = useState(2022);
 
-    const [periodOne, setPeriodOne] = useState('Ex: 806 or Free');
+    const [periodOne, setPeriodOne] = useState('');
     const [periodTwo, setPeriodTwo] = useState(''); 
     const [periodThree, setPeriodThree] = useState('');
     const [periodFour, setPeriodFour] = useState('');
@@ -127,18 +127,19 @@ const Settings = ({init}) => {
 
             <div className={`flexbox column center ${init}`}>
 
-                <div className={"flexbox settings container " + styleName}>
+                <div className={"flexbox settings container side-container" + styleName}>
                     <div className="left flexbox column center">
                         <h1>Hey {getAuth().currentUser.displayName.split(' ')[0]}!</h1>
                         <h2>{title}</h2>
-                        {!useMobileState() && init && <h4>It should only take a couple minutes to get you up and ready</h4>}
+                        {/* possibly unecessary */
+                        !useMobileState() && init && <h4>It should only take a couple minutes to get you up and ready</h4>}
                     </div>
                     <div className="right flexbox column center">
 
                         {page === 0 &&
                          <>
                             <h2>What Year Do You Graduate?</h2>
-                            <input type="number" value = {gradYear} onChange={(e) => setGradYear(e.target.value)}/>
+                            <input className="year-input" type="number" value = {gradYear} onChange={(e) => setGradYear(e.target.value)}/>
                         </>}
                         {page >  0 &&
                             <h2>Enter In the Rooms of Your Schedule</h2>
@@ -149,19 +150,19 @@ const Settings = ({init}) => {
                             <>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 1</div>
-                                    <input type="text" value = {periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Ex: 806 or 'free'" className="info-input" type="text" value = {periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 2</div>
-                                    <input type="text" value = {periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." className="info-input" type="text" value = {periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 3</div>
-                                    <input type="text" value = {periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." className="info-input" type="text" value = {periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 4</div>
-                                    <input type="text" value = {periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." className="info-input" type="text" value = {periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())}/>
                                 </div>
                             </>
                         }
@@ -169,20 +170,20 @@ const Settings = ({init}) => {
                         <>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 5</div>
-                                    <input type="text" value = {periodFive} onChange={(e) => setPeriodFive(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." type="text" value = {periodFive} className="info-input" onChange={(e) => setPeriodFive(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 6</div>
-                                    <input type="text" value = {periodSix} onChange={(e) => setPeriodSix(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." type="text" value = {periodSix} className="info-input" onChange={(e) => setPeriodSix(e.target.value.toLowerCase())}/>
                                 </div>
                                 <div className='flexbox periodContainers column center'>
                                     <div className = 'periodTitle'>Period 7</div>
-                                    <input type="text" value = {periodSeven} onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())}/>
+                                    <input placeholder="Enter Room Number..." type="text" value = {periodSeven} className="info-input" onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())}/>
                                 </div>
                         </>
                         }
                         </div> 
-                        <button onClick={changePage}>{page < 2 ?'Next':'Submit'}</button>
+                        <button className="submit-button" onClick={changePage}>{page < 2 ?'Next':'Submit'}</button>
                     </div>
                 </div>
             </div>
