@@ -49,10 +49,10 @@
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": [-122.06567322343282, 37.36072023591453]
+              "coordinates": [-122.06575056531368, 37.36072899583398]
             },
             "properties": {
-              "name" : "Student Parking"
+              "name" : "Parking Lot"
             }
         },
         {
@@ -76,28 +76,6 @@
               "name" : "Vending Machine",
               "key" : "2"
             }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-              "type": "Area",
-              "coordinates": []
-            },
-            "properties": {
-              "name" : "Construction Zone",
-              "key" : "1"
-            }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Area",
-            "coordinates": []
-          },
-          "properties": {
-            "name" : "Construction Zone",
-            "key" : "2"
-          }
-      }
+        }
     ]
 }

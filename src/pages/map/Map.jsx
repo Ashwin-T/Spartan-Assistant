@@ -1,17 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import ReactMapGL, { Source, Layer } from "react-map-gl";
-import { FaRoute, FaDirections } from "react-icons/fa";
-import {MdMap} from 'react-icons/md';
+import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
+import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
+import {MdMap, MdDirectionsBike} from 'react-icons/md';
 import { IoIosNavigate } from "react-icons/io";
-import * as roomData from "../../data/Rooms.json";
+import {GiVendingMachine} from 'react-icons/gi';
+import { useNavigate } from "react-router-dom";
 import { getPeriodsOnDay } from "mvhs-schedule";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../components/navbar/Navbar";
 import MarkerPointsOneWay from "./MarkerPointsOneWay";
 import MarkerPointsSchedule from "./MarkerPointsSchedule";
-
+import * as roomData from "../../data/Rooms.json";
+import * as otherData from "../../data/Other.json";
 
 import "./map.css";
 import './mapbox-gl.css';
@@ -296,6 +297,23 @@ const Map = () => {
                             </div>
                         </div>
                     )}
+
+                    {   
+                        otherData.features.map((place, index) => {
+                            if(place.properties.name === 'Vending Machine'){
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>
+                            }
+                            else if(place.properties.name === 'Parking Lot'){
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><FaParking size = {20}/></Popup>
+                            }
+                            else if(place.properties.name === 'Bike Rack'){
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
+                            }
+                            else{
+                                return null;
+                            }
+                        })
+                    }
                 </div>
             </ReactMapGL>
         </div>

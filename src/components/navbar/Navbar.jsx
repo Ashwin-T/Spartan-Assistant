@@ -4,7 +4,7 @@ import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
 import {FaHandsHelping} from 'react-icons/fa'
 import {SiGooglemaps} from 'react-icons/si'
-import {useEffect, useState} from 'react'
+import {useLayoutEffect, useState} from 'react'
 import { doc, getDoc, getFirestore} from "firebase/firestore";
 
 import './navbar.css' 
@@ -33,7 +33,7 @@ const Navbar = ({navType}) => {
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         
         const getData = async() => { 
             const docRef = doc(getFirestore(), "users", getAuth().currentUser.uid);
