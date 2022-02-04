@@ -129,12 +129,10 @@ const Settings = ({init}) => {
 
             <div className={`flexbox column center ${init}`}>
 
-                <div className={"flexbox settings container side-container " + styleName}>
+                <div className={"flexbox settings container side-container"}>
                     <div className="left flexbox column center">
                         <h1>Hey {getAuth().currentUser.displayName.split(' ')[0]}!</h1>
                         <h2>{title}</h2>
-                        {/* possibly unecessary */
-                        !useMobileState() && init && <h4>It should only take a couple minutes to get you up and ready</h4>}
                     </div>
                     <div className="right flexbox column center">
 
