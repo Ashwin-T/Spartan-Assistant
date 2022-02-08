@@ -48,7 +48,8 @@ const Navbar = ({navType}) => {
                     setFreshmen(false)
                     localStorage.setItem('freshmen', 'false')
                 }
-            } else {
+            } 
+            else {
             // doc.data() will be undefined in this case
             }
         }

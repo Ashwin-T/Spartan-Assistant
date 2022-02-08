@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {getAuth} from 'firebase/auth';
 import './setting.css'
-import useMobileState from '../../hooks/useMobileState';
 import { doc, getFirestore, setDoc , getDoc} from "firebase/firestore"; 
 import * as roomData from "../../data/Rooms.json";
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +26,6 @@ const Settings = ({init}) => {
 
     const [page, setPage] = useState(0);
     const [title, setTitle] = useState("Let's Update Your Settings");
-    const styleName = useMobileState() ? 'column' : '';
 
     const db = getFirestore();
 

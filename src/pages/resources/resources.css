@@ -30,6 +30,10 @@
     transform: scale(0.975);
     z-index: 2;
 }
+.resouces-container{
+    overflow-x: hidden;
+}
+
 .helloWorld {
     width: calc(100% - 4rem);
     margin-left: 2rem;
@@ -57,6 +61,9 @@
     overflow-y: scroll;
     margin-left: 3rem;
 }
+.link-container::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+}
 .title-resources-container {
     width: fit-content;
     display: flex;
@@ -73,9 +80,6 @@
     /* margin-top: auto; */
     /* margin-bottom: auto; */
     z-index: -1;
-}
-.link-container::-webkit-scrollbar {
-    width: 0px; /* Remove scrollbar space */
 }
 
 .titleResources {
