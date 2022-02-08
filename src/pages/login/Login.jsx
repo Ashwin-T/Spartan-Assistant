@@ -26,7 +26,7 @@ const Login = () => {
             <div className='main-container-google'>
                 <div class='button-container'>
                     <h2>To use, please</h2>
-                    <button className='google-button'>
+                    <button className='google-button' onClick={signIn}>
                         <img src='images/googleLogo.svg'></img>
                         <span>Log in with Google</span>
                     </button>
