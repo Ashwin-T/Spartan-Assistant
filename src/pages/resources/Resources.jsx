@@ -49,9 +49,9 @@ const Resources = () => {
     return (
         <>
             <div className='flexbox column helloWorld'>
-                <div className='title-resources-container'>
-                    <h1 className='titleResources'>Resources</h1>
-                    <div className='right-triangle-resources'></div>
+                <div className='main-resources-container'>
+                    <h1 className='main-resources'>Resources</h1>
+                    <div className='right-triangle-title'></div>
                 </div>
 
                 <div className='flexbox resouces-container row'>
