@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import "./setting.css";
-import useMobileState from "../../hooks/useMobileState";
 import { FaGraduationCap } from "react-icons/fa";
 import { doc, getFirestore, setDoc, getDoc } from "firebase/firestore";
 import * as roomData from "../../data/Rooms.json";
@@ -22,9 +21,8 @@ const Settings = ({ init }) => {
     const [periodSix, setPeriodSix] = useState("");
     const [periodSeven, setPeriodSeven] = useState("");
 
-    const [page, setPage] = useState(0);
-    const [title, setTitle] = useState("Let's Update Your Settings");
-    const styleName = useMobileState() ? "column" : "";
+    const [title, setTitle] = useState("Settings");
+    const styleName = init ? 'init' : '';
 
     const db = getFirestore();
 
@@ -32,6 +30,7 @@ const Settings = ({ init }) => {
         if (init) {
             setTitle("Lets Get You Set Up");
         }
+
 
         const getData = async () => {
             const docRef = doc(db, "users", getAuth().currentUser.uid);
@@ -120,17 +119,17 @@ const Settings = ({ init }) => {
         // }
     };
     return (
-        <div>
-            <div className='setting-container'>
+        <>
+            <div className={'setting-container ' + styleName}>
                 <div className='year-container'>
                     <div className='main-resources-container' style={{ marginLeft: 2 + "rem" }}>
-                        <h1 className='main-resources'>Settings</h1>
+                        <h1 className='main-resources'>{title}</h1>
                         <div className='right-triangle-title'></div>
                     </div>
 
                     <div className='year-sub-container'>
                         <h2>
-                            What Year Do You Graduate <FaGraduationCap />?
+                            What Year Do You Graduate <FaGraduationCap /> ?
                         </h2>
                         <input type='number' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
                     </div>
@@ -138,38 +137,38 @@ const Settings = ({ init }) => {
                 <div className='schedule-container'>
                     <div>
                         <div className='promptPeriod column'>
-                            <h2>Enter in your rooms</h2>
+                            <h2>Enter in your Rooms</h2>
                             <p>(or free)</p>
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 1</h2>
-                            <input placeholder="Ex: 806 or 'free'" className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
+                            <input placeholder="806" className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 2</h2>
-                            <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
+                            <input placeholder='' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 3</h2>
-                            <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
+                            <input placeholder='' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
                         </div>
                     </div>
                     <div>
                         <div className='periodContainers'>
                             <h2>Period 4</h2>
-                            <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
+                            <input placeholder='' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 5</h2>
-                            <input placeholder='Enter Room Number...' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
+                            <input placeholder='' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 6</h2>
-                            <input placeholder='Enter Room Number...' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
+                            <input placeholder='' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 7</h2>
-                            <input placeholder='Enter Room Number...' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
+                            <input placeholder='' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
                         </div>
                     </div>
                 </div>
@@ -179,7 +178,7 @@ const Settings = ({ init }) => {
                     Submit
                 </button>
             </div>
-        </div>
+        </>
     );
     // return (
     //     <>
@@ -207,15 +206,15 @@ const Settings = ({ init }) => {
     //                                 </div>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 2</div>
-    //                                     <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
     //                                 </div>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 3</div>
-    //                                     <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
     //                                 </div>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 4</div>
-    //                                     <input placeholder='Enter Room Number...' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
     //                                 </div>
     //                             </>
     //                         )}
@@ -223,15 +222,15 @@ const Settings = ({ init }) => {
     //                             <>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 5</div>
-    //                                     <input placeholder='Enter Room Number...' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
     //                                 </div>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 6</div>
-    //                                     <input placeholder='Enter Room Number...' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
     //                                 </div>
     //                                 <div className='flexbox periodContainers column center'>
     //                                     <div className='periodTitle'>Period 7</div>
-    //                                     <input placeholder='Enter Room Number...' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
+    //                                     <input placeholder='' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
     //                                 </div>
     //                             </>
     //                         )}

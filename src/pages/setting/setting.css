@@ -32,6 +32,9 @@
     border-radius: 20px;
     overflow: hidden;
 }
+.init{
+    margin-top: 20vh;
+}
 .setting-container {
     display: flex;
     flex-direction: row;
@@ -43,7 +46,7 @@
     /* padding: 3rem; */
 }
 .year-container h2 {
-    font-size: 3rem;
+    font-size: 2.75rem;
 }
 .year-container > * > input {
     margin-top: 0.5rem;
@@ -192,6 +195,9 @@
     /* .year-container svg {
         display: none;
     } */
+    .init{
+        margin-top: 0vh;
+    }
 }
 @media only screen and (max-width: 768px) {
     .left,
@@ -222,4 +228,6 @@
         overflow: hidden !important;
         border-radius: 20px;
     }
+    
+
 }
