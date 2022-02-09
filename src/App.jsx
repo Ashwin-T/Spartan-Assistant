@@ -12,8 +12,6 @@ import { motion } from "framer-motion/dist/framer-motion";
 const App = () => {
     const auth = getAuth(app);
     const [user, loading, error] = useAuthState(auth);
-    auth.signOut();
-
     const [allow, setAllow] = useState(false);
 
     useEffect(() => {
@@ -46,25 +44,20 @@ const App = () => {
 
     return (
         <>
-            {!loading ? (
-                !error ? (
-                    !allow ? (
-                        <div className='onLoad flexbox column center'>
-                            <motion.img src={"images/logo.png"} alt='logo' variants={imgVariants} initial='hidden' animate='visible' />
-                        </div>
-                    ) : user ? (
-                        <Source />
-                    ) : (
-                        <Login />
-                    )
-                ) : (
-                    <Error />
-                )
-            ) : (
-                <Loading />
-            )}
+          {!loading ? !error ? !allow ? 
+    
+            <div className= 'onLoad flexbox column center'>
+              <motion.img 
+              src={'images/logo.png'} alt="logo"
+              variants={imgVariants}
+              initial="hidden"
+              animate="visible"
+              />
+            </div> 
+    
+            : user ? <Source/> : <Login />: <Error /> : <Loading />}
         </>
-    );
-};
+      );
+    };
 
 export default App;

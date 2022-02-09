@@ -95,7 +95,7 @@ const Navbar = ({navType}) => {
 
                         {freshmen && <a href = 'https://mail.google.com/chat/u/0/#chat/welcome' target = '_blank' rel="noreferrer"><MdQuestionAnswer size = {35}/></a>}
                         
-                        <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={`${getAuth().currentUser.photoURL}`} /></Link>
+                        <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={getAuth().currentUser.photoURL} /></Link>
                         
                         {isOpen && <button className = "link" onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
                     </div>

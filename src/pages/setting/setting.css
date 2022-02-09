@@ -128,9 +128,7 @@
     transition: 0.15s;
 }
 
-.year-input:focus {
-    /* border-color: var(--alternate-color); */
-}
+
 .scheduleInputs .info-input {
     width: 11rem;
     transition: 0.15s;

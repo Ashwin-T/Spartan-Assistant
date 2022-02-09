@@ -10,11 +10,10 @@
 }
 .google-button > span {
     margin-left: 0rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .google-button > img {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
     margin-right: 1rem;
 }
 .google-button:hover {
@@ -51,13 +50,12 @@
     align-items: center;
 }
 .banana > span {
-    height: 7rem;
+    height: 12rem;
 }
 .banana > h1 {
     font-size: 5rem;
 }
 .banana img {
-    /* width: 10rem; */
     height: 100%;
     margin-right: 1rem;
 }
@@ -67,6 +65,9 @@
     }
     .login-title-container {
         margin-left: 0rem;
+    }
+    .banana > span {
+        height: 7rem;
     }
 }
 

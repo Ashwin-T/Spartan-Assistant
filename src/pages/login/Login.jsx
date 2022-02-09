@@ -1,7 +1,4 @@
-import "./login.css";
-
-import GoogleButton from "react-google-button";
-import useMobileState from "../../hooks/useMobileState";
+import "./login.css";   
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
@@ -13,21 +10,23 @@ const Login = () => {
         signInWithPopup(auth, provider);
     };
 
+    console.log("Login");
+
+
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100vh" }}>
             <div className='login-title-container'>
                 <div className='banana'>
                     <h1>Welcome to </h1>
                     <span>
-                        <img src='images/logo.png'></img>
+                        <img src='images/logo.png' alt = 'logo with words'></img>
                     </span>
                 </div>
             </div>
             <div className='main-container-google'>
-                <div class='button-container'>
-                    <h2>To use, please</h2>
+                <div className='button-container'>
                     <button className='google-button' onClick={signIn}>
-                        <img src='images/googleLogo.svg'></img>
+                        <img src='images/googleLogo.svg' alt = 'google logo'></img>
                         <span>Log in with Google</span>
                     </button>
                 </div>
