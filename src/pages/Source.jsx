@@ -17,7 +17,6 @@ const Source = () => {
     const [dontRedirect, setDontRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    console.log("Source");
     useEffect(() => {
         setLoading(true);
 

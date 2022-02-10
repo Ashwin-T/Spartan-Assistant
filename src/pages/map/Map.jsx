@@ -189,8 +189,9 @@ const Map = () => {
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken='pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
-                onClick = {(e)=>console.log(e.lngLat)}
+                onClick={(e)=> console.log(e.lngLat)}
             >
+
                 <Navbar navType={1} />
 
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} ok = {submittedRoom}/>}

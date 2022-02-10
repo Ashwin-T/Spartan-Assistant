@@ -28,7 +28,7 @@ const Settings = ({ init }) => {
 
     useEffect(() => {
         if (init) {
-            setTitle("Lets Get You Set Up");
+            setTitle("Let's Get Set Up");
         }
 
 
@@ -88,36 +88,10 @@ const Settings = ({ init }) => {
             return;
         }
         submit();
-
-        // if (page === 0) {
-        //     if (gradYear > 2021) {
-        //         //change per year
-        //         setPage(1);
-        //     } else {
-        //         alert("Please enter a valid graduation year");
-        //     }
-        // } else if (page === 1) {
-        // if (periodOne !== "" && periodTwo !== "" && periodThree !== "" && periodFour !== "") {
-        //     if (handleRoomCheck(periodOne) && handleRoomCheck(periodTwo) && handleRoomCheck(periodThree) && handleRoomCheck(periodFour)) {
-        //         setPage(2);
-        //     } else {
-        //         alert("Please enter a valid room number");
-        //     }
-        // } else {
-        //     alert("Please fill out all periods");
-        // }
-        // } else if (page === 2) {
-        //     if (periodFive !== "" && periodSix !== "" && periodSeven !== "") {
-        //         if (handleRoomCheck(periodFive) && handleRoomCheck(periodSix) && handleRoomCheck(periodSeven)) {
-        //             submit();
-        //         } else {
-        //             alert("Please enter a valid room number");
-        //         }
-        //     } else {
-        //         alert("Please fill out all periods");
-        //     }
-        // }
     };
+    const handleSignOut = async() => {
+        await getAuth().signOut();
+    }
     return (
         <>
             <div className={'setting-container ' + styleName}>
@@ -177,6 +151,9 @@ const Settings = ({ init }) => {
                 <button className='submit-button' onClick={changePage}>
                     Submit
                 </button>
+            </div>
+            <div className='signOut-container'>
+                <button className="submit-button signOut" onClick= {handleSignOut}>Sign Out</button>
             </div>
         </>
     );
