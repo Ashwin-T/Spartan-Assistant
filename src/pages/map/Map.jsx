@@ -329,6 +329,34 @@ const Map = () => {
                             else if(place.properties.name === 'Bike Rack'){
                                 return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
                             }
+                            else if(place.properties.name === 'Construction'){
+                                const data = {
+                                    type: 'FeatureCollection',
+                                    features: [
+                                        {
+                                            type: 'Feature',
+                                            properties: {},
+                                            geometry: {
+                                                type: 'Polygon',
+                                                coordinates: place.geometry.coordinates
+                                            }
+                                        }
+                                    ]
+                                }
+                                const dataLayer = {
+                                    id: 'data',
+                                    type: 'fill',
+                                    paint: {
+                                      'fill-color': "#FF0000",
+                                    }
+                                  };
+                            
+                                return(
+                                    <Source key = {index} type="geojson" data={data}>
+                                        <Layer {...dataLayer} />
+                                    </Source>
+                                )
+                            }
                             else{
                                 return null;
                             }

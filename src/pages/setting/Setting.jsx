@@ -167,8 +167,7 @@ const Settings = ({ init }) => {
             {error && <div className='flexbox row center errorBar'>
                 <Alert variant="outlined" severity="error" sx = {{width: '250px'}}>{errorMessage}</Alert>
             </div>}
-
-            
+         
             <div className='flexbox column center'>
                 <button className='submit-button' onClick={changePage}>
                     Submit
@@ -179,69 +178,6 @@ const Settings = ({ init }) => {
             </div>
         </>
     );
-    // return (
-    //     <>
-    //         <div className={`flexbox column center ${init}`}>
-    //             <div className={"flexbox settings container side-container"}>
-    //                 <div className='left flexbox column center'>
-    //                     <h1>Hey {getAuth().currentUser.displayName.split(" ")[0]}!</h1>
-    //                     <h2>{title}</h2>
-    //                 </div>
-    //                 <div className='right flexbox column center'>
-    //                     {page === 0 && (
-    //                         <>
-    //                             <h2>What Year Do You Graduate?</h2>
-    //                             <input className='year-input' type='number' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
-    //                         </>
-    //                     )}
-    //                     {page > 0 && <h2>Enter In the Rooms of Your Schedule</h2>}
-
-    //                     <div className='flexbox column center scheduleInputs'>
-    //                         {page === 1 && (
-    //                             <>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 1</div>
-    //                                     <input placeholder="Ex: 806 or 'free'" className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 2</div>
-    //                                     <input placeholder='' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 3</div>
-    //                                     <input placeholder='' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 4</div>
-    //                                     <input placeholder='' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                             </>
-    //                         )}
-    //                         {page === 2 && (
-    //                             <>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 5</div>
-    //                                     <input placeholder='' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 6</div>
-    //                                     <input placeholder='' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                                 <div className='flexbox periodContainers column center'>
-    //                                     <div className='periodTitle'>Period 7</div>
-    //                                     <input placeholder='' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
-    //                                 </div>
-    //                             </>
-    //                         )}
-    //                     </div>
-    //                     <button className='submit-button' onClick={changePage}>
-    //                         {page < 2 ? "Next" : "Submit"}
-    //                     </button>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </>
-    // );
 };
 
 export default Settings;
