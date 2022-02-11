@@ -148,7 +148,6 @@
 }
 
 .submit-button {
-    margin-top: 2rem;
     background-color: var(--alternate-color-transparent);
     color: var(--content-color) !important;
     font-size: 16px;
@@ -156,7 +155,7 @@
     outline: none;
     border: none;
     cursor: pointer;
-    transition: 0.15s;
+    transition: all 0.25s;
     border-radius: 8px;
     margin-bottom: 2rem;
 }
@@ -167,9 +166,7 @@
 .submit-button:focus {
     transform: scale(0.975);
 }
-.signOut{
-    margin-left: 2.75vw;
-}
+
 .periodTitle {
     margin: 0 0 1vh 0;
 }
@@ -182,6 +179,14 @@
 }
 .true {
     height: 100vh;
+}
+.signOut{
+    background-color: var(--red-transparent);
+    color: white !important;
+    transition: all 0.25s;
+}
+.signOut:hover{
+    background-color: rgba(255, 0, 0, 0.75);
 }
 
 
@@ -199,9 +204,7 @@
     .year-sub-container {
         padding: 1rem;
     }
-    /* .year-container svg {
-        display: none;
-    } */
+
     .init{
         margin-top: 0vh;
     }
@@ -240,10 +243,5 @@
         flex-direction: column;
         align-items: center;
     }
-    .signOut{
-        margin-top: 0vh;
-        margin-left: 0vw;
-    }
     
-
 }

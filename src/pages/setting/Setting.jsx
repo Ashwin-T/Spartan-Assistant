@@ -15,7 +15,7 @@ const Settings = ({ init }) => {
 
     const navigate = useNavigate();
 
-    const [gradYear, setGradYear] = useState(2022);
+    const [gradYear, setGradYear] = useState('');
 
     const [periodOne, setPeriodOne] = useState("");
     const [periodTwo, setPeriodTwo] = useState("");
@@ -85,6 +85,9 @@ const Settings = ({ init }) => {
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
         navigate("/");
+        if(init){
+           window.location.reload();
+        }
     };
 
     const changePage = () => {
@@ -103,7 +106,7 @@ const Settings = ({ init }) => {
         submit();
     };
     const handleSignOut = async() => {
-        await getAuth().signOut();
+        getAuth().signOut();
     }
     return (
         <>
@@ -118,7 +121,7 @@ const Settings = ({ init }) => {
                         <h2>
                             What Year Do You Graduate <FaGraduationCap size = {40}/> ?
                         </h2>
-                        <input type='number' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
+                        <input type='number' placeholder = '2022' value = {gradYear} onChange={(e) => setGradYear(e.target.value)} />
                     </div>
                 </div>
                 <div className='schedule-container'>
@@ -133,7 +136,7 @@ const Settings = ({ init }) => {
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 2</h2>
-                            <input placeholder='' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
+                            <input placeholder='607' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 3</h2>
@@ -162,17 +165,14 @@ const Settings = ({ init }) => {
             </div>
 
             {error && <div className='flexbox row center errorBar'>
-                <Alert variant="outlined" severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+                <Alert variant="outlined" severity="error" sx = {{width: '250px'}}>{errorMessage}</Alert>
             </div>}
 
             
-            <div className='flexbox row center'>
+            <div className='flexbox column center'>
                 <button className='submit-button' onClick={changePage}>
                     Submit
                 </button>
-            </div>
-
-            <div className='signOut-container'>
                 <button className="submit-button signOut" onClick= {handleSignOut}>
                     Sign Out
                 </button>
