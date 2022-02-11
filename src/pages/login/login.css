@@ -7,6 +7,7 @@
     border: 1px solid var(--shadow-color);
     border-radius: 1rem;
     transition: all 0.25s;
+		cursor: pointer;
 }
 .google-button > span {
     margin-left: 0rem;
