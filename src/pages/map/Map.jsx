@@ -6,6 +6,7 @@ import { IoIosNavigate } from "react-icons/io";
 import {GiVendingMachine} from 'react-icons/gi';
 import { useNavigate } from "react-router-dom";
 import { getPeriodsOnDay } from "mvhs-schedule";
+import Alert from '@mui/material/Alert';
 import moment from "moment";
 
 import Navbar from "../../components/navbar/Navbar";
@@ -47,6 +48,13 @@ const Map = () => {
 
     const [schedule, setSchedule] = useState([]);
     const [rawSchedule, setRawSchedule] = useState([]);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleError = (message) =>{
+        setError(true);
+        setErrorMessage(message);
+    }
 
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
@@ -111,8 +119,9 @@ const Map = () => {
         if ("type" in currentRoom && "type" in findingRoom) {
             setSubmittedRoom(true);
             handleSingleDirection();
+            setError(false);
         } else {
-            alert("Please enter a valid room name");
+            handleError("Please enter a valid room name");
         }
 
         setViewPort({
@@ -191,7 +200,7 @@ const Map = () => {
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
                 onClick={(e)=> console.log(e.lngLat)}
             >
-
+                
                 <Navbar navType={1} />
 
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} ok = {submittedRoom}/>}
@@ -222,6 +231,11 @@ const Map = () => {
                             <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room: </h3>
                             <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
+                            
+                            {error && <div style = {{marginTop: '25px'}}>
+                               <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+                            </div>}
+
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
@@ -286,11 +300,16 @@ const Map = () => {
                     </div>
 
                     {singleDirectionsToggle && window.innerWidth < 768 && (
-                        <div className=' controlContainer'>
+                        <div className='controlContainer'>
                             <h3>Starting Room:</h3>
                             <input ref={inputCurrentRoom} placeholder='806' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room:</h3>
                             <input ref={inputFindingRoom} placeholder='607' type='text' className='findRoom' onChange={(e) => formChange2(e.target.value)} />
+
+                            {error && <div style = {{marginTop: '25px'}}>
+                               <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+                            </div>}
+
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
