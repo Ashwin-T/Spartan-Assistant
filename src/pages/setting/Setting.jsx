@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import "./setting.css";
 import { FaGraduationCap } from "react-icons/fa";
 import { doc, getFirestore, setDoc, getDoc } from "firebase/firestore";
-import * as roomData from "../../data/Rooms.json";
 import { useNavigate } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+
+import "./setting.css";
+
+import * as roomData from "../../data/Rooms.json";
+
 
 const Settings = ({ init }) => {
     //settings have preview of graduation year, and schecule of rooms
@@ -26,9 +30,17 @@ const Settings = ({ init }) => {
 
     const db = getFirestore();
 
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleError = (message) =>{
+        setError(true);
+        setErrorMessage(message);
+    }
+
     useEffect(() => {
         if (init) {
-            setTitle("Lets Get You Set Up");
+            setTitle("Let's Get Set Up");
         }
 
 
@@ -71,53 +83,28 @@ const Settings = ({ init }) => {
 
         const isFreshmen = gradYear === "2025" ? true : false;
         localStorage.setItem("freshmen", isFreshmen);
+        setError(false);
         navigate("/");
     };
 
     const changePage = () => {
         if (periodOne === "" || periodTwo === "" || periodThree === "" || periodFour === "" || periodFive === "" || periodSix === "" || periodSeven === "") {
-            alert("Please fill out all periods");
+            handleError("Please fill out all periods"); 
             return;
         }
         if (!handleRoomCheck(periodOne) || !handleRoomCheck(periodTwo) || !handleRoomCheck(periodThree) || !handleRoomCheck(periodFour) || !handleRoomCheck(periodFive) || !handleRoomCheck(periodSix) || !handleRoomCheck(periodSeven)) {
-            alert("Please enter a valid room number");
+            handleError("Please enter a valid room number"); 
             return;
         }
         if (gradYear < 2022) {
-            alert("Please enter a valid graduation year");
-            return;
+            handleError("Please enter a valid graduation year");
+            return; 
         }
         submit();
-
-        // if (page === 0) {
-        //     if (gradYear > 2021) {
-        //         //change per year
-        //         setPage(1);
-        //     } else {
-        //         alert("Please enter a valid graduation year");
-        //     }
-        // } else if (page === 1) {
-        // if (periodOne !== "" && periodTwo !== "" && periodThree !== "" && periodFour !== "") {
-        //     if (handleRoomCheck(periodOne) && handleRoomCheck(periodTwo) && handleRoomCheck(periodThree) && handleRoomCheck(periodFour)) {
-        //         setPage(2);
-        //     } else {
-        //         alert("Please enter a valid room number");
-        //     }
-        // } else {
-        //     alert("Please fill out all periods");
-        // }
-        // } else if (page === 2) {
-        //     if (periodFive !== "" && periodSix !== "" && periodSeven !== "") {
-        //         if (handleRoomCheck(periodFive) && handleRoomCheck(periodSix) && handleRoomCheck(periodSeven)) {
-        //             submit();
-        //         } else {
-        //             alert("Please enter a valid room number");
-        //         }
-        //     } else {
-        //         alert("Please fill out all periods");
-        //     }
-        // }
     };
+    const handleSignOut = async() => {
+        await getAuth().signOut();
+    }
     return (
         <>
             <div className={'setting-container ' + styleName}>
@@ -129,7 +116,7 @@ const Settings = ({ init }) => {
 
                     <div className='year-sub-container'>
                         <h2>
-                            What Year Do You Graduate <FaGraduationCap /> ?
+                            What Year Do You Graduate <FaGraduationCap size = {40}/> ?
                         </h2>
                         <input type='number' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
                     </div>
@@ -168,14 +155,26 @@ const Settings = ({ init }) => {
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 7</h2>
-                            <input placeholder='' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
+                            <input placeholder='free' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='flexBox row center'>
+
+            {error && <div className='flexbox row center errorBar'>
+                <Alert variant="outlined" severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+            </div>}
+
+            
+            <div className='flexbox row center'>
                 <button className='submit-button' onClick={changePage}>
                     Submit
+                </button>
+            </div>
+
+            <div className='signOut-container'>
+                <button className="submit-button signOut" onClick= {handleSignOut}>
+                    Sign Out
                 </button>
             </div>
         </>

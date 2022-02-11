@@ -22,7 +22,6 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
             dataString = dataString.slice(0, -1);
 
             dataString += '?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
-            console.log(dataString);
             const dataArray = await axios.get(dataString);
 
             const directionsObj = {

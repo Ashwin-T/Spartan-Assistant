@@ -10,9 +10,6 @@ const Login = () => {
         signInWithPopup(auth, provider);
     };
 
-    console.log("Login");
-
-
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100vh" }}>
             <div className='login-title-container'>

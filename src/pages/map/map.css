@@ -127,8 +127,8 @@
 }
 .back-arrow-wrapper{
     position: absolute !important;
-    top: 95px;
-    left: 25px;
+    top: 125px;
+    left: 50px;
     width: 45px;
     height: 45px;
     display: flex;
@@ -153,6 +153,10 @@
         /* width: 65vw;
         height: 7.75vh; */
         left: 1rem;
+    }
+
+    .back-arrow-wrapper{
+        left: 25px;
     }
 
     .controlContainer {

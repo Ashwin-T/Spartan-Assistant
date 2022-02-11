@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+src/tools/Firebase.jsx
+src/tools/Mapbox.jsx
 
 # testing
 /coverage

@@ -39,8 +39,6 @@ const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
             setDirections({});
         }
 
-        console.log(ok)
-
     }, [currentRoom, findingRoom, ok])
 
     

@@ -167,15 +167,24 @@
 .submit-button:focus {
     transform: scale(0.975);
 }
+.signOut{
+    margin-left: 2.75vw;
+}
 .periodTitle {
     margin: 0 0 1vh 0;
 }
 .year-sub-container {
     padding: 3rem;
 }
+.year-sub-container h2{
+    font-size: 2.25rem;
+    padding: 10px;
+}
 .true {
     height: 100vh;
 }
+
+
 @media only screen and (max-width: 830px) {
     .setting-container {
         flex-direction: column;
@@ -225,6 +234,15 @@
     .side-container {
         overflow: hidden !important;
         border-radius: 20px;
+    }
+    .signOut-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .signOut{
+        margin-top: 0vh;
+        margin-left: 0vw;
     }
     
 
