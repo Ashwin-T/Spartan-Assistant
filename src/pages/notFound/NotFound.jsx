@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './notFound.css';
 const NotFound = () => {
+
+    let navigate = useNavigate();
     return (
         <>
             <div className="notFound">
@@ -9,7 +12,7 @@ const NotFound = () => {
                 </div>
                 <div className='words'>
                     <h3>Woah there, this page doesn't exist</h3>
-                    <p>Click here to navigate back</p>
+                    <p onClick = {()=>navigate('/')}>Click here to navigate back</p>
                 </div>
             </div>
         </>

@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import Navbar from "../components/navbar/Navbar";
 import Loading from "../components/loading/Loading";
 import Home from "./home/Home";
@@ -7,12 +8,12 @@ import Map from "./map/Map";
 import StaticMap from "./map/StaticMap";
 import Setting from "./setting/Setting";
 import Resources from "./resources/Resources";
-import { useState, useEffect } from "react";
+import NotFound from "./notFound/NotFound";
+
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
-import NotFound from "./notFound/NotFound";
- 
 
+import { Route, Routes } from "react-router-dom";
 
 const db = getFirestore();
 const auth = getAuth();
@@ -43,8 +44,6 @@ const Source = () => {
 
         checkData();
     }, []);
-
-
 
     return (
         <>

@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./pages/login/Login";
 import Loading from "./components/loading/Loading";
 import Source from "./pages/Source";
-import app from "./tools/Firebase";
+import {app} from "./tools/Firebase";
 import { motion } from "framer-motion/dist/framer-motion";
 
 const App = () => {

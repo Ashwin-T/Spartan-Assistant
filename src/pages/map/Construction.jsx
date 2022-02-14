@@ -2,7 +2,7 @@
 import { Source, Layer } from "react-map-gl";
 
 const constructionCoords = [
-    [
+   [ 
         [
             [-122.06591376463683, 37.36018852332536],
             [-122.06601233304356, 37.35974725573569],
@@ -10,9 +10,7 @@ const constructionCoords = [
             [-122.06577078622549, 37.359580882853216],
             [-122.06513306976764, 37.3595638189000],
             [-122.065115206145, 37.360224731586825]
-        ]
-    ],
-    [
+        ],
         [
             [-122.06752065872784, 37.36014825552563],
             [-122.06751529102094, 37.36034875461623],
@@ -24,12 +22,11 @@ const constructionCoords = [
             [-122.0682560345959, 37.360280499666594],
             [-122.06804132960308, 37.36023784239776],
             [-122.06804669731022, 37.36014825763118]
-        ]
+        ]        
     ]
 ]
 
 const Construction = () => {
-    
 
     return (
         constructionCoords.map((coord, index) => {
@@ -55,8 +52,8 @@ const Construction = () => {
                             quantity: 2,
                         },
                         geometry: {
-                            type: 'Polygon',
-                            coordinates: coord
+                            type: 'MultiPolygon',
+                            coordinates: [coord]
                         }
                     }
                 ]

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
-import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaHandsHelping } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import { useLayoutEffect, useState } from "react";
@@ -12,9 +11,6 @@ import Popover from "@mui/material/Popover";
 import "./navbar.css";
 
 const Navbar = ({ navType }) => {
-    const [styleType, setStyleType] = useState("default");
-    const [type, setType] = useState(navType);
-
     const [freshmen, setFreshmen] = useState(false);
 
     useLayoutEffect(() => {
@@ -73,7 +69,7 @@ const Navbar = ({ navType }) => {
 
     return (
         <div className='nav-wrapper'>
-            <nav className={styleType}>
+            <nav className='default'>
                 <Link to='/' className='home-link'>
                     <img alt='logo' src='images/logoNav.png' />
                 </Link>
@@ -87,7 +83,7 @@ const Navbar = ({ navType }) => {
                     })}
 
                     {freshmen && (
-                        <a href='https://mail.google.com/chat/u/0/#chat/welcome' target='_blank' rel='noreferrer'>
+                        <a href='https://mvhs-orientation-test.netlify.app' target='_blank' rel='noreferrer'>
                             <MdQuestionAnswer size={35} />
                         </a>
                     )}
