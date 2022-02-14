@@ -1,0 +1,47 @@
+.notFound{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.notFound .title{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.notFound .words{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFound img{
+    width: 300px;
+}
+.notFound p{
+    transition: all 0.25s;
+}
+.notFound p:hover{
+    cursor: pointer;
+    color: var(--red-transparent);
+}
+
+@media only screen and (max-width: 768px) {
+    .notFound{
+        width: 100%;
+    }
+    .notFound div{
+        width: 100%;
+        flex-direction: column;
+    }
+}

@@ -10,10 +10,10 @@ nav {
     padding: 16px;
 }
 .nav-wrapper {
-    width: 100vw !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2rem 0;
 }
 .default {

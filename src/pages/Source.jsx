@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 import Loading from "../components/loading/Loading";
 import Home from "./home/Home";
@@ -10,6 +10,10 @@ import Resources from "./resources/Resources";
 import { useState, useEffect } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
+import NotFound from "./notFound/NotFound";
+ 
+
+
 const db = getFirestore();
 const auth = getAuth();
 
@@ -40,10 +44,22 @@ const Source = () => {
         checkData();
     }, []);
 
+
+
     return (
         <>
             <Routes>
                 <Route
+                    path='*'
+                    element={
+                        <>
+                            <Navbar navType={1} />
+                            <NotFound />
+                        </>
+                    }
+                />
+                <Route
+                    index
                     exact path='/'
                     element={
                         <>
