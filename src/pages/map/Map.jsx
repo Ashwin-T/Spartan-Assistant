@@ -319,6 +319,9 @@ const Map = () => {
                         </div>
                     )}
 
+                    <Construction />)
+
+
                     {   
                         otherData.features.map((place, index) => {
                             if(place.properties.name === 'Vending Machine'){
@@ -330,11 +333,8 @@ const Map = () => {
                             else if(place.properties.name === 'Bike Rack'){
                                 return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
                             }
-                            else if(place.properties.name === 'Construction'){
-                                return(<Construction key = {index} place = {place}/>)
-                            }
                             else{
-                                return(null)
+                                return null;
                             }
                         })
                     }

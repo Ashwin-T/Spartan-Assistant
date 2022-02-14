@@ -15,6 +15,12 @@ const Resources = () => {
             image: "images/metalHealthLogo.png",
         },
         {
+            name: "Mvhs.io",
+            link: "https://mvhs.io",
+            description: "Mvhs.io is a versitle app for MVHS staff and students.",
+            image: "images/mvhsioLogo.png",
+        },
+        {
             name: "Canvas",
             link: "https://mvla.instructure.com/",
             description: "Canvas is a web application that allows teachers to create and manage course content.",
@@ -26,18 +32,6 @@ const Resources = () => {
             description: "Aeries is a school management and grading system for students and parents.",
             image: "images/aeriesLogo.png",
         },
-        {
-            name: "Mvhs.io",
-            link: "https://mvhs.io",
-            description: "Mvhs.io is a versitle app for MVHS staff and students.",
-            image: "images/mvhsioLogo.png",
-        },
-        {
-            name: "Periods.io",
-            link: "https://periods.io",
-            description: "Manage your time more effectively by tracking the remaining time in class",
-            image: "images/periodsioLogo.png",
-        }, 
         {
             name: "Google Classroom",
             link: "https://classroom.google.com",

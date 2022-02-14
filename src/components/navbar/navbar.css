@@ -74,6 +74,11 @@ nav .profile {
     height: 45px !important;
 }
 
+.default div button> img{
+    width: 45px !important;
+    height: 45px !important;
+}
+
 nav img {
     width: 45px;
     height: 45px;

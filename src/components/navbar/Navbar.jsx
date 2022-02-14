@@ -1,37 +1,23 @@
 import {Link} from 'react-router-dom'
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
-import {AiOutlineMenuUnfold, AiOutlineMenuFold} from 'react-icons/ai'
+import {AiOutlineMenuUnfold} from 'react-icons/ai'
 import {FaHandsHelping} from 'react-icons/fa'
 import {SiGooglemaps} from 'react-icons/si'
 import {useLayoutEffect, useState} from 'react'
 import { doc, getDoc, getFirestore} from "firebase/firestore";
 
+import Popover from '@mui/material/Popover';
+
 import './navbar.css' 
 
 const Navbar = ({navType}) => {
 
-    const [isOpen, setIsOpen] = useState(false)
     const [styleType, setStyleType] = useState('default')
     const [type, setType] = useState(navType)
 
     const [freshmen, setFreshmen] = useState(false)
 
-    let temp = isOpen
-
-    const handleOpen = () => {
-        temp = !isOpen
-        setIsOpen(temp)
-
-        if(temp){
-            setStyleType('open')  
-            setType(1);       
-        }
-        else{
-            setStyleType('default')
-            setType(navType);       
-        }
-    }
 
     useLayoutEffect(() => {
         
@@ -73,18 +59,28 @@ const Navbar = ({navType}) => {
             icon: <MdSettings size = {35}/>,
             link: '/settings'
         }
+        
     ]
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = useState(false)
+
+    const handleOpen = (e) => {
+        setOpen(true);
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+        setOpen(false)
+    };
 
 
     return (  
         <div className="nav-wrapper">
             <nav className= {styleType}>
                 <Link to = "/" className="home-link"><img alt = 'logo' src = 'images/logoNav.png' /></Link>
-
-                {type === 1 ? 
-                
-                    <div className="icon-wrapper">
+                <div className="icon-wrapper">
                         {
                             content.map((item, index) => {
                                 return(
@@ -95,18 +91,20 @@ const Navbar = ({navType}) => {
 
                         {freshmen && <a href = 'https://mail.google.com/chat/u/0/#chat/welcome' target = '_blank' rel="noreferrer"><MdQuestionAnswer size = {35}/></a>}
                         
-                        <Link className = "link" to = "/"><img className = 'profile' alt = 'profile' src={getAuth().currentUser.photoURL} /></Link>
+                        <button onClick={handleOpen} ><img className = 'profile' alt = 'profile' src={getAuth().currentUser.photoURL} /></button>
                         
-                        {isOpen && <button className = "link" onClick={handleOpen}><AiOutlineMenuFold size = {35}/></button>}
-                    </div>
-
-                : <div className= 'dropdown' onClick={handleOpen}>
-                    
-                    <AiOutlineMenuUnfold size = {35}/>
-                    
-                </div>}
-
-                
+                        <Popover
+                        open={open}
+                        anchorEl = {anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'Center',
+                        }}
+                        >
+                        <button onClick={handleClose} className = 'popover-close'>Sign Out</button>
+                        </Popover>
+                    </div>        
             </nav>
         </div>
     );
