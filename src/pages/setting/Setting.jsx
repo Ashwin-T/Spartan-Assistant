@@ -3,19 +3,18 @@ import { getAuth } from "firebase/auth";
 import { FaGraduationCap } from "react-icons/fa";
 import { doc, getFirestore, setDoc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 import "./setting.css";
 
 import * as roomData from "../../data/Rooms.json";
-
 
 const Settings = ({ init }) => {
     //settings have preview of graduation year, and schecule of rooms
 
     const navigate = useNavigate();
 
-    const [gradYear, setGradYear] = useState('');
+    const [gradYear, setGradYear] = useState("");
 
     const [periodOne, setPeriodOne] = useState("");
     const [periodTwo, setPeriodTwo] = useState("");
@@ -26,23 +25,22 @@ const Settings = ({ init }) => {
     const [periodSeven, setPeriodSeven] = useState("");
 
     const [title, setTitle] = useState("Settings");
-    const styleName = init ? 'init' : '';
+    const styleName = init ? "init" : "";
 
     const db = getFirestore();
 
     const [error, setError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleError = (message) =>{
+    const handleError = (message) => {
         setError(true);
         setErrorMessage(message);
-    }
+    };
 
     useEffect(() => {
         if (init) {
             setTitle("Let's Get Set Up");
         }
-
 
         const getData = async () => {
             const docRef = doc(db, "users", getAuth().currentUser.uid);
@@ -85,32 +83,30 @@ const Settings = ({ init }) => {
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
         navigate("/");
-        if(init){
-           window.location.reload();
+        if (init) {
+            window.location.reload();
         }
     };
 
     const changePage = () => {
         if (periodOne === "" || periodTwo === "" || periodThree === "" || periodFour === "" || periodFive === "" || periodSix === "" || periodSeven === "") {
-            handleError("Please fill out all periods"); 
+            handleError("Please fill out all periods");
             return;
         }
         if (!handleRoomCheck(periodOne) || !handleRoomCheck(periodTwo) || !handleRoomCheck(periodThree) || !handleRoomCheck(periodFour) || !handleRoomCheck(periodFive) || !handleRoomCheck(periodSix) || !handleRoomCheck(periodSeven)) {
-            handleError("Please enter a valid room number"); 
+            handleError("Please enter a valid room number");
             return;
         }
         if (gradYear < 2022) {
             handleError("Please enter a valid graduation year");
-            return; 
+            return;
         }
         submit();
     };
-    const handleSignOut = async() => {
-        getAuth().signOut();
-    }
+
     return (
         <>
-            <div className={'setting-container ' + styleName}>
+            <div className={"setting-container " + styleName}>
                 <div className='year-container'>
                     <div className='main-resources-container' style={{ marginLeft: 2 + "rem" }}>
                         <h1 className='main-resources'>{title}</h1>
@@ -119,9 +115,9 @@ const Settings = ({ init }) => {
 
                     <div className='year-sub-container'>
                         <h2>
-                            What Year Do You Graduate <FaGraduationCap size = {40}/> ?
+                            What Year Do You Graduate <FaGraduationCap size={40} /> ?
                         </h2>
-                        <input type='number' placeholder = '2022' value = {gradYear} onChange={(e) => setGradYear(e.target.value)} />
+                        <input type='number' placeholder='2022' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
                     </div>
                 </div>
                 <div className='schedule-container'>
@@ -132,7 +128,7 @@ const Settings = ({ init }) => {
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 1</h2>
-                            <input placeholder="806" className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
+                            <input placeholder='806' className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
                         </div>
                         <div className='periodContainers'>
                             <h2>Period 2</h2>
@@ -164,16 +160,17 @@ const Settings = ({ init }) => {
                 </div>
             </div>
 
-            {error && <div className='flexbox row center errorBar'>
-                <Alert variant="outlined" severity="error" sx = {{width: '250px'}}>{errorMessage}</Alert>
-            </div>}
-         
+            {error && (
+                <div className='flexbox row center errorBar'>
+                    <Alert variant='outlined' severity='error' sx={{ width: "250px" }}>
+                        {errorMessage}
+                    </Alert>
+                </div>
+            )}
+
             <div className='flexbox column center'>
                 <button className='submit-button' onClick={changePage}>
                     Submit
-                </button>
-                <button className="submit-button signOut" onClick= {handleSignOut}>
-                    Sign Out
                 </button>
             </div>
         </>
