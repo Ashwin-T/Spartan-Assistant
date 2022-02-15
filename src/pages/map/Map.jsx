@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
 import mapboxgl from 'mapbox-gl';
-//eslint-disable-next-line import/no-webpack-loader-syntax
+//eslint-disable-next-line
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
