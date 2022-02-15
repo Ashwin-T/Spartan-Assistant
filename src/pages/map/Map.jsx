@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
+import mapboxgl from 'mapbox-gl';
+//eslint-disable-next-line import/no-webpack-loader-syntax
+import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+
 import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
 import {MdMap, MdDirectionsBike} from 'react-icons/md';
 import { IoIosNavigate } from "react-icons/io";
@@ -22,15 +26,17 @@ import './mapbox-gl.css';
 
 //changing the map location by re-orient
 
+
 const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools  center location
+
     let navigate = useNavigate();
     const [restRoom, setRestRoom] = useState(""); //sets initial value of 'search'
     const [findRoom, setFindRoom] = useState(""); //sets initial value of 'search'
 
-    const [submittedRoom, setSubmittedRoom] = useState(false);
+    const [submittedRoom, setSubmittedRoom] = useState(false); 
     const [submittedSchedule, setSubmittedSchedule] = useState(false);
 
     const [viewPort, setViewPort] = useState({}); // sets initial value of 'view port' to empty js object. viewport will help us setd
@@ -199,7 +205,6 @@ const Map = () => {
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken='pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
-                onClick={(e)=> console.log(e.lngLat)}
             >
                 
                 <Navbar navType={1} />

@@ -14,6 +14,7 @@
     "eslint": "^7.32.0",
     "firebase": "^9.5.0",
     "framer-motion": "4.1.17",
+    "mapbox-gl": "^2.7.0",
     "moment": "^2.29.1",
     "mvhs-schedule": "^0.2.3",
     "react": "^17.0.2",
@@ -38,9 +39,12 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "workbox-streams": "^5.1.4",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,14 +60,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not chrome < 51",
+      "not safari < 10"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
   }
 }
