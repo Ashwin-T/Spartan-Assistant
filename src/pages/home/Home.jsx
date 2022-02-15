@@ -9,6 +9,7 @@ import { FaDirections } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
+import Modal from '@mui/material/Modal';
 
 const Home = () => {
     const auth = getAuth(app);
@@ -35,44 +36,40 @@ const Home = () => {
 
     return (
         <>
-            <div>
-                {!loading ? (
-                    <div>
-                        <div className='flexbox row wrap full-size'>
-                            <div className='welcome-container'>
-                                <h1>Welcome, {user.displayName.split(" ")[0]}.</h1>
-                                <h3>Have a great {today.split(" ")[0]}</h3>
-                            </div>
-                            <div className='right-triangle'></div>
-                            <div className='action-container'>
-                                <h3>Actions</h3>
-                                <div className={"links flexbox column center " + linkStyle}>
-                                    <Link className='flexbox homeLinks' to={{ pathname: "/map" }}>
-                                        <FaDirections style={{ color: "dodgerblue" }} size={30} />
-                                        <h3>Find Your Classes</h3>
-                                    </Link>
-                                    <Link className='flexbox homeLinks' to={{ pathname: "/resources" }}>
-                                        <BsFillPeopleFill style={{ color: "#D7BE69" }} size={30} />
-                                        <h3>Resources to Help</h3>
-                                    </Link>
-                                    <Link className='flexbox homeLinks' to={{ pathname: "/settings" }}>
-                                        <FiSettings style={{ color: "grey" }} size={30} />
-                                        <h3>Update Settings</h3>
-                                    </Link>
-                                    {localStorage.getItem("freshmen") === "true" && (
-                                        <a className = 'flexbox homeLinks' href = 'https://mvhs-orientation-test.netlify.app/' target = '_blank' rel="noreferrer">
-                                            <BsFillChatTextFill style={{ color: "green" }} size={30} />
-                                            <h3>Chat With Your Pod</h3>
-                                        </a>
-                                    )}
-                                </div>
+            {!loading ? (
+                    <div className='flexbox row wrap full-size'>
+                        <div className='welcome-container'>
+                            <h1>Welcome, {user.displayName.split(" ")[0]}.</h1>
+                            <h3>Have a great {today.split(" ")[0]}</h3>
+                        </div>
+                        <div className='right-triangle'></div>
+                        <div className='action-container'>
+                            <h3>Actions</h3>
+                            <div className={"links flexbox column center " + linkStyle}>
+                                <Link className='flexbox homeLinks' to={{ pathname: "/map" }}>
+                                    <FaDirections style={{ color: "dodgerblue" }} size={30} />
+                                    <h3>Find Your Classes</h3>
+                                </Link>
+                                <Link className='flexbox homeLinks' to={{ pathname: "/resources" }}>
+                                    <BsFillPeopleFill style={{ color: "#D7BE69" }} size={30} />
+                                    <h3>Resources to Help</h3>
+                                </Link>
+                                <Link className='flexbox homeLinks' to={{ pathname: "/settings" }}>
+                                    <FiSettings style={{ color: "grey" }} size={30} />
+                                    <h3>Update Settings</h3>
+                                </Link>
+                                {localStorage.getItem("freshmen") === "true" && (
+                                    <a className = 'flexbox homeLinks' href = 'https://mvhs-orientation-test.netlify.app/' target = '_blank' rel="noreferrer">
+                                        <BsFillChatTextFill style={{ color: "green" }} size={30} />
+                                        <h3>Chat With Your Pod</h3>
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
-                ) : (
-                    <Loading />
-                )}
-            </div>
+            ) : (
+                <Loading />
+            )}
         </>
     );
 };

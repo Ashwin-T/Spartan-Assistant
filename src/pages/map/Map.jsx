@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
 //eslint-disable-next-line
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
@@ -195,6 +195,8 @@ const Map = () => {
             setSubmittedSchedule(true);
         }
 
+        setSingleDirectionStyle({ color: "dodgerblue" });
+
         setScheduleDirectionToggle(!scheduleDirectionToggle);
        
     };
@@ -232,16 +234,19 @@ const Map = () => {
                        </Source>
                 }
                 <div className='flexbox space-between'>
-                    {singleDirectionsToggle && window.innerWidth > 768 && (
-                        <div className=' controlContainer'>
+                    {singleDirectionsToggle && window.innerWidth > 768 &&
+                    
+                        <div className='controlContainer'>
                             <h3>Starting Room: </h3>
                             <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
                             <h3>Ending Room: </h3>
                             <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
                             
-                            {error && <div style = {{marginTop: '25px'}}>
+                            {error && 
+                            <div style = {{marginTop: '25px'}}>
                                <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
-                            </div>}
+                            </div>
+                            }
 
                             <div>
                                 <button className='go' onClick={handleMap}>
@@ -249,7 +254,7 @@ const Map = () => {
                                 </button>
                             </div>
                         </div>
-                    )}
+                    }
 
                     {!scheduleDirectionToggle && window.innerWidth > 768 && (
                         <div className='flexbox column center controlContainer'>
@@ -266,7 +271,7 @@ const Map = () => {
                     )}
 
                     {/* TODO: Add better styling */}
-                    <div className='flexbox center mapControls'>
+                    <div className='mapControls'>
                         <div className='flexbox center column'>
                             <button
                                 onClick={() => {
@@ -306,7 +311,7 @@ const Map = () => {
                         </div>
                     </div>
 
-                    {singleDirectionsToggle && window.innerWidth < 768 && (
+                    {singleDirectionsToggle && window.innerWidth < 768 &&
                         <div className='controlContainer'>
                             <h3>Starting Room:</h3>
                             <input ref={inputCurrentRoom} placeholder='806' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
@@ -323,9 +328,9 @@ const Map = () => {
                                 </button>
                             </div>
                         </div>
-                    )}
+                    }
 
-                    <Construction />)
+                    <Construction />
 
 
                     {   

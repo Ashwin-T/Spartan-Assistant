@@ -9,11 +9,11 @@
     bottom: 5rem;
     left: 5rem;
     background-color: var(--alternate-background-color) !important;
-    /* margin: 3vh 5vw; */
     border-radius: 5rem;
     box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
     border: 1px solid rgb(0, 0, 0, 0.12);
     display: flex;
+    z-index: 999;
     flex-wrap: nowrap !important;
 }
 
@@ -155,8 +155,6 @@
 
 @media only screen and (max-width: 768px) {
     .mapControls {
-        /* width: 65vw;
-        height: 7.75vh; */
         left: 1rem;
     }
 
@@ -165,9 +163,6 @@
     }
 
     .controlContainer {
-        /* width: 100vw;
-        height: 25vh;
-        margin-top: 15vh; */
         left: 1rem;
     }
 

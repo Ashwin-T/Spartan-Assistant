@@ -46,7 +46,7 @@ const Resources = () => {
             name: "MVHS Website",
             link: "https://mvhs.mvla.net/",
             description: "MVHS is a high school in Mountain View Highschool",
-            image: "images/mvhsLogo.png",
+            image: "images/mvhslogo.png",
         }
     ];
 
