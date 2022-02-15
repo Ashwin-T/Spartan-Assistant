@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
-import mapboxgl from 'mapbox-gl';
 //eslint-disable-next-line
+import mapboxgl from '!mapbox-gl';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
@@ -31,6 +31,8 @@ const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
     //^ schools  center location
+
+    mapboxgl.workerClass = MapboxWorker;
 
     let navigate = useNavigate();
     const [restRoom, setRestRoom] = useState(""); //sets initial value of 'search'
