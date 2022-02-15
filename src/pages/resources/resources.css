@@ -15,9 +15,22 @@
     align-items: center;
     z-index: 3;
 }
-.importantLinks > h3 {
+
+.importantLinks > h5{
     margin: 0px;
+    padding: 0px;
+    border: 0px !important;
+    text-decoration: none;
 }
+
+.importantLinks >h3{
+    margin: 0px;
+    padding: 0px;
+    border: 0px !important;
+    text-decoration: none;
+}
+
+
 .importantLinks:hover {
     transform: scale(1.025);
     z-index: 2;

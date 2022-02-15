@@ -3,16 +3,20 @@ import * as faqs from "../../data/Faq.json";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-// import Typography from '@mui/material/Typography';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AiOutlineArrowDown } from "react-icons/ai";
 const Resources = () => {
     const links = [
         {
-            name: "Mental Health Services",
-            link: "https://www.mentalhealth.gov/",
+            name: "Community Resources",
+            link: "https://drive.google.com/file/d/1c7EYzQegCrfI_-KqSdH0JcEuIuvZbvF-/view/",
             description: "Mental Health Services is a free, online service that provides mental health information and services to people in need.",
             image: "images/metalHealthLogo.png",
+        },
+        {
+            name: "Mental Health Referral",
+            link: "https://app.informedk12.com/link_campaigns/mvla-student-support-referral-form-electronic-form?token=FfsLpPWfS98i2RiHN1vG7gVS",
+            description: "Mental Health Referral is a free, online service that provides mental health information and services to people in need.",
+            image: "images/mentalHealthReferralLogo.png",
         },
         {
             name: "Mvhs.io",
@@ -37,6 +41,12 @@ const Resources = () => {
             link: "https://classroom.google.com",
             description: "Google Classroom is a free online course management tool for teachers and students.",
             image: "images/google-classroom-logo.png",
+        },
+        {
+            name: "MVHS Website",
+            link: "https://mvhs.mvla.net/",
+            description: "MVHS is a high school in Mountain View Highschool",
+            image: "images/mvhsLogo.png",
         }
     ];
 
@@ -70,7 +80,7 @@ const Resources = () => {
                             return (
                                 <a key={index} className='flexbox importantLinks' href={link.link} target='_blank' rel='noopener noreferrer'>
                                     <img src={link.image} alt='logo for icon' />
-                                    <h3>{link.name}</h3>
+                                    {window.innerWidth > 768 ? <h3>{link.name}</h3> : <h5>{link.name}</h5>}
                                 </a>
                             );
                         })}

@@ -34,6 +34,11 @@
     border-bottom: 3px solid var(--alternate-color);
 }
 
+.controlContainer ol{
+    margin: 0;
+    padding: 0;
+}
+
 .controlContainer .go {
     outline: none;
     border-radius: 8px;

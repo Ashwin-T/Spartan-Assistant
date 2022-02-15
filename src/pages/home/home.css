@@ -3,13 +3,6 @@ h1 {
     font-size: 5rem;
 }
 
-h5 {
-    font-style: italic;
-    color: var(--content-color) !important;
-    font-weight: normal;
-    border-bottom: 3px solid var(--alternate-color) !important;
-    margin: 0 10vw;
-}
 
 .homeLinks {
     width: 100%;

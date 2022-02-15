@@ -27,8 +27,6 @@ const App = () => {
         }
     }, []);
 
-    //window.localStorage.clear(); // for testing
-
     const imgVariants = {
         hidden: {
             opacity: 0,

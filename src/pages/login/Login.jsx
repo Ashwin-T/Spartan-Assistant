@@ -30,27 +30,6 @@ const Login = () => {
             </div>
         </div>
     );
-
-    // return (
-    //     <>
-    //         <div className="flexbox column center">
-    //             <div className="loginContainer flexbox center">
-
-    //                 {
-    //                     !useMobileState() &&
-    //                     <div className="loginContent loginImage">
-    //                         <div>Make timelapse of walking around school</div>
-    //                         <div>(Slideshows, videos, etc.)</div>
-    //                     </div>
-    //                 }
-    //                 <div className="loginContent loginLogin">
-    //                     <img src = 'images/logo.png' alt = 'logo'/>
-    //                     <GoogleButton onClick = {signIn}/>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </>
-    // );
 };
 
 export default Login;

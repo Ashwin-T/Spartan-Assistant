@@ -22,7 +22,6 @@ import * as otherData from "../../data/Other.json";
 
 import "./map.css";
 import './mapbox-gl.css';
-// import * as otherData from "./Data/other.json";
 
 //changing the map location by re-orient
 

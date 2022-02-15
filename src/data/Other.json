@@ -54,6 +54,28 @@
             "properties": {
               "name" : "Parking Lot"
             }
-        }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-122.06638565934448, 37.360460931533886]
+          },
+          "properties": {
+            "name" : "Vending Machine",
+            "key" : "1"
+          }
+      },
+      {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-122.06820563770003, 37.35959100443466]
+          },
+          "properties": {
+            "name" : "Vending Machine",
+            "key" : "2"
+          }
+      }
     ]
 }
