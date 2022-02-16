@@ -1861,6 +1861,152 @@
       "type":"Feature",
       "geometry":{
          "type":"Point",
+         "coordinates":[
+            -122.0682748191178, 
+            37.35898679245665
+         ]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p1",
+         "name2":"None"
+      }
+     },
+     {
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06826985683267, 37.358916711263404]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p2",
+         "name2":"None"
+      }
+     },
+     {
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06828250001492, 37.35884144566005]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p3",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06828461634083, 37.35876712984434]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p4",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06827731175626, 37.35870062403663]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p5",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06826436105698, 37.35862870369028]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p6",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06847035274112, 37.35896845676091]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p7",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06848208873753, 37.35885615716456]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p8",
+         "name2":"None"
+      }
+     },
+     { 
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06848032214162, 37.3587901909082]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p9",
+         "name2":"None"
+      }
+     },
+     {
+         "type":"Feature",
+         "geometry":{
+            "type":"Point",
+            "coordinates":[-122.06846974547771, 37.35871728086599]
+         },
+         "properties":{
+            "wing":"portables",
+            "itemType":"room",
+            "name":"p10",
+            "name2":"None"
+         }
+     },
+     {
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
+         "coordinates":[-122.06847493171841, 37.35864722242989]
+      },
+      "properties":{
+         "wing":"portables",
+         "itemType":"room",
+         "name":"p11",
+         "name2":"None"
+      }
+     },
+     {
+      "type":"Feature",
+      "geometry":{
+         "type":"Point",
          "coordinates":[]
       },
       "properties":{

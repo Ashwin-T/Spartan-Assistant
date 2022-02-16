@@ -76,10 +76,10 @@ const Settings = ({ init }) => {
             } else {
                 // doc.data() will be undefined in this case
             }
+            setLoading(false);
         };
 
         getData();
-        setLoading(false);
     }, [init, db]);
 
     const handleRoomCheck = (roomNumber) => {
@@ -87,6 +87,7 @@ const Settings = ({ init }) => {
     };
 
     const submit = async () => {
+        setLoading(true);
         const periods = [periodOne, periodTwo, periodThree, periodFour, periodFive, periodSix, periodSeven];
         await setDoc(doc(db, "users", getAuth().currentUser.uid), {
             name: getAuth().currentUser.displayName,
@@ -100,6 +101,7 @@ const Settings = ({ init }) => {
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
         navigate("/");
+        setLoading(false);
         if (init) {
             window.location.reload();
         }
