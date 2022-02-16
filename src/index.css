@@ -14,6 +14,20 @@ html {
     display: none;
 }
 
+::-webkit-input-placeholder {
+    opacity: 0.85;
+}
+:-moz-placeholder {
+    opacity: 0.85;
+}
+::-moz-placeholder {
+    opacity: 0.85;
+}
+:-ms-input-placeholder {
+    opacity: 0.85;  
+}
+
+
 h1 {
     margin: 0;
 }

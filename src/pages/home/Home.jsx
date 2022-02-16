@@ -9,8 +9,7 @@ import { FaDirections } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
-import Modal from '@mui/material/Modal';
-
+import AddToMobile from "../../components/addToMobile/AddToMobile";
 const Home = () => {
     const auth = getAuth(app);
     const [user] = useAuthState(auth);
@@ -20,10 +19,13 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [linkStyle, setLinkStyle] = useState();
 
+    const [hasAdded, setHasAdded] = useState(false);
+
     useEffect(() => {
         setLoading(true);
 
         setToday(moment().format("dddd") + " " + moment().format("MMM Do"));
+        setHasAdded(localStorage.getItem("hasAdded") === "true");
 
         if (window.innerWidth > 786) {
             setLinkStyle("wrap");
@@ -66,6 +68,11 @@ const Home = () => {
                                 )}
                             </div>
                         </div>
+                        {!hasAdded && window.innerWidth < 786 &&
+                            <div style = {{width: '100%'}} className="flexbox column center">
+                                <AddToMobile setFunction = {setHasAdded} />
+                            </div>
+                        }
                     </div>
             ) : (
                 <Loading />

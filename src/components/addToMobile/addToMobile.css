@@ -1,0 +1,37 @@
+.add-to-mobile{
+    position: fixed;
+    bottom: 20px;
+    z-index: 100;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.cancel-icon{
+    margin-left: 15px;
+    margin-top: 15px;
+    color: red
+}
+
+.add-to-mobile img{
+    width: 100px;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.add-to-mobile p{
+    margin: 0,5rem 0;
+}
+.add-to-mobile button{
+    background-color: #0ca1b4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all .3s ease;
+}

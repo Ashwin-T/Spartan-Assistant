@@ -115,7 +115,7 @@ const Settings = ({ init }) => {
 
                     <div className='year-sub-container'>
                         <h2>
-                            What Year Do You Graduate <FaGraduationCap size={40} /> ?
+                            What Year Do You Graduate <FaGraduationCap size={40} />?
                         </h2>
                         <input type='number' placeholder='2022' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
                     </div>
