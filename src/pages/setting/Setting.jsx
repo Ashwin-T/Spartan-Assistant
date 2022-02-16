@@ -61,13 +61,13 @@ const Settings = ({ init }) => {
                 setPeriodSeven(docSnap.data().periods[6]);
 
                 localStorage.setItem("periods", JSON.stringify(docSnap.data().periods));
-                setLoading(false);
             } else {
                 // doc.data() will be undefined in this case
             }
         };
 
         getData();
+        setLoading(false);
     }, [init, db]);
 
     const handleRoomCheck = (roomNumber) => {
