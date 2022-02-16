@@ -226,7 +226,7 @@ const Map = () => {
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
-                onClick={(e)=> console.log(e.lngLat)}
+                // onClick={(e)=> console.log(e.lngLat)}
             >
                 
                 <Navbar navType={1} />
