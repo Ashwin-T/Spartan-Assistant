@@ -59,6 +59,10 @@ const Map = () => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+
+    const [startingRoomStyle, setStartingRoomStyle] = useState("");
+    const [endingRoomStyle, setEndingRoomStyle] = useState("");
+
     const handleError = (message) =>{
         setError(true);
         setErrorMessage(message);
@@ -108,6 +112,10 @@ const Map = () => {
     };
 
     const handleMap = async () => {
+
+        setEndingRoomStyle("")
+        setStartingRoomStyle("")
+            
         let currentRoom = {},
             findingRoom = {};
 
@@ -124,13 +132,22 @@ const Map = () => {
             }
         });
 
-        if ("type" in currentRoom && "type" in findingRoom) {
-            setSubmittedRoom(true);
-            handleSingleDirection();
-            setError(false);
-        } else {
-            handleError("Please enter a valid room name");
+        if ("type" in currentRoom) {
+            if("type" in findingRoom){
+                setSubmittedRoom(true);
+                handleSingleDirection();
+                setError(false);
+            }
+            else{
+                handleError("Please enter a valid room name");
+                setEndingRoomStyle("colorRed")
+            }
         }
+        else{
+            handleError("Please enter a valid room name");
+            setStartingRoomStyle("colorRed")
+        }
+
 
         setViewPort({
             latitude: 37.360205578662605,
@@ -237,9 +254,9 @@ const Map = () => {
                     {singleDirectionsToggle && window.innerWidth > 768 &&
                     
                         <div className='controlContainer'>
-                            <h3>Starting Room: </h3>
+                            <h3 className = {startingRoomStyle}>Starting Room: </h3>
                             <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
-                            <h3>Ending Room: </h3>
+                            <h3 className = {endingRoomStyle}>Ending Room: </h3>
                             <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
                             
                             {error && 
@@ -248,6 +265,7 @@ const Map = () => {
                             </div>
                             }
 
+                            <br />
                             <div>
                                 <button className='go' onClick={handleMap}>
                                     Navigate
@@ -313,10 +331,10 @@ const Map = () => {
 
                     {singleDirectionsToggle && window.innerWidth < 768 &&
                         <div className='controlContainer'>
-                            <h3>Starting Room:</h3>
-                            <input ref={inputCurrentRoom} placeholder='806' type='text' className='findRoom' onChange={(e) => formChange1(e.target.value)} />
-                            <h3>Ending Room:</h3>
-                            <input ref={inputFindingRoom} placeholder='607' type='text' className='findRoom' onChange={(e) => formChange2(e.target.value)} />
+                            <h3 className = {startingRoomStyle}>Starting Room: </h3>
+                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
+                            <h3 className = {endingRoomStyle}>Ending Room: </h3>
+                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
 
                             {error && <div style = {{marginTop: '25px'}}>
                                <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>

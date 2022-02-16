@@ -27,6 +27,13 @@ html {
     opacity: 0.85;  
 }
 
+.errorUnderline{
+    border-bottom: 3px solid red !important;
+}
+
+.colorRed{
+    color: red !important;
+}
 
 h1 {
     margin: 0;

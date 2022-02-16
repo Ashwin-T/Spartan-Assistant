@@ -25,6 +25,16 @@ const Settings = ({ init }) => {
     const [periodSix, setPeriodSix] = useState("");
     const [periodSeven, setPeriodSeven] = useState("");
 
+    const [periodOneStyle, setPeriodOneStyle] = useState("");
+    const [periodTwoStyle, setPeriodTwoStyle] = useState("");
+    const [periodThreeStyle, setPeriodThreeStyle] = useState("");
+    const [periodFourStyle, setPeriodFourStyle] = useState("");
+    const [periodFiveStyle, setPeriodFiveStyle] = useState("");
+    const [periodSixStyle, setPeriodSixStyle] = useState("");
+    const [periodSevenStyle, setPeriodSevenStyle] = useState("");
+
+    const [gradYearStyle, setGradYearStyle] = useState("");
+
     const [title, setTitle] = useState("Settings");
     const styleName = init ? "init" : "";
 
@@ -94,16 +104,73 @@ const Settings = ({ init }) => {
     };
 
     const changePage = () => {
+
+        setPeriodOneStyle("");
+        setPeriodTwoStyle("");
+        setPeriodThreeStyle("");
+        setPeriodFourStyle("");
+        setPeriodFiveStyle("");
+        setPeriodSixStyle("");
+        setPeriodSevenStyle("");
+        setGradYearStyle("");
+
         if (periodOne === "" || periodTwo === "" || periodThree === "" || periodFour === "" || periodFive === "" || periodSix === "" || periodSeven === "") {
             handleError("Please fill out all periods");
+            if(periodOne === ""){
+                setPeriodOneStyle("errorUnderline");
+            }
+            if(periodTwo === ""){
+                setPeriodTwoStyle("errorUnderline");
+            }
+            if(periodThree === ""){
+                setPeriodThreeStyle("errorUnderline");
+            }
+            if(periodFour === ""){
+                setPeriodFourStyle("errorUnderline");
+            }
+            if(periodFive === ""){
+                setPeriodFiveStyle("errorUnderline");
+            }
+            if(periodSix === ""){
+                setPeriodSixStyle("errorUnderline");
+            }
+            if(periodSeven === ""){
+                setPeriodSevenStyle("errorUnderline");
+            }
+            if(gradYear === ""){
+                setGradYearStyle("errorUnderline");
+            }
             return;
         }
         if (!handleRoomCheck(periodOne) || !handleRoomCheck(periodTwo) || !handleRoomCheck(periodThree) || !handleRoomCheck(periodFour) || !handleRoomCheck(periodFive) || !handleRoomCheck(periodSix) || !handleRoomCheck(periodSeven)) {
             handleError("Please enter a valid room number");
+
+            if(!handleRoomCheck(periodOne)){
+                setPeriodOneStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodTwoStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodThreeStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodFourStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodFiveStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodSixStyle("errorUnderline");
+            }
+            if(!handleRoomCheck(periodTwo)){
+                setPeriodSevenStyle("errorUnderline");
+            }
             return;
         }
-        if (gradYear < 2022) {
+        if (gradYear < 2022 || gradYear < 2025 | gradYear  === '') {
             handleError("Please enter a valid graduation year");
+            setGradYearStyle("errorUnderline");
             return;
         }
         submit();
@@ -124,7 +191,7 @@ const Settings = ({ init }) => {
                         </div>
 
                         <div className='year-sub-container'>
-                            <h2>
+                            <h2 className= {gradYearStyle}>
                                 What Year Do You Graduate <FaGraduationCap size={40} />?
                             </h2>
                             <input type='number' placeholder='2022' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
@@ -137,33 +204,33 @@ const Settings = ({ init }) => {
                                 <p>(or free)</p>
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 1</h2>
+                                <h2 className = {periodOneStyle}>Period 1</h2>
                                 <input placeholder='806' className='info-input' type='text' value={periodOne} onChange={(e) => setPeriodOne(e.target.value.toLowerCase())} />
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 2</h2>
+                                <h2 className = {periodTwoStyle}>Period 2</h2>
                                 <input placeholder='607' className='info-input' type='text' value={periodTwo} onChange={(e) => setPeriodTwo(e.target.value.toLowerCase())} />
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 3</h2>
+                                <h2 className = {periodThreeStyle}>Period 3</h2>
                                 <input placeholder='' className='info-input' type='text' value={periodThree} onChange={(e) => setPeriodThree(e.target.value.toLowerCase())} />
                             </div>
                         </div>
                         <div>
                             <div className='periodContainers'>
-                                <h2>Period 4</h2>
+                                <h2 className = {periodFourStyle}>Period 4</h2>
                                 <input placeholder='' className='info-input' type='text' value={periodFour} onChange={(e) => setPeriodFour(e.target.value.toLowerCase())} />
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 5</h2>
+                                <h2 className = {periodFiveStyle}>Period 5</h2>
                                 <input placeholder='' type='text' value={periodFive} className='info-input' onChange={(e) => setPeriodFive(e.target.value.toLowerCase())} />
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 6</h2>
+                                <h2 className = {periodSixStyle}>Period 6</h2>
                                 <input placeholder='' type='text' value={periodSix} className='info-input' onChange={(e) => setPeriodSix(e.target.value.toLowerCase())} />
                             </div>
                             <div className='periodContainers'>
-                                <h2>Period 7</h2>
+                                <h2 className = {periodSevenStyle}>Period 7</h2>
                                 <input placeholder='free' type='text' value={periodSeven} className='info-input' onChange={(e) => setPeriodSeven(e.target.value.toLowerCase())} />
                             </div>
                         </div>
@@ -172,12 +239,12 @@ const Settings = ({ init }) => {
 
                 {error &&
                     <div className='flexbox row center errorBar'>
-                        <Alert variant='outlined' severity='error' sx={{ width: "250px" }}>
+                        <Alert variant='outlined' severity='error'>
                             {errorMessage}
                         </Alert>
                     </div>
                 }
-
+                <br />
                 <div className='flexbox column center'>
                     <button className='submit-button' onClick={changePage}>
                         Submit
