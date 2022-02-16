@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import { FaHandsHelping } from "react-icons/fa";
@@ -12,6 +12,7 @@ import "./navbar.css";
 
 const Navbar = ({ navType }) => {
     const [freshmen, setFreshmen] = useState(false);
+    let navigate = useNavigate();
 
     useLayoutEffect(() => {
         const getData = async () => {
@@ -59,7 +60,8 @@ const Navbar = ({ navType }) => {
         setOpen(true);
         setAnchorEl(e.currentTarget);
     };
-    const handleSignOut = async () => {
+    const handleSignOut = () => {
+        navigate("/");
         getAuth().signOut();
     };
     const handleClose = () => {

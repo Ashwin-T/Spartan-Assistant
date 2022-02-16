@@ -168,7 +168,7 @@ const Settings = ({ init }) => {
             }
             return;
         }
-        if (gradYear < 2022 || gradYear < 2025 | gradYear  === '') {
+        if (gradYear === '') {
             handleError("Please enter a valid graduation year");
             setGradYearStyle("errorUnderline");
             return;
