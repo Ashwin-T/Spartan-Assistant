@@ -43,7 +43,7 @@ const Settings = ({ init }) => {
     useEffect(() => {
         setLoading(true);
         if (init) {
-            setTitle("Let's Get Set Up");
+            setTitle("Let's Set Up");
         }
 
         const getData = async () => {
@@ -114,7 +114,8 @@ const Settings = ({ init }) => {
 
             {!loading ? 
             <>
-                <Navbar type = {1} />
+                {!init && <Navbar type = {1} />}
+
                 <div className={"setting-container " + styleName}>
                     <div className='year-container'>
                         <div className='main-resources-container' style={{ marginLeft: 2 + "rem" }}>
