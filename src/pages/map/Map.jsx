@@ -20,6 +20,7 @@ import Construction from "./Construction";
 import * as roomData from "../../data/Rooms.json";
 import * as otherData from "../../data/Other.json";
 
+import { mapboxToken } from "../../tools/Secrets";
 import "./map.css";
 import './mapbox-gl.css';
 
@@ -223,7 +224,7 @@ const Map = () => {
             <ReactMapGL
                 {...viewPort}
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
-                mapboxApiAccessToken='pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
+                mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
             >
                 

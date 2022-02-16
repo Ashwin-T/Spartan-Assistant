@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Loading from '../../components/loading/Loading';
 
 import axios from 'axios';
+
+import { mapboxToken } from "../../tools/Secrets";
 const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
     //marker for searched class
    
@@ -11,7 +13,7 @@ const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
     useEffect(() => {
         const getDirections = async () => {
             setLoading(true);
-            const dataString = `https://api.mapbox.com/directions/v5/mapbox/walking/${currentRoom.geometry.coordinates[0]},${currentRoom.geometry.coordinates[1]};${findingRoom.geometry.coordinates[0]},${findingRoom.geometry.coordinates[1]}?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w`;
+            const dataString = `https://api.mapbox.com/directions/v5/mapbox/walking/${currentRoom.geometry.coordinates[0]},${currentRoom.geometry.coordinates[1]};${findingRoom.geometry.coordinates[0]},${findingRoom.geometry.coordinates[1]}?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${mapboxToken}`;
             const dataArray = await axios.get(dataString);
          
             const directionsObj = {

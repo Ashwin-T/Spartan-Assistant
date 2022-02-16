@@ -8,6 +8,8 @@ import Alert from "@mui/material/Alert";
 import "./setting.css";
 
 import * as roomData from "../../data/Rooms.json";
+import * as gradData from "../../data/GraduationData.json";
+
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
 const Settings = ({ init }) => {
@@ -94,7 +96,7 @@ const Settings = ({ init }) => {
         localStorage.setItem("allow", "true");
         localStorage.setItem("periods", JSON.stringify([...periods]));
 
-        const isFreshmen = gradYear === "2025" ? true : false;
+        const isFreshmen = gradYear === gradData.freshmanGraduationYear ? true : false;
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
         navigate("/");
@@ -168,7 +170,7 @@ const Settings = ({ init }) => {
             }
             return;
         }
-        if (gradYear === '') {
+        if (gradYear === '' || gradYear > gradData.freshmanGraduationYear || gradYear < gradData.currentGraduationYear) {
             handleError("Please enter a valid graduation year");
             setGradYearStyle("errorUnderline");
             return;

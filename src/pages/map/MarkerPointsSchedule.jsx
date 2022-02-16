@@ -2,6 +2,8 @@ import{Popup, Source, Layer } from "react-map-gl";
 import { useEffect, useState } from "react";
 import Loading from '../../components/loading/Loading';
 import axios from 'axios';
+
+import { mapboxToken } from "../../tools/Secrets";
 const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
     //marker for searched class
    
@@ -21,7 +23,7 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
             }
             dataString = dataString.slice(0, -1);
 
-            dataString += '?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoiYXNod2ludGFsd2Fsa2FyIiwiYSI6ImNrdWQ5MTNsdTAwdTgyb3BmZ2N1MGhjOGIifQ.qPKo5Apru46tSyGaY7UE3w'
+            dataString += `?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${mapboxToken}`;
             const dataArray = await axios.get(dataString);
 
             const directionsObj = {

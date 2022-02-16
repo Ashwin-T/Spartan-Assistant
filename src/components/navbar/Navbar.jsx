@@ -8,6 +8,8 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 import Popover from "@mui/material/Popover";
 
+import * as gradData from "../../data/GraduationData.json";
+
 import "./navbar.css";
 
 const Navbar = ({ navType }) => {
@@ -20,7 +22,7 @@ const Navbar = ({ navType }) => {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                if (docSnap.data().gradYear === "2025") {
+                if (docSnap.data().gradYear === gradData.freshmanGraduationYear) {
                     setFreshmen(true);
                     localStorage.setItem("freshmen", "true");
                 } else {
