@@ -93,7 +93,6 @@ const Source = () => {
                     path='/settings'
                     element={
                         <>
-                            <Navbar navType={1} />
                             <Setting init={false} />
                         </>
                     }
