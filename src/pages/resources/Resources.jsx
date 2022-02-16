@@ -1,5 +1,5 @@
 import "./resources.css";
-import * as faqs from "../../data/Faq.json";
+import * as faqs from "../../data/FaqEN.json";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";

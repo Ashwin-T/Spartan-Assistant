@@ -1,8 +1,8 @@
 {
     "faqs": [
         {
-            "faq": "What activities to get involved in",
-            "answer": "Now is your chance to branch out, try new things, discover passions, and make new friends! Your high school counselor may have a list of all the extracurriculars offered by your new school. Take a look, and take note of the clubs and teams you might want to try. Specifically for MVHS: an updated list of clubs and information about sports and other programs may be found on the MVHS website."
+            "faq": "What activities could I get involved in",
+            "answer": "High-school is your chance to branch out, try new things, discover passions, and make new friends! An updated list of clubs and information about sports and other programs may be found on the MVHS website"
         },
         {
             "faq": "What are clubs and how can I get involved?",
@@ -26,7 +26,7 @@
         },
         {
             "faq": "Who created this application?",
-            "answer": "This application was created by students at MVHS with a purpose to help students find resources and information about their school. Created by Ashwin Talwlkar and Taiga Narusawa. Special Thanks to Mr. Nyugen, Mrs. Camarillo, Wyatt Cowley, Jackson Otto, Zephyr Jones, and Aiden Smith for assistance through the development of this application. Spartan Assistant is currently on version 1.0.1!"
+            "answer": "This application was created by students at MVHS with a purpose to help students find resources and information about their school. Created by Ashwin Talwlkar and Taiga Narusawa. Special Thanks to Mr. Nyugen, Mrs. Camarillo, Lorenzo Varlaro, Wyatt Cowley, Jackson Otto, Aiden Smith, and Zephyr Jones for assistance through the development of this application. Spartan Assistant is currently on version 1.0!"
         }
     ]
 }
