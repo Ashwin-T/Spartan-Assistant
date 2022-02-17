@@ -155,19 +155,19 @@ const Settings = ({ init }) => {
             if(!handleRoomCheck(periodTwo)){
                 setPeriodTwoStyle("errorUnderline");
             }
-            if(!handleRoomCheck(periodTwo)){
+            if(!handleRoomCheck(periodThree)){
                 setPeriodThreeStyle("errorUnderline");
             }
-            if(!handleRoomCheck(periodTwo)){
+            if(!handleRoomCheck(periodFour)){
                 setPeriodFourStyle("errorUnderline");
             }
-            if(!handleRoomCheck(periodTwo)){
+            if(!handleRoomCheck(periodFive)){
                 setPeriodFiveStyle("errorUnderline");
             }
-            if(!handleRoomCheck(periodTwo)){
+            if(!handleRoomCheck(periodSix)){
                 setPeriodSixStyle("errorUnderline");
             }
-            if(!handleRoomCheck(periodTwo)){
+            if(!handleRoomCheck(periodSeven)){
                 setPeriodSevenStyle("errorUnderline");
             }
             return;
