@@ -22,7 +22,6 @@ const Navbar = ({ navType }) => {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                console.log(docSnap.data().gradYear + " " + gradData.freshmanGraduationYear);
                 if (docSnap.data().gradYear === gradData.freshmanGraduationYear) {
                     setFreshmen(true);
                     localStorage.setItem("freshmen", "true");

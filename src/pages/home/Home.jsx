@@ -10,30 +10,53 @@ import { Link } from "react-router-dom";
 import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import AddToMobile from "../../components/addToMobile/AddToMobile";
+
+import * as FunWordsJSON from "../../data/FunWords.json";
+
 const Home = () => {
     const auth = getAuth(app);
     const [user] = useAuthState(auth);
 
-    const [today, setToday] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
+    const [today, setToday] = useState(moment().format("dddd") + " " + moment().format("MMM Do"));
 
     const [loading, setLoading] = useState(false);
     const [linkStyle, setLinkStyle] = useState();
 
     const [hasAdded, setHasAdded] = useState(false);
 
+    const [funWord, setFunWord] = useState("");
+
     useEffect(() => {
         setLoading(true);
 
-        setToday(moment().format("dddd") + " " + moment().format("MMM Do"));
-        setHasAdded(localStorage.getItem("hasAdded") === "true");
+        const getData = async () => {
+            setHasAdded(localStorage.getItem("hasAdded") === "true");
 
-        if (window.innerWidth > 786) {
-            setLinkStyle("wrap");
-        } else {
-            setLinkStyle("");
+            if (window.innerWidth > 786) {
+                setLinkStyle("wrap");
+            } else {
+                setLinkStyle("");
+            }
+
+            const day = today.split(" ")[0]
+
+            if(day === "Saturday" || day === "Sunday") {
+                setFunWord(FunWordsJSON.S[Math.floor(Math.random() * FunWordsJSON.S.length)]);
+            }
+            if(day === "Monday") { 
+                setFunWord(FunWordsJSON.M[Math.floor(Math.random() * FunWordsJSON.M.length)]);
+            }
+            if(day === "Tuesday" || day === "Thursday") {
+                setFunWord(FunWordsJSON.T[Math.floor(Math.random() * FunWordsJSON.T.length)]);
+            }
+            if(day === "Wednesday") {
+                setFunWord(FunWordsJSON.W[Math.floor(Math.random() * FunWordsJSON.W.length)]);
+            }
+            setLoading(false);
         }
 
-        setLoading(false);
+        getData();
+
     }, []);
 
     return (
@@ -42,7 +65,7 @@ const Home = () => {
                     <div className='flexbox row wrap full-size'>
                         <div className='welcome-container'>
                             <h1>Welcome, {user.displayName.split(" ")[0]}.</h1>
-                            <h3>Have a great {today.split(" ")[0]}</h3>
+                        <h3>Have a {funWord} {today.split(" ")[0]}</h3>
                         </div>
                         <div className='right-triangle'></div>
                         <div className='action-container'>
