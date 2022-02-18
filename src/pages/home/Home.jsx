@@ -24,14 +24,14 @@ const Home = () => {
 
     const [hasAdded, setHasAdded] = useState(false);
 
-    const [funWord, setFunWord] = useState("");
+    const [funWord, setFunWord] = useState("great");
 
     useEffect(() => {
         setLoading(true);
 
         const getData = async () => {
             setHasAdded(localStorage.getItem("hasAdded") === "true");
-
+ 
             if (window.innerWidth > 786) {
                 setLinkStyle("wrap");
             } else {
@@ -51,6 +51,9 @@ const Home = () => {
             }
             if(day === "Wednesday") {
                 setFunWord(FunWordsJSON.W[Math.floor(Math.random() * FunWordsJSON.W.length)]);
+            }
+            if(day == "Friday") {
+                setFunWord(FunWordsJSON.F[Math.floor(Math.random() * FunWordsJSON.F.length)]);
             }
             setLoading(false);
         }
