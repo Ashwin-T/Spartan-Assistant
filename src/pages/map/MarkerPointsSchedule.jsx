@@ -52,10 +52,6 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
             setDirections({});
         }
 
-        return () => {
-            setDirections({});
-        }
-
     }, [ok, raw, schedule])
 
     

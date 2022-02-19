@@ -35,6 +35,7 @@ const Map = () => {
     mapboxgl.workerClass = MapboxWorker;
 
     let navigate = useNavigate();
+
     const [restRoom, setRestRoom] = useState(""); //sets initial value of 'search'
     const [findRoom, setFindRoom] = useState(""); //sets initial value of 'search'
 
@@ -64,6 +65,8 @@ const Map = () => {
     const [startingRoomStyle, setStartingRoomStyle] = useState("");
     const [endingRoomStyle, setEndingRoomStyle] = useState("");
 
+    const [showPopups, setShowPopups] = useState(true);
+    
     const handleError = (message) =>{
         setError(true);
         setErrorMessage(message);
@@ -73,7 +76,7 @@ const Map = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
         if (window.innerWidth < 768) {
             // 600 is the borderish from phone to computer
-            return 16.35;
+            return 17.25;
         }
         return 17;
     };
@@ -82,7 +85,7 @@ const Map = () => {
         //this sets the center of the map so it looks ok on mobile and computer
         if (window.innerWidth < 768) {
             // 600 is the borderish from phone to computer
-            return -122.06586285921868;
+            return -122.06678308687613;
         }
         return -122.06656285921868;
     };
@@ -202,6 +205,7 @@ const Map = () => {
                 }        
                 setSchedule(roomObjects);
             });
+            setShowPopups(!showPopups);
         }
 
         if (!scheduleDirectionToggle) {
@@ -226,7 +230,6 @@ const Map = () => {
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
-                // onClick={(e)=> console.log(e.lngLat)}
             >
                 
                 <Navbar navType={1} />
@@ -253,7 +256,7 @@ const Map = () => {
                        </Source>
                 }
                 <div className='flexbox space-between'>
-                    {singleDirectionsToggle && window.innerWidth > 768 &&
+                    {singleDirectionsToggle &&
                     
                         <div className='controlContainer'>
                             <h3 className = {startingRoomStyle}>Starting Room: </h3>
@@ -262,11 +265,10 @@ const Map = () => {
                             <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
                             
                             {error && 
-                            <div style = {{marginTop: '25px'}}>
-                               <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
-                            </div>
+                                <div style = {{marginTop: '25px'}}>
+                                    <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+                                </div>
                             }
-
                             <br />
                             <div>
                                 <button className='go' onClick={handleMap}>
@@ -276,21 +278,27 @@ const Map = () => {
                         </div>
                     }
 
-                    {!scheduleDirectionToggle && window.innerWidth > 768 && (
+                    {!scheduleDirectionToggle && window.innerWidth > 768 &&
                         <div className='flexbox column center controlContainer'>
                             <h2>Daily Schedule Route</h2>
                             <h3>Your Periods For Today!</h3>
-                            {schedule.map((room, index) => {
+                            {
+                                schedule.length === 0 ?
+                                <div>
+                                    <Alert className = 'flexbox center' variant="outlined" severity="info" sx = {{width: "75%"}}>No School Today!</Alert>
+                                </div> : 
+                                
+                                schedule.map((room, index) => {
                                 return (
                                     <li key={index}>
                                         {room.properties.name}
                                     </li>
                                 );
-                            })}
+                            })
+                            }
                         </div>
-                    )}
+                    }
 
-                    {/* TODO: Add better styling */}
                     <div className='mapControls'>
                         <div className='flexbox center column'>
                             <button
@@ -331,29 +339,8 @@ const Map = () => {
                         </div>
                     </div>
 
-                    {singleDirectionsToggle && window.innerWidth < 768 &&
-                        <div className='controlContainer'>
-                            <h3 className = {startingRoomStyle}>Starting Room: </h3>
-                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
-                            <h3 className = {endingRoomStyle}>Ending Room: </h3>
-                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
-
-                            {error && <div style = {{marginTop: '25px'}}>
-                               <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
-                            </div>}
-
-                            <div>
-                                <button className='go' onClick={handleMap}>
-                                    Navigate
-                                </button>
-                            </div>
-                        </div>
-                    }
-
                     <Construction />
-
-
-                    {   
+                    {   showPopups && 
                         otherData.features.map((place, index) => {
                             if(place.properties.name === 'Vending Machine'){
                                 return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>

@@ -19,7 +19,7 @@ const useSettings = () => {
             if (docSnap.exists()) {
                 
             } else {
-            // doc.data() will be undefined in this case
+                // doc.data() will be undefined in this case
                 navigate("/");
             }
         }

@@ -6,7 +6,6 @@ import axios from 'axios';
 
 import { mapboxToken } from "../../tools/Secrets";
 const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
-    //marker for searched class
    
     const [directions, setDirections] = useState({});
     const [loading, setLoading] = useState(false);

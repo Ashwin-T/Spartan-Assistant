@@ -1,5 +1,4 @@
 .importantLinks {
-    /* width: 75%; */
     height: 7vh;
     background-color: var(--background-color);
     margin: 2vh 2rem;
@@ -7,7 +6,6 @@
     transition: all 0.1s ease;
     cursor: pointer;
     padding: 0.75rem;
-    align-items: center;
     transition: all 0.1s ease;
     box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
     display: flex;
@@ -87,8 +85,6 @@
     border-top: 8rem solid var(--alternate-color-transparent);
     margin-left: 0px;
     margin-right: 0px;
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
     z-index: -1;
 }
 
