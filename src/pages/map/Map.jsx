@@ -204,6 +204,9 @@ const Map = () => {
                     }
                 }        
                 setSchedule(roomObjects);
+                if(roomObjects.length === 0 && window.innerWidth < 768){
+                    alert("No schedule found for today");
+                }
             });
             setShowPopups(!showPopups);
         }
@@ -257,7 +260,6 @@ const Map = () => {
                 }
                 <div className='flexbox space-between'>
                     {singleDirectionsToggle &&
-                    
                         <div className='controlContainer'>
                             <h3 className = {startingRoomStyle}>Starting Room: </h3>
                             <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
