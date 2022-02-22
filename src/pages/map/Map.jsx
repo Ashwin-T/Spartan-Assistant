@@ -66,7 +66,12 @@ const Map = () => {
     const [endingRoomStyle, setEndingRoomStyle] = useState("");
 
     const [showPopups, setShowPopups] = useState(true);
-    
+
+    const [orientation, setOrientation] = useState(window.orientation);
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+
     const handleError = (message) =>{
         setError(true);
         setErrorMessage(message);
@@ -103,7 +108,15 @@ const Map = () => {
             bearing: 90,
         });
 
-    }, [zoomX, lon]); // the useEffect will run on start-up and add data to the viewport object
+        window.addEventListener("orientationchange", function(event) {
+            setOrientation(window.orientation);
+        }, false);
+
+        window.addEventListener('resize', function(event){
+            setWidth(window.innerWidth)
+            setHeight(window.innerHeight)
+        }, false);
+    }, [zoomX, lon, width, height, orientation, window.innerWidth, window.innerHeight, window.orientation]); // the useEffect will run on start-up and add data to the viewport object
 
     const formChange1 = (room) => {
         setSubmittedRoom(false);
@@ -204,13 +217,17 @@ const Map = () => {
                     }
                 }        
                 setSchedule(roomObjects);
-                if(roomObjects.length === 0 && window.innerWidth < 768){
-                    alert("No schedule found for today");
-                }
+                // if(roomObjects.length === 0 && width < 768){
+                //     alert("No schedule found for today");
+                // }
             });
         }
 
-        if(schedule.length > 0){
+        if(schedule.length === 0 && width < 768){
+            alert("No schedule found for today");
+        }
+
+        if(width >= 768){
             setShowPopups(!showPopups);
             if (!scheduleDirectionToggle) {
                 setScheduleDirectionStyle({ color: "dodgerblue" });
@@ -220,17 +237,22 @@ const Map = () => {
                 
                 setSubmittedSchedule(true);
             }
-    
+
             setSingleDirectionStyle({ color: "dodgerblue" });
-    
+
             setScheduleDirectionToggle(!scheduleDirectionToggle);
-           
         }
     };
 
     return (
         <div className='flexbox mapPageContainer'>
-            <ReactMapGL
+            {orientation === 90 ?
+            
+            <div className="flexbox column center" style={{width: '100%', height: '100vh'}}>
+                <Alert variant="outlined"  severity="warning">Please Change Back to Portait Mode For The Map To Work!</Alert>
+            </div>
+            
+            :<ReactMapGL
                 {...viewPort}
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
@@ -282,7 +304,7 @@ const Map = () => {
                         </div>
                     }
 
-                    {!scheduleDirectionToggle && window.innerWidth > 768 &&
+                    {!scheduleDirectionToggle && width > 768 &&
                         <div className='flexbox column center controlContainer'>
                             <h2>Daily Schedule Route</h2>
                             <h3>Your Periods For Today!</h3>
@@ -361,7 +383,7 @@ const Map = () => {
                         })
                     }
                 </div>
-            </ReactMapGL>
+            </ReactMapGL>}
         </div>
     );
 };

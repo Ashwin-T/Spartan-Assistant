@@ -50,7 +50,6 @@
     margin-left: 2rem;
 }
 .importantLinks img {
-    /* clip-path: circle(); */
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
@@ -106,3 +105,12 @@
         display: none;
     }
 }
+
+@media only screen and (max-height: 414px) {
+    .importantLinks{
+        height: 13vh;
+    }
+}
+
+
+

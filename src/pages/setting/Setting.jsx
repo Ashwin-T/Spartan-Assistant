@@ -92,7 +92,7 @@ const Settings = ({ init }) => {
         await setDoc(doc(db, "users", getAuth().currentUser.uid), {
             name: getAuth().currentUser.displayName,
             periods: periods,
-            gradYear: gradYear,
+            gradYear: "" + Math.floor(gradYear),
         });
         localStorage.setItem("allow", "true");
         localStorage.setItem("periods", JSON.stringify([...periods]));

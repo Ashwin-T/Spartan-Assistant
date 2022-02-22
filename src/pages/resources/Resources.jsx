@@ -7,18 +7,6 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 const Resources = () => {
     const links = [
         {
-            name: "Community Resources",
-            link: "https://drive.google.com/file/d/1c7EYzQegCrfI_-KqSdH0JcEuIuvZbvF-/view/",
-            description: "Mental Health Services is a free, online service that provides mental health information and services to people in need.",
-            image: "images/metalHealthLogo.png",
-        },
-        {
-            name: "Mental Health Referral",
-            link: "https://app.informedk12.com/link_campaigns/mvla-student-support-referral-form-electronic-form?token=FfsLpPWfS98i2RiHN1vG7gVS",
-            description: "Mental Health Referral is a free, online service that provides mental health information and services to people in need.",
-            image: "images/mentalHealthReferralLogo.png",
-        },
-        {
             name: "Mvhs.io",
             link: "https://mvhs.io",
             description: "Mvhs.io is a versitle app for MVHS staff and students.",
@@ -37,7 +25,19 @@ const Resources = () => {
             image: "images/aeriesLogo.png",
         },
         {
-            name: "Google Classroom",
+            name: "Community Resources",
+            link: "https://drive.google.com/file/d/1c7EYzQegCrfI_-KqSdH0JcEuIuvZbvF-/view/",
+            description: "Mental Health Services is a free, online service that provides mental health information and services to people in need.",
+            image: "images/metalHealthLogo.png",
+        },
+        {
+            name: "Mental Health Referral",
+            link: "https://app.informedk12.com/link_campaigns/mvla-student-support-referral-form-electronic-form?token=FfsLpPWfS98i2RiHN1vG7gVS",
+            description: "Mental Health Referral is a free, online service that provides mental health information and services to people in need.",
+            image: "images/mentalHealthReferralLogo.png",
+        },
+        {
+            name: "G Classroom",
             link: "https://classroom.google.com",
             description: "Google Classroom is a free online course management tool for teachers and students.",
             image: "images/google-classroom-logo.png",
@@ -80,7 +80,7 @@ const Resources = () => {
                             return (
                                 <a key={index} className='flexbox importantLinks' href={link.link} target='_blank' rel='noopener noreferrer'>
                                     <img src={link.image} alt='logo for icon' />
-                                    {window.innerWidth > 768 ? <h3>{link.name}</h3> : <h5>{link.name}</h5>}
+                                    {window.innerWidth > 350 ? window.innerWidth > 768 ? <h3>{link.name}</h3> : <h5>{link.name}</h5> : <h6>{link.name}</h6>}
                                 </a>
                             );
                         })}

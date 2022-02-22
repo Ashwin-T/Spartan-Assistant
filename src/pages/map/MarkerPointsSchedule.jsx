@@ -46,10 +46,11 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
 
         }
 
-        getDirections();
-
         if(!ok){
             setDirections({});
+        }
+        else{
+            getDirections();
         }
 
     }, [ok, raw, schedule])
@@ -57,10 +58,10 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
     
     return (
         <>  
-            {loading ? <Loading />:
+            {loading && schedule.length > 0 ? <Loading />:
 
             <>
-                {ok && 
+                {ok && schedule.length > 0 && 
                 <Source id='directionLayer' type='geojson' data={directions}>
                     <Layer type='line' source='my-data' paint={{ "line-color": 'green', "line-width": 5 }} />
                 </Source>}
