@@ -29,7 +29,6 @@ h1 {
     width: calc(40% - 5rem);
     height: calc(90vh - 6.5rem);
     padding-left: 5rem;
-    /* background-color: var(--alternate-color-transparent); */
     background-image: linear-gradient(to right, var(--background-color) 0%, var(--alternate-color-transparent) 50%);
 }
 .welcome-container > h3 {
@@ -115,5 +114,17 @@ h1 {
         /* justify-content: center; */
         flex-direction: column;
         margin-bottom: 1rem;
+    }
+}
+
+
+@media only screen and (max-height: 414px) {
+    .welcome-container {
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+        height: 100vh;
+    }
+    .right-triangle{
+        display: none;
     }
 }

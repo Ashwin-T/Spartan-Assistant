@@ -68,7 +68,7 @@ const Home = () => {
                     <div className='flexbox row wrap full-size'>
                         <div className='welcome-container'>
                             <h1>Welcome {user.displayName.split(" ")[0]}</h1>
-                        <h3>Have a {funWord} {today.split(" ")[0]}</h3>
+                            <h3>Have a {funWord} {today.split(" ")[0]}</h3>
                         </div>
                         <div className='right-triangle'></div>
                         <div className='action-container'>
