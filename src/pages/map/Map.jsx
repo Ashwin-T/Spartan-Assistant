@@ -79,7 +79,7 @@ const Map = () => {
 
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
-        if (window.innerWidth < 768) {
+        if (window.innerWidth <= 768) {
             // 768 is the borderish from phone to computer
             return 17;
         }
@@ -88,7 +88,7 @@ const Map = () => {
 
     const calculateCenter = () => {
         //this sets the center of the map so it looks ok on mobile and computer
-        if (window.innerWidth < 768) {
+        if (window.innerWidth <= 768) {
             // 768 is the borderish from phone to computer
             return -122.06678308687613;
         }
@@ -223,11 +223,11 @@ const Map = () => {
             });
         }
 
-        if(schedule.length === 0 && width < 768){
+        if(schedule.length === 0 && width <= 768){
             alert("No schedule found for today");
         }
 
-        if(width >= 768){
+        if(width > 768){
             setShowPopups(!showPopups);
             if (!scheduleDirectionToggle) {
                 setScheduleDirectionStyle({ color: "dodgerblue" });
