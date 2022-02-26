@@ -10,6 +10,12 @@ const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
     const [directions, setDirections] = useState({});
     const [loading, setLoading] = useState(false);
     useEffect(() => {
+
+        if(!ok){
+            setDirections({});
+            return;
+        }
+
         const getDirections = async () => {
             setLoading(true);
             const dataString = `https://api.mapbox.com/directions/v5/mapbox/walking/${currentRoom.geometry.coordinates[0]},${currentRoom.geometry.coordinates[1]};${findingRoom.geometry.coordinates[0]},${findingRoom.geometry.coordinates[1]}?alternatives=false&continue_straight=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${mapboxToken}`;
@@ -35,10 +41,6 @@ const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
         }
 
         getDirections(currentRoom, findingRoom)
-
-        if(!ok){
-            setDirections({});
-        }
 
     }, [currentRoom, findingRoom, ok])
 

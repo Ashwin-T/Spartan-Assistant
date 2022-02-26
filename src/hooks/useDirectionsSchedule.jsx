@@ -27,6 +27,7 @@ const directions = (arrayOfItems) => {
 
         }
         getDirections();
+        
     })
     return directions;
 }

@@ -48,6 +48,7 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
 
         if(!ok){
             setDirections({});
+            return;
         }
         else{
             getDirections();

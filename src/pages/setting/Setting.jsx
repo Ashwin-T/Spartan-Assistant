@@ -78,8 +78,9 @@ const Settings = ({ init }) => {
             }
             setLoading(false);
         };
-
+        
         getData();
+
     }, [init, db]);
 
     const handleRoomCheck = (roomNumber) => {

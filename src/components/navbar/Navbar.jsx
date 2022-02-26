@@ -14,7 +14,7 @@ import "./navbar.css";
 
 
 
-const Navbar = ({ navType }) => {
+const Navbar = () => {
 
     const auth = getAuth();
     const [freshmen, setFreshmen] = useState(false);

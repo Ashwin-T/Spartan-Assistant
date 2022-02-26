@@ -30,6 +30,8 @@ const useDirections = (currentRoom, findingRoom) => {
 
         }
         getDirections();
+
+
     })
     return (directions)
 }

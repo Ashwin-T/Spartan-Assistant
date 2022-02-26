@@ -4,21 +4,36 @@ import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
 import mapboxgl from 'mapbox-gl';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
-import { FaRoute, FaDirections, FaParking } from "react-icons/fa";
+import { FaRoute, FaDirections, FaParking, FaHome } from "react-icons/fa";
 import {MdMap, MdDirectionsBike} from 'react-icons/md';
+
 import { IoIosNavigate } from "react-icons/io";
+import {RiMenuLine, RiMenuUnfoldLine} from 'react-icons/ri';   
 import {GiVendingMachine} from 'react-icons/gi';
+import {VscSignOut} from 'react-icons/vsc';
+
+import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
+import { FiSettings } from "react-icons/fi";
+
 import { useNavigate } from "react-router-dom";
 import { getPeriodsOnDay } from "mvhs-schedule";
 import Alert from '@mui/material/Alert';
 import moment from "moment";
 
 import Navbar from "../../components/navbar/Navbar";
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MarkerPointsOneWay from "./MarkerPointsOneWay";
 import MarkerPointsSchedule from "./MarkerPointsSchedule";
 import Construction from "./Construction";
 import * as roomData from "../../data/Rooms.json";
 import * as otherData from "../../data/Other.json";
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import {getAuth} from 'firebase/auth';
 
 import { mapboxToken } from "../../tools/Secrets";
 import "./map.css";
@@ -33,6 +48,8 @@ const Map = () => {
     //^ schools  center location
 
     mapboxgl.workerClass = MapboxWorker;
+
+    const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     let navigate = useNavigate();
 
@@ -72,10 +89,24 @@ const Map = () => {
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
 
+    const [showDrawer, setShowDrawer] = useState(false);
+
     const handleError = (message) =>{
         setError(true);
         setErrorMessage(message);
     }
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (
+          event &&
+          event.type === 'keydown' &&
+          (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+          return;
+        }
+    
+        setShowDrawer(true);
+      };
 
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
@@ -116,6 +147,16 @@ const Map = () => {
             setWidth(window.innerWidth)
             setHeight(window.innerHeight)
         });
+
+        return () => {
+            window.removeEventListener("orientationchange", function(event) {
+                setOrientation(window.orientation);
+            });
+            window.removeEventListener('resize', function(event){
+                setWidth(window.innerWidth)
+                setHeight(window.innerHeight)
+            });
+        }
 
     }, [zoomX, lon, width, height, orientation, window.innerWidth, window.innerHeight, window.orientation]); // the useEffect will run on start-up and add data to the viewport object
 
@@ -245,6 +286,63 @@ const Map = () => {
         }
     };
 
+    const Drawer = () => {
+        return(
+            <Box
+          role="presentation"
+        >
+          <List>
+              <ListItem button onClick = {()=>navigate('/')}>
+                <ListItemIcon>
+                    <FaHome style={{ color: "black" }} size={30} />
+                </ListItemIcon>
+                <ListItemText primary={'Home'} />
+              </ListItem>
+
+              <ListItem button onClick = {()=>navigate('/resources')}>
+                <ListItemIcon>
+                    <BsFillPeopleFill style={{ color: "#D7BE69" }} size={30} />
+                </ListItemIcon>
+                <ListItemText primary={'Resources'} />
+              </ListItem>
+
+              <ListItem button onClick = {()=>navigate('/settings')}>
+                <ListItemIcon>
+                    <FiSettings style={{ color: "grey" }} size={30} />
+                </ListItemIcon>
+                <ListItemText primary={'Settings'} />
+              </ListItem>
+
+                {localStorage.getItem("freshmen") === "true" && (
+                    <ListItem button href = 'https://mvhs-orientation.netlify.app/' target = '_blank' rel = 'noopener noreferrer'>
+                        <ListItemIcon>
+                            <BsFillChatTextFill style={{ color: "green" }} size={30} />
+                        </ListItemIcon>
+                        <ListItemText primary={'Chat'} />
+                  </ListItem>
+                )}
+              
+
+          </List>
+          <Divider />
+          <List>
+              <ListItem button onClick = {()=> getAuth().signOut()}>
+                <ListItemIcon>
+                    <VscSignOut style={{ color: "red" }} size={30} size = {30}/>
+                </ListItemIcon>
+                <ListItemText primary={'Sign Out'} />
+              </ListItem>
+              <ListItem button onClick = {()=> setShowDrawer(false)}>
+                <ListItemIcon>
+                    <RiMenuUnfoldLine size = {30}/>
+                </ListItemIcon>
+                <ListItemText primary={'Go Back'} />
+              </ListItem>
+          </List>
+        </Box>
+        )
+    }
+
     return (
         <div className='flexbox mapPageContainer'>
             {/* {orientation === 90 || window.orientation == 90?
@@ -260,7 +358,10 @@ const Map = () => {
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
             >
                 
-                <Navbar navType={1} />
+               {height > 414 ? <Navbar /> : <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open = {showDrawer} anchor={'left'}
+            onClose={() => setShowDrawer(false)} onOpen={() => setShowDrawer(true)}><Drawer /></SwipeableDrawer>}
+
+
 
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} ok = {submittedRoom}/>}
                 {submittedSchedule && <MarkerPointsSchedule schedule = {schedule} ok = {submittedSchedule} raw = {rawSchedule}/>}
@@ -327,6 +428,13 @@ const Map = () => {
                     }
 
                     <div className='mapControls'>
+                        {height <= 414 &&
+                            <div className='flexbox center column'>
+                                <button className='controlButton' onClick = {()=> setShowDrawer(true)}>
+                                    <RiMenuLine size={40}/>
+                                </button>
+                        </div>}
+
                         <div className='flexbox center column'>
                             <button
                                 onClick={() => {
@@ -340,27 +448,23 @@ const Map = () => {
                                     });
                                 }}
                                 className='controlButton'>
-                                {" "}
                                 <IoIosNavigate size={40} />
                             </button>
                         </div>
 
                         <div className='flexbox center column'>
                             <button className='controlButton' onClick={handleSingleDirection}>
-                                {" "}
                                 <FaDirections size={40} style={singleDirectionStyle} />
                             </button>
                         </div>
 
                         <div className='flexbox center column'>
                             <button className='controlButton' onClick={handleScheduleDirections}>
-                                {" "}
                                 <FaRoute size={40} style={scheduleDirectionStyle} />
                             </button>
                         </div>
                         <div className="flexbox center column">
                             <button className='controlButton' onClick={()=>navigate('/staticmap')}>
-                                {" "}
                                 <MdMap size={40}/>
                             </button>
                         </div>

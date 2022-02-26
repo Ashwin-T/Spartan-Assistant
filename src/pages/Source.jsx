@@ -44,6 +44,7 @@ const Source = () => {
         };
 
         checkData();
+        
     }, []);
 
     return (
@@ -53,7 +54,7 @@ const Source = () => {
                     path='*'
                     element={
                         <>
-                            <Navbar navType={1} />
+                            <Navbar />
                             <NotFound />
                         </>
                     }
@@ -71,7 +72,7 @@ const Source = () => {
                                 )
                             ) : (
                                 <>
-                                    <Navbar navType={1} />
+                                    <Navbar />
                                     <Home />
                                 </>
                             )}
@@ -84,7 +85,7 @@ const Source = () => {
                     path='/staticmap'
                     element={
                         <>
-                            <Navbar navType={1} />
+                            <Navbar />
                             <StaticMap />
                         </>
                     }
@@ -103,7 +104,7 @@ const Source = () => {
                     path='/resources'
                     element={
                         <>
-                            <Navbar navType={1} />
+                            <Navbar />
                             <Resources />
                         </>
                     }

@@ -1,13 +1,14 @@
 .mapPageContainer {
     margin: 0;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
+    background-color: black !important;
 }
 
 .mapControls {
     position: absolute;
-    bottom: 5rem;
-    left: 5rem;
+    bottom: 3.5rem;
+    left: 2.5rem;
     background-color: var(--alternate-background-color) !important;
     border-radius: 5rem;
     box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
@@ -64,7 +65,7 @@
 .controlContainer {
 
     position: absolute;
-    bottom: 11rem;
+    bottom: 10rem;
     left: 5rem;
 
     background-color: var(--alternate-background-color) !important;
@@ -174,6 +175,13 @@
 }
 
 @media only screen and (max-height: 414px) {
+    .mapControls {
+        left: auto;
+        right: 1rem;
+        top: 2.5rem;
+        bottom: auto;
+    }
+
     .controlContainer{
         left: 60vw;
         bottom: 5vh;
