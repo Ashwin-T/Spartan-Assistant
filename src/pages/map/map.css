@@ -98,6 +98,7 @@
     border-bottom: 3px solid grey;
     transition: 0.15s;
     font-size: 2vh;
+    padding: 0.5rem 0;
 }
 
 .controlContainer input:focus{
@@ -155,6 +156,7 @@
 @media only screen and (max-width: 768px) {
     .mapControls {
         left: 0.5rem;
+        bottom: 10rem;
     }
 
     .back-arrow-wrapper{

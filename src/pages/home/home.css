@@ -122,7 +122,15 @@ h1 {
     .welcome-container {
         padding-right: 2rem;
         padding-bottom: 2rem;
-        height: 100vh;
+        height: 50vh;
+        width: 100vw;
+    }
+
+    .action-container{
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+        height: 50vh;
+        width: 100vw;
     }
     .right-triangle{
         display: none;

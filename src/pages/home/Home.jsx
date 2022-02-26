@@ -28,10 +28,8 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-
         const getData = async () => {
             setHasAdded(localStorage.getItem("hasAdded") === "true");
-            console.log(hasAdded);
             if (window.innerWidth > 786) {
                 setLinkStyle("wrap");
             } else {

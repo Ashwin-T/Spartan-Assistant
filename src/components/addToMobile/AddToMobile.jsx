@@ -6,7 +6,6 @@ import {motion} from 'framer-motion';
 import './addToMobile.css';
 const AddToMobile = ({setFunction}) => {
 
-    console.log("Made it here")
     const userAgent = window.navigator.userAgent
 
     const isAndroid = userAgent.indexOf('Android') > -1;
