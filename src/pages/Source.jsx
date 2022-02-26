@@ -37,6 +37,7 @@ const Source = () => {
                 setDontRedirect(true);
             } else {
                 // doc.data() will be undefined in this case
+                localStorage.setItem("hasAdded", "false");
                 setDontRedirect(false);
             }
             setLoading(false);

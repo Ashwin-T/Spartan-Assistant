@@ -247,13 +247,13 @@ const Map = () => {
 
     return (
         <div className='flexbox mapPageContainer'>
-            {orientation === 90 || window.orientation == 90?
+            {/* {orientation === 90 || window.orientation == 90?
             
             <div className="flexbox column center" style={{width: '100%', height: '100vh'}}>
                 <Alert variant="outlined"  severity="warning">Please Change Back to Portait Mode For The Map To Work!</Alert>
             </div>
-            
-            :<ReactMapGL
+             */}
+            <ReactMapGL
                 {...viewPort}
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
@@ -384,7 +384,7 @@ const Map = () => {
                         })
                     }
                 </div>
-            </ReactMapGL>}
+            </ReactMapGL>
         </div>
     );
 };

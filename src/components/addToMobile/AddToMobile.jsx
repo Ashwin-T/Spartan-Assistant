@@ -6,6 +6,7 @@ import {motion} from 'framer-motion';
 import './addToMobile.css';
 const AddToMobile = ({setFunction}) => {
 
+    console.log("Made it here")
     const userAgent = window.navigator.userAgent
 
     const isAndroid = userAgent.indexOf('Android') > -1;
@@ -39,7 +40,7 @@ const AddToMobile = ({setFunction}) => {
                 exit="initial"
             >
                 <div className="flexbox cancel-icon">
-                    <ImCross size = {25} onClick={() => setFunction(true)}/>
+                    <ImCross size = {20} onClick={() => setFunction(true)}/>
                 </div>
                 <div className='flexbox column center'>
                     <img src = 'images/logoNav.png' alt = 'mobile logo'/>

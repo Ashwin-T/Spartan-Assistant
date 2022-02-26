@@ -73,7 +73,7 @@
     background-color: var(--alternate-background-color);
     box-shadow: 0 8px 30px rgb(0, 0, 0, 0.12);
     padding: 2rem;
-    z-index: 1;
+    z-index: 999;
 }
 .controlContainer > h3 {
     text-align: left;
@@ -154,8 +154,7 @@
 
 @media only screen and (max-width: 768px) {
     .mapControls {
-        left: 0.75rem;
-        bottom: 13vh;
+        left: 0.5rem;
     }
 
     .back-arrow-wrapper{
@@ -169,5 +168,19 @@
     
     .refreshIcon {
         font-size: 7vw;
+    }
+}
+
+@media only screen and (max-height: 414px) {
+    .controlContainer{
+        left: 60vw;
+        bottom: 5vh;
+        width: fit-content;
+        height: fit-content;
+        padding: 1rem;
+    }
+    .controlContainer > input{
+        font-size: 1rem;
+        padding: 0.5rem 0;
     }
 }

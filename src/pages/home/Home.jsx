@@ -31,7 +31,7 @@ const Home = () => {
 
         const getData = async () => {
             setHasAdded(localStorage.getItem("hasAdded") === "true");
- 
+            console.log(hasAdded);
             if (window.innerWidth > 786) {
                 setLinkStyle("wrap");
             } else {
@@ -94,11 +94,12 @@ const Home = () => {
                                 )}
                             </div>
                         </div>
-                        {!hasAdded &&  window.navigator.userAgent.indexOf('Android') > -1 || window.navigator.userAgent.indexOf('iPhone') > -1 || window.innerWidth < 786 &&
+                        {!hasAdded && window.innerWidth <= 786 &&
                             <div style = {{width: '100%'}} className="flexbox column center">
                                 <AddToMobile setFunction = {setHasAdded} />
                             </div>
                         }
+                         
                     </div>
             ) : (
                 <Loading />
