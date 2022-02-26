@@ -12,13 +12,16 @@ import * as gradData from "../../data/GraduationData.json";
 
 import "./navbar.css";
 
+
+
 const Navbar = ({ navType }) => {
+
+    const auth = getAuth();
     const [freshmen, setFreshmen] = useState(false);
-    let navigate = useNavigate();
 
     useLayoutEffect(() => {
         const getData = async () => {
-            const docRef = doc(getFirestore(), "users", getAuth().currentUser.uid);
+            const docRef = doc(getFirestore(), "users", auth.currentUser.uid);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -62,10 +65,7 @@ const Navbar = ({ navType }) => {
         setOpen(true);
         setAnchorEl(e.currentTarget);
     };
-    const handleSignOut = () => {
-        navigate("/");
-        getAuth().signOut();
-    };
+    
     const handleClose = () => {
         setAnchorEl(null);
         setOpen(false);
@@ -87,7 +87,7 @@ const Navbar = ({ navType }) => {
                     })}
 
                     {freshmen && (
-                        <a href='https://mvhs-orientation-test.netlify.app' target='_blank' rel='noreferrer'>
+                        <a href='https://mvhs-orientation.netlify.app/' target='_blank' rel='noreferrer'>
                             <MdQuestionAnswer size={35} />
                         </a>
                     )}
@@ -99,12 +99,12 @@ const Navbar = ({ navType }) => {
                             vertical: "Bottom",
                             horizontal: "Right",
                         }}>
-                        <button onClick={handleSignOut} className='popover-close'>
+                        <button onClick={()=>auth.signOut()} className='popover-close'>
                             Sign Out
                         </button>
                     </Popover>
                     <button onClick={handleOpen} className='hello-world2'>
-                        <img className='profile' alt='profile' src={getAuth().currentUser.photoURL} />
+                        <img className='profile' alt='profile' src={auth.currentUser.photoURL} />
                     </button>
                 </div>
             </nav>

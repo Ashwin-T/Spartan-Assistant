@@ -26,7 +26,7 @@ const Resources = () => {
         },
         {
             name: "Community Resources",
-            link: "https://drive.google.com/file/d/1c7EYzQegCrfI_-KqSdH0JcEuIuvZbvF-/view/",
+            link: "https://drive.google.com/file/d/1c7EYzQegCrfI_-KqSdH0JcEuIuvZbvF-/view",
             description: "Mental Health Services is a free, online service that provides mental health information and services to people in need.",
             image: "images/metalHealthLogo.png",
         },

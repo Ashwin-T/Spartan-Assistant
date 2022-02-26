@@ -154,7 +154,8 @@
 
 @media only screen and (max-width: 768px) {
     .mapControls {
-        left: 1rem;
+        left: 0.75rem;
+        bottom: 13vh;
     }
 
     .back-arrow-wrapper{

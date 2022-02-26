@@ -110,12 +110,13 @@ const Map = () => {
 
         window.addEventListener("orientationchange", function(event) {
             setOrientation(window.orientation);
-        }, false);
+        });
 
         window.addEventListener('resize', function(event){
             setWidth(window.innerWidth)
             setHeight(window.innerHeight)
-        }, false);
+        });
+
     }, [zoomX, lon, width, height, orientation, window.innerWidth, window.innerHeight, window.orientation]); // the useEffect will run on start-up and add data to the viewport object
 
     const formChange1 = (room) => {
@@ -246,7 +247,7 @@ const Map = () => {
 
     return (
         <div className='flexbox mapPageContainer'>
-            {orientation === 90 ?
+            {orientation === 90 || window.orientation == 90?
             
             <div className="flexbox column center" style={{width: '100%', height: '100vh'}}>
                 <Alert variant="outlined"  severity="warning">Please Change Back to Portait Mode For The Map To Work!</Alert>

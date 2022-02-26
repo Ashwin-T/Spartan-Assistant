@@ -87,7 +87,7 @@ const Home = () => {
                                     <h3>Update Settings</h3>
                                 </Link>
                                 {localStorage.getItem("freshmen") === "true" && (
-                                    <a className = 'flexbox homeLinks' href = 'https://mvhs-orientation-test.netlify.app/' target = '_blank' rel="noreferrer">
+                                    <a className = 'flexbox homeLinks' href = 'https://mvhs-orientation.netlify.app/' target = '_blank' rel="noreferrer">
                                         <BsFillChatTextFill style={{ color: "green" }} size={30} />
                                         <h3>Chat With Your Pod</h3>
                                     </a>
