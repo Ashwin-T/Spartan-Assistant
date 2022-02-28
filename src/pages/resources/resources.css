@@ -112,11 +112,17 @@
     .right-triangle-title {
         display: none;
     }
+    .importantLinks h3{
+        font-size: 0.85rem;
+    }
 }
 
 @media only screen and (max-height: 414px) {
     .importantLinks{
         height: 13vh;
+    }
+    .importantLinks > h3 {
+        font-size: 0.85rem;
     }
 }
 
