@@ -65,7 +65,7 @@
 .controlContainer {
 
     position: absolute;
-    bottom: 10rem;
+    bottom: 12rem;
     left: 5rem;
 
     background-color: var(--alternate-background-color) !important;
@@ -157,7 +157,7 @@
 @media only screen and (max-width: 768px) {
     .mapControls {
         left: 0.5rem;
-        bottom: 10rem;
+        bottom: 7rem;
     }
 
     .back-arrow-wrapper{
@@ -183,8 +183,8 @@
     }
 
     .controlContainer{
-        left: 60vw;
-        bottom: 5vh;
+        left: 20vw;
+        bottom: 10vh;
         width: fit-content;
         height: fit-content;
         padding: 1rem;
@@ -194,3 +194,10 @@
         padding: 0.5rem 0;
     }
 }
+
+@media only screen and (max-height: 414px) and (max-width: 786px){
+    .controlContainer{
+        left: 1vw;
+    }
+}
+

@@ -11,7 +11,7 @@ const Login = () => {
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100vh" }}>
+        <div className="parent-login-container">
             <div className='login-title-container'>
                 <div className='banana'>
                     <h1>Welcome to </h1>

@@ -314,7 +314,7 @@ const Map = () => {
               </ListItem>
 
                 {localStorage.getItem("freshmen") === "true" && (
-                    <ListItem button href = 'https://mvhs-orientation.netlify.app/' target = '_blank' rel = 'noopener noreferrer'>
+                    <ListItem button onClick = {()=>window.open('https://mvhs-orientation.netlify.app/', "_blank")}>
                         <ListItemIcon>
                             <BsFillChatTextFill style={{ color: "green" }} size={30} />
                         </ListItemIcon>

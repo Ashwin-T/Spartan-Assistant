@@ -5,6 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { AiOutlineArrowDown } from "react-icons/ai";
 const Resources = () => {
+
     const links = [
         {
             name: "Mvhs.io",
@@ -80,7 +81,7 @@ const Resources = () => {
                             return (
                                 <a key={index} className='flexbox importantLinks' href={link.link} target='_blank' rel='noopener noreferrer'>
                                     <img src={link.image} alt='logo for icon' />
-                                    {window.innerWidth > 350 ? window.innerWidth > 768 ? <h3>{link.name}</h3> : <h5>{link.name}</h5> : <h6>{link.name}</h6>}
+                                    {window.innerWidth > 350 ? window.innerWidth > 768 && window.orientation === 0? <h3>{link.name}</h3> : <h5>{link.name}</h5> : <h6>{link.name}</h6>}
                                 </a>
                             );
                         })}
