@@ -19,7 +19,7 @@ const useDirections = (currentRoom, findingRoom) => {
                         type: 'Feature',
                         properties: {},
                         geometry: {
-                            type: 'LineString', 
+                            type: 'LineString',  
                             coordinates: dataArray.data.routes[0].geometry.coordinates 
                         }
                     }
