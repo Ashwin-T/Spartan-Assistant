@@ -2,7 +2,7 @@
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: black !important;
+    background-color: var(--alternate-color-transparent) !important;
 }
 
 .mapControls {
@@ -16,10 +16,11 @@
     display: flex;
     z-index: 999;
     flex-wrap: nowrap !important;
+    max-width: 95vw;
 }
 
 .mapControls > * {
-    padding: 1rem;
+    padding: 1rem 0.75rem;
 }
 
 .mapControls svg {
@@ -180,14 +181,14 @@
 @media only screen and (max-height: 414px) {
     .mapControls {
         left: auto;
-        right: 1rem;
+        right: 0.5rem;
         top: 2.5rem;
         bottom: auto;
     }
 
-    .controlContainer{
-        left: 20vw;
-        bottom: 10vh;
+    .controlContainer {
+        left: 0.75rem;
+        top: 0.75rem;
         width: fit-content;
         height: fit-content;
         padding: 1rem;

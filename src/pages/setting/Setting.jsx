@@ -205,8 +205,8 @@ const Settings = ({ init }) => {
                     <div className='schedule-container'>
                         <div>
                             <div className='promptPeriod column'>
-                                <h2>Enter in your Rooms</h2>
-                                <p>(or free)</p>
+                                <h2>Enter in Your Rooms</h2>
+                                <p>(portables or free is accepable)</p>
                             </div>
                             <div className='periodContainers'>
                                 <h2 className = {periodOneStyle}>Period 1</h2>

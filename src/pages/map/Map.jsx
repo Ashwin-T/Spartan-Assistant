@@ -6,7 +6,7 @@ import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 import { FaRoute, FaDirections, FaParking, FaHome } from "react-icons/fa";
 import {MdMap, MdDirectionsBike} from 'react-icons/md';
-
+import {ImCross} from 'react-icons/im';
 import { IoIosNavigate } from "react-icons/io";
 import {RiMenuLine, RiMenuUnfoldLine} from 'react-icons/ri';   
 import {GiVendingMachine} from 'react-icons/gi';
@@ -96,18 +96,6 @@ const Map = () => {
         setErrorMessage(message);
     }
 
-    const toggleDrawer = (anchor, open) => (event) => {
-        if (
-          event &&
-          event.type === 'keydown' &&
-          (event.key === 'Tab' || event.key === 'Shift')
-        ) {
-          return;
-        }
-    
-        setShowDrawer(true);
-      };
-
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
         if (window.innerWidth <= 768) {
@@ -141,6 +129,8 @@ const Map = () => {
 
         window.addEventListener("orientationchange", function(event) {
             setOrientation(window.orientation);
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight);
         });
 
         window.addEventListener('resize', function(event){
@@ -151,6 +141,8 @@ const Map = () => {
         return () => {
             window.removeEventListener("orientationchange", function(event) {
                 setOrientation(window.orientation);
+                setWidth(window.innerWidth);
+                setHeight(window.innerHeight);
             });
             window.removeEventListener('resize', function(event){
                 setWidth(window.innerWidth)
@@ -239,6 +231,7 @@ const Map = () => {
         setSubmittedRoom(false);
 
         if(schedule.length === 0){
+            console.log("getting schedule");
             const periodsLocal = JSON.parse(localStorage.getItem("periods"));
             await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
                 let resultArr = [];
@@ -259,31 +252,29 @@ const Map = () => {
                     }
                 }        
                 setSchedule(roomObjects);
-                // if(roomObjects.length === 0 && width < 768){
-                //     alert("No schedule found for today");
-                // }
+                
+                if(roomObjects.length === 0 && width <= 667){
+                    console.log('here')
+                    alert("No schedule found for today");
+                }
             });
         }
 
-        if(schedule.length === 0 && width <= 768){
-            alert("No schedule found for today");
+       
+        setShowPopups(!showPopups);
+        if (!scheduleDirectionToggle) {
+            setScheduleDirectionStyle({ color: "dodgerblue" });
+            setSubmittedSchedule(false);
+        }
+        else {
+            setScheduleDirectionStyle({ color: "#D7BE69" });
+            
+            setSubmittedSchedule(true);
         }
 
-        if(width > 768){
-            setShowPopups(!showPopups);
-            if (!scheduleDirectionToggle) {
-                setScheduleDirectionStyle({ color: "dodgerblue" });
-                setSubmittedSchedule(false);
-            }else {
-                setScheduleDirectionStyle({ color: "#D7BE69" });
-                
-                setSubmittedSchedule(true);
-            }
+        setSingleDirectionStyle({ color: "dodgerblue" });
 
-            setSingleDirectionStyle({ color: "dodgerblue" });
-
-            setScheduleDirectionToggle(!scheduleDirectionToggle);
-        }
+        setScheduleDirectionToggle(!scheduleDirectionToggle);
     };
 
     const Drawer = () => {
@@ -345,23 +336,14 @@ const Map = () => {
 
     return (
         <div className='flexbox mapPageContainer'>
-            {/* {orientation === 90 || window.orientation == 90?
-            
-            <div className="flexbox column center" style={{width: '100%', height: '100vh'}}>
-                <Alert variant="outlined"  severity="warning">Please Change Back to Portait Mode For The Map To Work!</Alert>
-            </div>
-             */}
             <ReactMapGL
                 {...viewPort}
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
             >
-                
                {height > 414 ? <Navbar /> : <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open = {showDrawer} anchor={'left'}
             onClose={() => setShowDrawer(false)} onOpen={() => setShowDrawer(true)}><Drawer /></SwipeableDrawer>}
-
-
 
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} ok = {submittedRoom}/>}
                 {submittedSchedule && <MarkerPointsSchedule schedule = {schedule} ok = {submittedSchedule} raw = {rawSchedule}/>}
@@ -406,24 +388,27 @@ const Map = () => {
                         </div>
                     }
 
-                    {!scheduleDirectionToggle && width > 768 &&
+                    {!scheduleDirectionToggle &&
                         <div className='flexbox column center controlContainer'>
+                            <div className = 'flexbox' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem'}} onClick = {()=>setScheduleDirectionToggle(true)}>
+                                <ImCross style = {{color: 'red'}}/>
+                            </div>
                             <h2>Daily Schedule Route</h2>
-                            <h3>Your Periods For Today!</h3>
-                            {
-                                schedule.length === 0 ?
-                                <div>
-                                    <Alert className = 'flexbox center' variant="outlined" severity="info" sx = {{width: "75%"}}>No School Today!</Alert>
-                                </div> : 
-                                
-                                schedule.map((room, index) => {
-                                return (
-                                    <li key={index}>
-                                        {room.properties.name}
-                                    </li>
-                                );
-                            })
-                            }
+                                <h3>Your Periods For Today!</h3>
+                                {
+                                    schedule.length === 0 ?
+                                    <div>
+                                        <Alert className = 'flexbox center' variant="outlined" severity="info" sx = {{width: "75%"}}>No School Today!</Alert>
+                                    </div> : 
+                                    
+                                    schedule.map((room, index) => {
+                                    return (
+                                        <li key={index}>
+                                            {room.properties.name}
+                                        </li>
+                                    );
+                                })
+                                }
                         </div>
                     }
 

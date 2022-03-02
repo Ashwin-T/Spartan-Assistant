@@ -105,9 +105,21 @@ nav svg:hover {
     transform: rotate(20deg);
 }
 nav svg {
-    transition: transform 0.25s;
+    transition: all 0.25s;
 }
 .dropdown {
     margin: 0 1.25vw;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    nav svg:hover {
+        transform: none;
+    }
+}
+
+@media only screen and (max-height: 414px) {
+    nav svg:hover {
+        transform: none;
+    }
 }
