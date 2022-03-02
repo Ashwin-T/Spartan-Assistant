@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project primarily uses React, Firebase, and Mapbox. View `package.json` for full list of dependences
+This project primarily uses React, Firebase, and Mapbox. View `package.json` for full list of dependences or here (https://github.com/Ashwin-T/Spartan-Assistant/network/dependencies)
 
 ## Requirements Prior to Development
 
