@@ -81,22 +81,11 @@
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [-122.06589049553006, 37.359239338991515]
-          },
-          "properties": {
-            "name" : "Bathroom",
-            "key" : "1"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
             "coordinates": [-122.06685382046727, 37.36108638255634]
           },
           "properties": {
             "name" : "Bathroom",
-            "key" : "2"
+            "key" : "1"
           }
         },
         {
@@ -107,7 +96,7 @@
           },
           "properties": {
             "name" : "Bathroom",
-            "key" : "3"
+            "key" : "2"
           }
         },
         {
@@ -118,7 +107,7 @@
           },
           "properties": {
             "name" : "Bathroom",
-            "key" : "4"
+            "key" : "3"
           }
         },
         {
@@ -129,40 +118,7 @@
           },
           "properties": {
             "name" : "Bathroom",
-            "key" : "5"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-122.06752028168577, 37.35963319576049]
-          },
-          "properties": {
-            "name" : "Office",
-            "key" : "1"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-122.06779441178931, 37.359619276628194]
-          },
-          "properties": {
-            "name" : "Library",
-            "key" : "1"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-122.06826919312533, 37.35946768243581]
-          },
-          "properties": {
-            "name" : "Packard Hall",
-            "key" : "1"
+            "key" : "4"
           }
         },
         {
@@ -172,8 +128,8 @@
             "coordinates": [-122.06646796141999, 37.35966817168853]
           },
           "properties": {
-            "name" : "Boys Locker Room",
-            "key" : "1"
+            "name" : "Bathroom",
+            "key" : "5"
           }
         },
         {
@@ -183,8 +139,8 @@
             "coordinates": [-122.06646796141999, 37.36025405369049]
           },
           "properties": {
-            "name" : "Girls Locker Room",
-            "key" : "1"
+            "name" : "Bathroom",
+            "key" : "6"
           }
         }
     ]

@@ -65,11 +65,11 @@ const MarkerPointsOneWay = ({ currentRoom, findingRoom, ok }) => {
                 </Marker>
 
                 <Popup longitude={currentRoom.geometry.coordinates[0]} latitude={currentRoom.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
-                    {currentRoom.properties.name}
+                    {currentRoom.properties.name.charAt(0).toUpperCase() + currentRoom.properties.name.slice(1)}
                 </Popup>
 
                 <Popup longitude={findingRoom.geometry.coordinates[0]} latitude={findingRoom.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
-                    {findingRoom.properties.name}
+                    {findingRoom.properties.name.charAt(0).toUpperCase() + findingRoom.properties.name.slice(1)}
                 </Popup>
             </>}
         </>

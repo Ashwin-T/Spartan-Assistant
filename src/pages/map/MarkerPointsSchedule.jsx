@@ -75,7 +75,7 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
                                         Period: {raw.filter(item => item.period === 1 || item.period === 2 || item.period === 3 || item.period === 4 || item.period === 5 || item.period === 6 || item.period === 7)[index].period}
                                     </div>
                                     <div>
-                                        {room.properties.name}
+                                        {room.properties.name.charAt(0).toUpperCase() + room.properties.name.slice(1)}
                                     </div>
                                 </div>
                             </Popup>

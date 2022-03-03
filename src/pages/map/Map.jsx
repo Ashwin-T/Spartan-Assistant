@@ -11,7 +11,7 @@ import { IoIosNavigate } from "react-icons/io";
 import {RiMenuLine, RiMenuUnfoldLine} from 'react-icons/ri';   
 import {GiVendingMachine} from 'react-icons/gi';
 import {VscSignOut} from 'react-icons/vsc';
-
+import{GrRestroom} from 'react-icons/gr';
 import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 
@@ -214,6 +214,7 @@ const Map = () => {
     const handleSingleDirection = () => {
         setScheduleDirectionToggle(true);
         setSubmittedSchedule(false);
+        setShowPopups(true);
         
         setScheduleDirectionStyle({ color: "dodgerblue" });
 
@@ -306,18 +307,15 @@ const Map = () => {
                 <ListItemText primary={'Settings'} />
               </ListItem>
 
-              
-
-
-                {localStorage.getItem("freshmen") === "true" && (
-                    <ListItem button onClick = {()=>window.open('https://mvhs-orientation.netlify.app/', "_blank")}>
-                        <ListItemIcon>
-                            <BsFillChatTextFill style={{ color: "green" }} size={30} />
-                        </ListItemIcon>
-                        <ListItemText primary={'Chat'} />
-                  </ListItem>
-                )}
-              
+            {localStorage.getItem("freshmen") === "true" && (
+                <ListItem button onClick = {()=>window.open('https://mvhs-orientation.netlify.app/', "_blank")}>
+                    <ListItemIcon>
+                        <BsFillChatTextFill style={{ color: "green" }} size={30} />
+                    </ListItemIcon>
+                    <ListItemText primary={'Chat'} />
+                </ListItem>
+            )}
+            
 
           </List>
           <Divider />
@@ -411,7 +409,7 @@ const Map = () => {
                                     schedule.map((room, index) => {
                                     return (
                                         <li key={index}>
-                                            {room.properties.name}
+                                            {room.properties.name.charAt(0).toUpperCase() + room.properties.name.slice(1)}
                                         </li>
                                     );
                                 })
@@ -466,13 +464,16 @@ const Map = () => {
                     {   showPopups && 
                         otherData.features.map((place, index) => {
                             if(place.properties.name === 'Vending Machine'){
-                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>
                             }
                             else if(place.properties.name === 'Parking Lot'){
-                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><FaParking size = {20}/></Popup>
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><FaParking size = {20}/></Popup>
                             }
                             else if(place.properties.name === 'Bike Rack'){
-                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
+                            }
+                            else if(place.properties.name === 'Bathroom'){
+                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GrRestroom size = {20}/></Popup>
                             }
                             return null;
                         })

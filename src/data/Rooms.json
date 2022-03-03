@@ -2004,17 +2004,94 @@
       }
      },
      {
-      "type":"Feature",
-      "geometry":{
-         "type":"Point",
-         "coordinates":[]
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.06752028168577, 37.35963319576049]
       },
-      "properties":{
-         "wing":"free",
-         "itemType":"room",
-         "name":"free",
-         "name2":"free"
+      "properties": {
+        "name" : "office",
+        "name2":"None"
       }
-     }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.06779441178931, 37.359619276628194]
+      },
+      "properties": {
+        "name" : "library",
+        "name2":"None"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.06826919312533, 37.35946768243581]
+      },
+      "properties": {
+        "name" : "packard hall",
+        "name2":"None"
+      }
+   },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.06615794135766, 37.36025700740493]
+      },
+      "properties": {
+        "name" : "weight room",
+        "name2":"None"
+      }
+   },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.0677170652133, 37.36002898315001]
+      },
+      "properties": {
+        "name" : "quad",
+        "name2":"None"
+      }
+   },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.0668244551934, 37.36058386662287]
+      },
+      "properties": {
+        "name" : "science quad",
+        "name2":"None"
+      }
+   },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.06688537075519, 37.35997772971069]
+      },
+      "properties": {
+        "name" : "gym",
+        "name2":"None"
+      }
+   },
+   {
+   "type":"Feature",
+   "geometry":{
+      "type":"Point",
+      "coordinates":[]
+   },
+   "properties":{
+      "wing":"free",
+      "itemType":"room",
+      "name":"free",
+      "name2":"free"
+   }
+   }
   ]
 }
