@@ -107,7 +107,7 @@ Each object inside the 'features' array should mimic this structure:
         "name":"101", //name of room
         "name2":"None" //if a room has a room directly above it place the room above in this space
     }
-    },
+},
 ```
 
 ### Other (Vending Machines, Parking, or Bike Racks)
