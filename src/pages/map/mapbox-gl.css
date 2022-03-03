@@ -1,1 +1,4 @@
-/* hi */
+.mapboxgl-popup-content{
+    padding: 7px;
+    border-radius: 7px;
+}

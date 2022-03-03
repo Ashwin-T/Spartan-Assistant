@@ -66,19 +66,22 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
                 <Source id='directionLayer' type='geojson' data={directions}>
                     <Layer type='line' source='my-data' paint={{ "line-color": 'green', "line-width": 5 }} />
                 </Source>}
-                {schedule.filter(room => room.properties.name !== 'free').map((room, index) => {
-                    return (
-                        <Popup key={index} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
-                            <div className="flexbox column center">
-                                <div>
-                                    Period: {raw.filter(item => item.period === 1 || item.period === 2 || item.period === 3 || item.period === 4 || item.period === 5 || item.period === 6 || item.period === 7)[index].period}
+                {schedule.map((room, index) => {
+                    if(room.properties.name !== 'free'){
+                        return (
+                            <Popup key={index} longitude={room.geometry.coordinates[0]} latitude={room.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'>
+                                <div className="flexbox column center">
+                                    <div>
+                                        Period: {raw.filter(item => item.period === 1 || item.period === 2 || item.period === 3 || item.period === 4 || item.period === 5 || item.period === 6 || item.period === 7)[index].period}
+                                    </div>
+                                    <div>
+                                        {room.properties.name}
+                                    </div>
                                 </div>
-                                <div>
-                                    {room.properties.name}
-                                </div>
-                            </div>
-                        </Popup>
-                    );
+                            </Popup>
+                        );
+                    }
+                    return <></>;
                 })}
             </>
             }

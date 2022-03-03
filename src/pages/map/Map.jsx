@@ -231,7 +231,6 @@ const Map = () => {
         setSubmittedRoom(false);
 
         if(schedule.length === 0){
-            console.log("getting schedule");
             const periodsLocal = JSON.parse(localStorage.getItem("periods"));
             await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
                 let resultArr = [];
@@ -253,10 +252,6 @@ const Map = () => {
                 }        
                 setSchedule(roomObjects);
                 
-                if(roomObjects.length === 0 && width <= 667){
-                    console.log('here')
-                    alert("No schedule found for today");
-                }
             });
         }
 
@@ -290,6 +285,13 @@ const Map = () => {
                 <ListItemText primary={'Home'} />
               </ListItem>
 
+              <ListItem button onClick = {()=> setShowDrawer(false)}>
+                <ListItemIcon>
+                    <FaDirections size = {30} style = {{color: 'dodgerblue' }}/>
+                </ListItemIcon>
+                <ListItemText primary={'Map'} />
+              </ListItem>
+
               <ListItem button onClick = {()=>navigate('/resources')}>
                 <ListItemIcon>
                     <BsFillPeopleFill style={{ color: "#D7BE69" }} size={30} />
@@ -303,6 +305,9 @@ const Map = () => {
                 </ListItemIcon>
                 <ListItemText primary={'Settings'} />
               </ListItem>
+
+              
+
 
                 {localStorage.getItem("freshmen") === "true" && (
                     <ListItem button onClick = {()=>window.open('https://mvhs-orientation.netlify.app/', "_blank")}>
@@ -370,9 +375,9 @@ const Map = () => {
                     {singleDirectionsToggle &&
                         <div className='controlContainer'>
                             <h3 className = {startingRoomStyle}>Starting Room: </h3>
-                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value)} />
+                            <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value.toLowerCase())} />
                             <h3 className = {endingRoomStyle}>Ending Room: </h3>
-                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value)} />
+                            <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value.toLowerCase())} />
                             
                             {error && 
                                 <div style = {{marginTop: '25px'}}>
@@ -459,17 +464,15 @@ const Map = () => {
                     {   showPopups && 
                         otherData.features.map((place, index) => {
                             if(place.properties.name === 'Vending Machine'){
-                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>
+                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><GiVendingMachine size = {20}/></Popup>
                             }
                             else if(place.properties.name === 'Parking Lot'){
-                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><FaParking size = {20}/></Popup>
+                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><FaParking size = {20}/></Popup>
                             }
                             else if(place.properties.name === 'Bike Rack'){
-                                return <Popup key={index} longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
+                                return <Popup key={index} className = 'otherData-popup' longitude={place.geometry.coordinates[0]} latitude={place.geometry.coordinates[1]} closeButton={false} closeOnClick={false} anchor='bottom'><MdDirectionsBike size = {20}/></Popup>
                             }
-                            else{
-                                return null;
-                            }
+                            return null;
                         })
                     }
                 </div>
