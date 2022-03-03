@@ -127,7 +127,7 @@ Each object inside the 'features' array should mimic this structure:
         "name" : "Bike Rack", //this can either be Bike Rack, Vending Machine, Parking Lot
         "key": "2" //option value to distinguish between objects 
     }
-    },
+   },
 ```
 
 ### Contruction
