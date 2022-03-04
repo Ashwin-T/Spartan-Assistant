@@ -322,7 +322,7 @@ const Map = () => {
           <List>
               <ListItem button onClick = {()=> getAuth().signOut()}>
                 <ListItemIcon>
-                    <VscSignOut style={{ color: "red" }} size={30} size = {30}/>
+                    <VscSignOut style={{ color: "red" }} size={30}/>
                 </ListItemIcon>
                 <ListItemText primary={'Sign Out'} />
               </ListItem>
@@ -344,7 +344,6 @@ const Map = () => {
                 mapStyle='mapbox://styles/ashwintalwalkar/ckuea6z3l17fq18nv6aobff7n'
                 mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
-
             >
                {height > 414 ? <Navbar /> : <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open = {showDrawer} anchor={'left'}
             onClose={() => setShowDrawer(false)} onOpen={() => setShowDrawer(true)}><Drawer /></SwipeableDrawer>}
