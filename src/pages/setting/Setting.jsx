@@ -12,7 +12,7 @@ import * as gradData from "../../data/GraduationData.json";
 
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
-const Settings = ({ init }) => {
+const Settings = ({ init, setDontRedirect  }) => {
     //settings have preview of graduation year, and schecule of rooms
 
     const navigate = useNavigate();
@@ -103,8 +103,9 @@ const Settings = ({ init }) => {
         setError(false);
         navigate("/");
         setLoading(false);
+        
         if (init) {
-            window.location.reload();
+            setDontRedirect(true)
         }
     };
 

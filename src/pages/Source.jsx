@@ -68,7 +68,7 @@ const Source = () => {
                                 loading ? (
                                     <Loading />
                                 ) : (
-                                    <Setting init={true} />
+                                    <Setting init={true} setDontRedirect = {setDontRedirect}/>
                                 )
                             ) : (
                                 <>
