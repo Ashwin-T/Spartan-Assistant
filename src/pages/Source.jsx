@@ -10,12 +10,12 @@ import Setting from "./setting/Setting";
 import Resources from "./resources/Resources";
 import NotFound from "./notFound/NotFound";
 
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+// import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
 
 import { Route, Routes } from "react-router-dom";
 
-const db = getFirestore();
+// const db = getFirestore();
 const auth = getAuth();
 
 const Source = () => {
@@ -29,16 +29,13 @@ const Source = () => {
             if (auth.currentUser == null) {
                 return;
             }
-            const docRef = doc(db, "users", auth.currentUser.uid);
-            const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                localStorage.setItem("periods", JSON.stringify([...docSnap.data().periods]));
-                setDontRedirect(true);
-            } else {
-                // doc.data() will be undefined in this case
+            if (localStorage.getItem("gradYear") == null && localStorage.getItem("periods") == null) {
                 localStorage.setItem("hasAdded", "false");
                 setDontRedirect(false);
+            }
+            else{
+                setDontRedirect(true);
             }
             setLoading(false);
         };
@@ -68,7 +65,7 @@ const Source = () => {
                                 loading ? (
                                     <Loading />
                                 ) : (
-                                    <Setting init={true} />
+                                    <Setting init={true} setDontRedirect = {setDontRedirect}/>
                                 )
                             ) : (
                                 <>

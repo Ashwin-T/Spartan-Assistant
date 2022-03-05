@@ -12,7 +12,7 @@ import * as gradData from "../../data/GraduationData.json";
 
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
-const Settings = ({ init }) => {
+const Settings = ({ init, setDontRedirect }) => {
     //settings have preview of graduation year, and schecule of rooms
 
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Settings = ({ init }) => {
     const [title, setTitle] = useState("Settings");
     const styleName = init ? "init" : "";
 
-    const db = getFirestore();
+    // const db = getFirestore();
 
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -59,29 +59,43 @@ const Settings = ({ init }) => {
         }
 
         const getData = async () => {
-            const docRef = doc(db, "users", getAuth().currentUser.uid);
-            const docSnap = await getDoc(docRef);
+            // const docRef = doc(db, "users", getAuth().currentUser.uid);
+            // const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                setGradYear(docSnap.data().gradYear);
-                setPeriodOne(docSnap.data().periods[0]);
-                setPeriodTwo(docSnap.data().periods[1]);
-                setPeriodThree(docSnap.data().periods[2]);
-                setPeriodFour(docSnap.data().periods[3]);
-                setPeriodFive(docSnap.data().periods[4]);
-                setPeriodSix(docSnap.data().periods[5]);
-                setPeriodSeven(docSnap.data().periods[6]);
+            // if (docSnap.exists()) {
+            //     setGradYear(docSnap.data().gradYear);
+            //     setPeriodOne(docSnap.data().periods[0]);
+            //     setPeriodTwo(docSnap.data().periods[1]);
+            //     setPeriodThree(docSnap.data().periods[2]);
+            //     setPeriodFour(docSnap.data().periods[3]);
+            //     setPeriodFive(docSnap.data().periods[4]);
+            //     setPeriodSix(docSnap.data().periods[5]);
+            //     setPeriodSeven(docSnap.data().periods[6]);
 
-                localStorage.setItem("periods", JSON.stringify(docSnap.data().periods));
-            } else {
-                // doc.data() will be undefined in this case
+            //     localStorage.setItem("periods", JSON.stringify(docSnap.data().periods));
+
+            // } else {
+            //     // doc.data() will be undefined in this case
+            // }
+
+            if(localStorage.getItem("periods") !== null && localStorage.getItem("gradYear") !== null) {
+                setGradYear(localStorage.getItem("gradYear"));
+                const localPeriods = JSON.parse(localStorage.getItem("periods"));
+                setPeriodOne(localPeriods[0]);
+                setPeriodTwo(localPeriods[1]);
+                setPeriodThree(localPeriods[2]);
+                setPeriodFour(localPeriods[3]);
+                setPeriodFive(localPeriods[4]);
+                setPeriodSix(localPeriods[5]);
+                setPeriodSeven(localPeriods[6]);
             }
+ 
             setLoading(false);
         };
         
         getData();
 
-    }, [init, db]);
+    }, [init]);
 
     const handleRoomCheck = (roomNumber) => {
         return roomData.features.some((room) => room.properties.name === roomNumber || room.properties.name2 === roomNumber);
@@ -90,21 +104,23 @@ const Settings = ({ init }) => {
     const submit = async () => {
         setLoading(true);
         const periods = [periodOne, periodTwo, periodThree, periodFour, periodFive, periodSix, periodSeven];
-        await setDoc(doc(db, "users", getAuth().currentUser.uid), {
-            name: getAuth().currentUser.displayName,
-            periods: periods,
-            gradYear: "" + Math.floor(gradYear),
-        });
+        // await setDoc(doc(db, "users", getAuth().currentUser.uid), {
+        //     name: getAuth().currentUser.displayName,
+        //     periods: periods,
+        //     gradYear: "" + Math.floor(gradYear),
+        // });
+        const isFreshmen = gradYear === gradData.freshmanGraduationYear ? true : false;
         localStorage.setItem("allow", "true");
         localStorage.setItem("periods", JSON.stringify([...periods]));
+        localStorage.setItem("gradYear", "" + Math.floor(gradYear));
 
-        const isFreshmen = gradYear === gradData.freshmanGraduationYear ? true : false;
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
         navigate("/");
         setLoading(false);
-        if (init) {
-            window.location.reload();
+
+        if (init){
+            setDontRedirect(true);
         }
     };
 

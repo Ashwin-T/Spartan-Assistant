@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAuth } from "@firebase/auth";
 import { MdQuestionAnswer, MdSettings } from "react-icons/md";
 import { FaHandsHelping } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import { useLayoutEffect, useState } from "react";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+// import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 import Popover from "@mui/material/Popover";
 
@@ -21,20 +21,31 @@ const Navbar = () => {
 
     useLayoutEffect(() => {
         const getData = async () => {
-            const docRef = doc(getFirestore(), "users", auth.currentUser.uid);
-            const docSnap = await getDoc(docRef);
+            // const docRef = doc(getFirestore(), "users", auth.currentUser.uid);
+            // const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                if (docSnap.data().gradYear === gradData.freshmanGraduationYear) {
-                    setFreshmen(true);
-                    localStorage.setItem("freshmen", "true");
-                } else {
-                    setFreshmen(false);
-                    localStorage.setItem("freshmen", "false");
-                }
-            } else {
-                // doc.data() will be undefined in this case
+            // if (docSnap.exists()) {
+            //     if (docSnap.data().gradYear === gradData.freshmanGraduationYear) {
+            //         setFreshmen(true);
+            //         localStorage.setItem("freshmen", "true");
+            //     } else {
+            //         setFreshmen(false);
+            //         localStorage.setItem("freshmen", "false");
+            //     }
+            // } else {
+            //     // doc.data() will be undefined in this case
+            // }
+
+            if(gradData.freshmanGraduationYear === localStorage.getItem("gradYear")) {
+                localStorage.setItem("freshmen", "true");
+                setFreshmen(true);
             }
+            else{
+                setFreshmen(false);
+            }
+            
+
+
         };
 
         getData();
