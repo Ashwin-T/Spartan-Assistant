@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import Login from "./pages/login/Login";
 import Loading from "./components/loading/Loading";
-import Source from "./pages/Source";
+import AppRoutes from "./pages/Routes";
 import {app} from "./tools/Firebase";
 import { motion } from "framer-motion/dist/framer-motion";
 
@@ -52,7 +52,7 @@ const App = () => {
               />
             </div> 
     
-            : user ? <Source/> : <Login />: <h1>Idk Man Something Broke Try Refreshing</h1> : <Loading />}
+            : user ? <AppRoutes/> : <Login />: <p>I'll be honest, something broke and I can't tell what. Try Refreshing hopefull that will work</p> : <Loading />}
         </>
       );
     };

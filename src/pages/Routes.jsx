@@ -18,7 +18,7 @@ import { Route, Routes } from "react-router-dom";
 const db = getFirestore();
 const auth = getAuth();
 
-const Source = () => {
+const AppRoutes = () => {
     const [dontRedirect, setDontRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -114,4 +114,4 @@ const Source = () => {
     );
 };
 
-export default Source;
+export default AppRoutes;
