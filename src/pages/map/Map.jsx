@@ -466,7 +466,7 @@ const Map = () => {
                     <>
                         <BottomSheet 
                             open={true}
-                            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 1.5, minHeight] 
+                            snapPoints={({ minHeight }) => [minHeight] 
                             }
                             blocking={false}
                         >
