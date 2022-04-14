@@ -47,6 +47,7 @@ const AppRoutes = () => {
         
     }, []);
 
+
     return (
         <>
             <Routes>
@@ -79,7 +80,11 @@ const AppRoutes = () => {
                         </>
                     }
                 />
-                <Route exact path='/map' element={<Map />} />
+                <Route exact path='/map' element={
+                    <>
+                        <Map />
+                    </>
+                } />
                 <Route
                     exact
                     path='/staticmap'

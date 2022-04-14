@@ -21,7 +21,6 @@ import Alert from '@mui/material/Alert';
 import moment from "moment";
 
 import Navbar from "../../components/navbar/Navbar";
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MarkerPointsOneWay from "./MarkerPointsOneWay";
 import MarkerPointsSchedule from "./MarkerPointsSchedule";
 import Construction from "./Construction";
@@ -39,9 +38,11 @@ import { mapboxToken } from "../../tools/Secrets";
 import "./map.css";
 import './mapbox-gl.css';
 
-//changing the map location by re-orient
+import { BottomSheet } from 'react-spring-bottom-sheet'
+import 'react-spring-bottom-sheet/dist/style.css'
 
 
+//NOTE: PLEASE BE CAREFULE WITH THE PAGE! IT HAS BEEN CREATED WITH A LOT OF WORK AND TIME. PLEASE STUDY IT CAREFULLY BEFORE MAKING ANY CHANGES!
 const Map = () => {
     // latitude: 37.360257078662605
     // longitude: -122.06716285921868,
@@ -78,7 +79,6 @@ const Map = () => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-
     const [startingRoomStyle, setStartingRoomStyle] = useState("");
     const [endingRoomStyle, setEndingRoomStyle] = useState("");
 
@@ -98,9 +98,9 @@ const Map = () => {
 
     const calculateZoom = () => {
         //this sets the zoom of the map so it looks ok on mobile and computer
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 ) {
             // 768 is the borderish from phone to computer
-            return 17;
+            return 16.25;
         }
         return 17;
     };
@@ -151,6 +151,7 @@ const Map = () => {
         }
 
     }, [zoomX, lon, width, height, orientation, window.innerWidth, window.innerHeight, window.orientation]); // the useEffect will run on start-up and add data to the viewport object
+
 
     const formChange1 = (room) => {
         setSubmittedRoom(false);
@@ -210,7 +211,6 @@ const Map = () => {
         });
     };
 
-
     const handleSingleDirection = () => {
         setScheduleDirectionToggle(true);
         setSubmittedSchedule(false);
@@ -233,7 +233,7 @@ const Map = () => {
 
         if(schedule.length === 0){
             const periodsLocal = JSON.parse(localStorage.getItem("periods"));
-            await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
+            await getPeriodsOnDay(new Date("4/18/2022")).then((result) => {
                 let resultArr = [];
                 let roomObjects = [];
 
@@ -345,9 +345,9 @@ const Map = () => {
                 mapboxApiAccessToken={mapboxToken}
                 onViewportChange={(viewPort) => setViewPort(viewPort)}
             >
-               {height > 414 ? <Navbar /> : <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open = {showDrawer} anchor={'left'}
+                
+            {height > 414 ? <Navbar /> : <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open = {showDrawer} anchor={'left'}
             onClose={() => setShowDrawer(false)} onOpen={() => setShowDrawer(true)}><Drawer /></SwipeableDrawer>}
-
                 {submittedRoom && <MarkerPointsOneWay currentRoom={currentRoom} findingRoom={findingRoom} ok = {submittedRoom}/>}
                 {submittedSchedule && <MarkerPointsSchedule schedule = {schedule} ok = {submittedSchedule} raw = {rawSchedule}/>}
 
@@ -370,7 +370,7 @@ const Map = () => {
                        </Source>
                 }
                 <div className='flexbox space-between'>
-                    {singleDirectionsToggle &&
+                    {singleDirectionsToggle && width >= 768 &&
                         <div className='controlContainer'>
                             <h3 className = {startingRoomStyle}>Starting Room: </h3>
                             <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value.toLowerCase())} />
@@ -391,10 +391,12 @@ const Map = () => {
                         </div>
                     }
 
-                    {!scheduleDirectionToggle &&
+                    {!scheduleDirectionToggle && width >= 768 &&
+
                         <div className='flexbox column center controlContainer'>
                             <div className = 'flexbox' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem'}} onClick = {()=>setScheduleDirectionToggle(true)}>
                                 <ImCross style = {{color: 'red'}}/>
+                                <span style = {{marginLeft: "5px"}}>Hide</span>
                             </div>
                             <h2>Daily Schedule Route</h2>
                                 <h3>Your Periods For Today!</h3>
@@ -415,13 +417,17 @@ const Map = () => {
                         </div>
                     }
 
-                    <div className='mapControls'>
-                        {height <= 414 &&
-                            <div className='flexbox center column'>
-                                <button className='controlButton' onClick = {()=> setShowDrawer(true)}>
-                                    <RiMenuLine size={40}/>
-                                </button>
-                        </div>}
+                    {
+                        width >= 768 ?
+
+                        <div className='mapControls'>
+                            {width <= 414 && 
+                                <div className='flexbox center column'>
+                                    <button className='controlButton' onClick = {()=> setShowDrawer(true)}>
+                                        <RiMenuLine size={40}/>
+                                    </button>
+                                </div>
+                            }
 
                         <div className='flexbox center column'>
                             <button
@@ -457,6 +463,108 @@ const Map = () => {
                             </button>
                         </div>
                     </div>
+                    :
+                    <>
+                        <BottomSheet 
+                            open={true}
+                            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 1.5, minHeight] 
+                            }
+                            blocking={false}
+                        >
+
+                            <div className="mapControls-mobile flexbox column center">
+                                <div className="map-control-buttons flexbox space-between">
+                                    <div className="control-button flexbox column center">
+                                        <button
+                                            onClick={() => {
+                                                setViewPort({
+                                                    latitude: 37.360205578662605,
+                                                    longitude: lon,
+                                                    zoom: zoomX,
+                                                    width: "100vw",
+                                                    height: "100vh",
+                                                    bearing: 90,
+                                                });
+                                            }}
+                                            className='controlButton'>
+                                            <IoIosNavigate size={40} />
+                                        </button>
+                                        <p>Re-Center</p>
+                                    </div>
+                                    <div className="control-button flexbox column center">
+                                        <button className='controlButton' onClick={handleSingleDirection}>
+                                            <FaDirections size={40} style={singleDirectionStyle} />
+                                        </button>
+                                        <p>Navigate</p>
+                                    </div>
+                                    <div className="control-button flexbox column center">
+                                        <button className='controlButton' onClick={handleScheduleDirections}>
+                                            <FaRoute size={40} style={scheduleDirectionStyle} />
+                                        </button>
+                                        <p>Daily Schedule</p>
+                                    </div>
+                                    <div className="control-button flexbox column center">
+                                        <button className='controlButton' onClick={()=>navigate('/staticmap')}>
+                                            <MdMap size={40}/>
+                                        </button>
+                                        <p>Static Map</p>
+                                    </div>
+                                </div>
+                                {
+                                    singleDirectionsToggle && 
+                                    <div className='controlContainer'>
+                                        <h3 className = {startingRoomStyle}>Starting Room: </h3>
+                                        <input ref={inputCurrentRoom} value={restRoom} type='text' className='findRoom' placeholder='806' onChange={(e) => formChange1(e.target.value.toLowerCase())} />
+                                        <h3 className = {endingRoomStyle}>Ending Room: </h3>
+                                        <input ref={inputFindingRoom} value={findRoom} type='text' className='findRoom' placeholder='607' onChange={(e) => formChange2(e.target.value.toLowerCase())} />
+                                        
+                                        {error && 
+                                            <div style = {{marginTop: '25px'}}>
+                                                <Alert variant="outlined"  severity="error" sx = {{width: '175px'}}>{errorMessage}</Alert>
+                                            </div>
+                                        }
+                                        <br />
+                                        <div>
+                                            <button className='go' onClick={handleMap}>
+                                                Navigate
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                                {
+                                    !scheduleDirectionToggle &&
+                                    <div className='flexbox column center controlContainer'>
+                                        <div className = 'flexbox center' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem'}} onClick = {()=>setScheduleDirectionToggle(true)}>
+                                            <ImCross style = {{color: 'red'}}/>
+                                            <span style = {{marginLeft: "5px"}}>Hide</span>
+                                        </div>
+                                        <h2>Daily Schedule Route</h2>
+                                        <h3>Your Periods For Today!</h3>
+                                        {
+                                            schedule.length === 0 ?
+                                            <div>
+                                                <Alert className = 'flexbox center' variant="outlined" severity="info" sx = {{width: "75%"}}>No School Today!</Alert>
+                                            </div> : 
+                                            
+                                            schedule.map((room, index) => {
+                                            return (
+                                                <li key={index}>
+                                                    {room.properties.name.charAt(0).toUpperCase() + room.properties.name.slice(1)}
+                                                </li>
+                                            );
+                                        })
+                                        }
+                                    </div>
+                                }
+                                {
+                                    !scheduleDirectionToggle || singleDirectionsToggle &&  
+                                    <span style={{marginBotton: "1vh"}} />
+                                }   
+                            </div>
+                            
+                        </BottomSheet>
+                    </>
+                    }
 
                     <Construction />
                     {   showPopups && 
