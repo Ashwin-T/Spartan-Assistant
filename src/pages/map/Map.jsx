@@ -32,6 +32,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import {getAuth} from 'firebase/auth';
 
 import { mapboxToken } from "../../tools/Secrets";
@@ -228,47 +229,48 @@ const Map = () => {
     };
 
     const handleScheduleDirections = async() => {
-        setSingleDirectionsToggle(false);
-        setSubmittedRoom(false);
+        if(scheduleDirectionToggle){ //this is false lol sorry poor control flow and convention
+            setSingleDirectionsToggle(false);
+            setSubmittedRoom(false);
 
-        if(schedule.length === 0){
-            const periodsLocal = JSON.parse(localStorage.getItem("periods"));
-            await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
-                let resultArr = [];
-                let roomObjects = [];
+            if(schedule.length === 0){
+                const periodsLocal = JSON.parse(localStorage.getItem("periods"));
+                await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
+                    let resultArr = [];
+                    let roomObjects = [];
 
-                setRawSchedule(result);
-                for (let i = 0; i < result.length; i++) {
-                    resultArr.push(periodsLocal[result[i].period - 1]);
-                }
-
-                for (let i = 0; i < resultArr.length; i++) {
-                    if (resultArr[i] !== undefined) {
-                        roomData.features.forEach((room) => {
-                            if (room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]) {
-                                roomObjects.push(room);
-                            }
-                        });
+                    setRawSchedule(result);
+                    for (let i = 0; i < result.length; i++) {
+                        resultArr.push(periodsLocal[result[i].period - 1]);
                     }
-                }        
-                setSchedule(roomObjects);
-                
-            });
+
+                    for (let i = 0; i < resultArr.length; i++) {
+                        if (resultArr[i] !== undefined) {
+                            roomData.features.forEach((room) => {
+                                if (room.properties.name === resultArr[i] || room.properties.name2 === resultArr[i]) {
+                                    roomObjects.push(room);
+                                }
+                            });
+                        }
+                    }        
+                    setSchedule(roomObjects);
+                    
+                });
+            }
+
+        
+            setShowPopups(!showPopups);
+            setSingleDirectionStyle({ color: "dodgerblue" });
         }
 
-       
-        setShowPopups(!showPopups);
         if (!scheduleDirectionToggle) {
             setScheduleDirectionStyle({ color: "dodgerblue" });
             setSubmittedSchedule(false);
         }
         else {
             setScheduleDirectionStyle({ color: "#D7BE69" });
-            
             setSubmittedSchedule(true);
         }
-
-        setSingleDirectionStyle({ color: "dodgerblue" });
 
         setScheduleDirectionToggle(!scheduleDirectionToggle);
     };
@@ -420,7 +422,7 @@ const Map = () => {
                         width >= 768 ?
 
                         <div className='mapControls'>
-                            {width <= 414 && 
+                            {height <= 414 && 
                                 <div className='flexbox center column'>
                                     <button className='controlButton' onClick = {()=> setShowDrawer(true)}>
                                         <RiMenuLine size={40}/>
@@ -488,7 +490,7 @@ const Map = () => {
                                             className='controlButton'>
                                             <IoIosNavigate size={40} />
                                         </button>
-                                        <p>Re-Center</p>
+                                        <p>Center</p>
                                     </div>
                                     <div className="control-button flexbox column center">
                                         <button className='controlButton' onClick={handleSingleDirection}>
