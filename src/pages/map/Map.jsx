@@ -233,7 +233,7 @@ const Map = () => {
 
         if(schedule.length === 0){
             const periodsLocal = JSON.parse(localStorage.getItem("periods"));
-            await getPeriodsOnDay(new Date("4/18/2022")).then((result) => {
+            await getPeriodsOnDay(new Date(moment().format('L'))).then((result) => {
                 let resultArr = [];
                 let roomObjects = [];
 
@@ -396,7 +396,6 @@ const Map = () => {
                         <div className='flexbox column center controlContainer'>
                             <div className = 'flexbox' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem'}} onClick = {()=>setScheduleDirectionToggle(true)}>
                                 <ImCross style = {{color: 'red'}}/>
-                                <span style = {{marginLeft: "5px"}}>Hide</span>
                             </div>
                             <h2>Daily Schedule Route</h2>
                                 <h3>Your Periods For Today!</h3>
