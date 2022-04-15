@@ -22,14 +22,13 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [linkStyle, setLinkStyle] = useState();
 
-    const [hasAdded, setHasAdded] = useState(false);
+    const [hasAdded, setHasAdded] = useState(localStorage.getItem("hasAdded") === "true");
 
     const [funWord, setFunWord] = useState("great");
 
     useEffect(() => {
         setLoading(true);
         const getData = async () => {
-            setHasAdded(localStorage.getItem("hasAdded") === "true");
             if (window.innerWidth > 786) {
                 setLinkStyle("wrap");
             } else {

@@ -12,8 +12,11 @@ import * as gradData from "../../data/GraduationData.json";
 
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
+import AddToMobile from "../../components/addToMobile/AddToMobile";
+
 const Settings = ({ init, setDontRedirect  }) => {
     //settings have preview of graduation year, and schecule of rooms
+    const [hasAdded, setHasAdded] = useState(localStorage.getItem("hasAdded") === "true");
 
     const navigate = useNavigate();
 
@@ -256,6 +259,12 @@ const Settings = ({ init, setDontRedirect  }) => {
                         Submit
                     </button>
                 </div>
+
+                {!hasAdded && !init && window.innerWidth <= 786 &&
+                    <div style = {{width: '100%'}} className="flexbox column center">
+                        <AddToMobile setFunction = {setHasAdded} />
+                    </div>
+                }
             </>
             : <Loading  />}
         </>
