@@ -5,10 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import AddToMobile from "../../components/addToMobile/AddToMobile";
-import {useState} from 'react';
 const Resources = () => {
-
-    const [hasAdded, setHasAdded] = useState(localStorage.getItem("hasAdded") === "true");
 
     const links = [
         {
@@ -91,9 +88,9 @@ const Resources = () => {
                         })}
                     </div>
                 </div>
-                {!hasAdded && window.innerWidth <= 786 &&
+                {window.innerWidth <= 786 &&
                     <div style = {{width: '100%'}} className="flexbox column center">
-                        <AddToMobile setFunction = {setHasAdded} />
+                        <AddToMobile />
                     </div>
                 }
             </div>

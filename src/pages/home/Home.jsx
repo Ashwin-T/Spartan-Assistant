@@ -22,8 +22,6 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [linkStyle, setLinkStyle] = useState();
 
-    const [hasAdded, setHasAdded] = useState(localStorage.getItem("hasAdded") === "true");
-
     const [funWord, setFunWord] = useState("great");
 
     useEffect(() => {
@@ -91,9 +89,9 @@ const Home = () => {
                                 )}
                             </div>
                         </div>
-                        {!hasAdded && window.innerWidth <= 786 &&
+                        {window.innerWidth <= 786 &&
                             <div style = {{width: '100%'}} className="flexbox column center">
-                                <AddToMobile setFunction = {setHasAdded} />
+                                <AddToMobile />
                             </div>
                         }
                          

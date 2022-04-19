@@ -47,7 +47,6 @@ const AppRoutes = () => {
         
     }, []);
 
-
     return (
         <>
             <Routes>
