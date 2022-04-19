@@ -4,22 +4,22 @@ import {BsThreeDotsVertical} from 'react-icons/bs';
 import {ImCross} from 'react-icons/im';
 import {motion} from 'framer-motion';
 import './addToMobile.css';
+import {useState} from 'react';
 const AddToMobile = () => {
 
     const userAgent = window.navigator.userAgent
-
+    const [hasAdded, setHasAdded] = useState(!isRunningStandalone());
     const isAndroid = userAgent.indexOf('Android') > -1;
     const isIOS = userAgent.indexOf('iPhone') > -1;
 
-    // const handleAllowClick = () => {
-    //     localStorage.setItem("hasAdded", "true");
-    //     setFunction(true)
-    // }
+    const handleAllowClick = () => {
+        hasAdded = false;
+    }
 
     function isRunningStandalone() {
         return (window.matchMedia('(display-mode: standalone)').matches);
     }
-    const hasAdded = !isRunningStandalone();
+
 
     const variants = {
         initial : {
@@ -44,7 +44,7 @@ const AddToMobile = () => {
                 exit="initial"
             >
                 <div className="flexbox cancel-icon">
-                    <ImCross size = {20} onClick={() => setFunction(true)}/>
+                    <ImCross size = {20} onClick={()=>setHasAdded(false)}/>
                 </div>
                 <div className='flexbox column center'>
                     <img src = 'images/logoNav.png' alt = 'mobile logo'/>
