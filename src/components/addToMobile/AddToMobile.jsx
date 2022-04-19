@@ -4,17 +4,22 @@ import {BsThreeDotsVertical} from 'react-icons/bs';
 import {ImCross} from 'react-icons/im';
 import {motion} from 'framer-motion';
 import './addToMobile.css';
-const AddToMobile = ({setFunction}) => {
+const AddToMobile = () => {
 
     const userAgent = window.navigator.userAgent
 
     const isAndroid = userAgent.indexOf('Android') > -1;
     const isIOS = userAgent.indexOf('iPhone') > -1;
 
-    const handleAllowClick = () => {
-        localStorage.setItem("hasAdded", "true");
-        setFunction(true)
+    // const handleAllowClick = () => {
+    //     localStorage.setItem("hasAdded", "true");
+    //     setFunction(true)
+    // }
+
+    function isRunningStandalone() {
+        return (window.matchMedia('(display-mode: standalone)').matches);
     }
+    const hasAdded = !isRunningStandalone();
 
     const variants = {
         initial : {
@@ -32,7 +37,7 @@ const AddToMobile = ({setFunction}) => {
     }
     return ( 
         <>
-            <motion.div className="add-to-mobile"
+            {hasAdded && <motion.div className="add-to-mobile"
                 variants={variants}
                 initial="initial"
                 animate="final"
@@ -59,9 +64,8 @@ const AddToMobile = ({setFunction}) => {
                     <p>
                         and then press <span style = {{fontWeight: 'bold'}}>Add to Home Screen</span>
                     </p>
-                    <button onClick = {handleAllowClick} className="add-to-mobile-button">I added it!</button>
                 </div>
-            </motion.div >
+            </motion.div >}
         </> 
     );
 }

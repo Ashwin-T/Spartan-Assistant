@@ -16,7 +16,6 @@ import AddToMobile from "../../components/addToMobile/AddToMobile";
 
 const Settings = ({ init, setDontRedirect  }) => {
     //settings have preview of graduation year, and schecule of rooms
-    const [hasAdded, setHasAdded] = useState(localStorage.getItem("hasAdded") === "true");
 
     const navigate = useNavigate();
 
@@ -260,9 +259,9 @@ const Settings = ({ init, setDontRedirect  }) => {
                     </button>
                 </div>
 
-                {!hasAdded && !init && window.innerWidth <= 786 &&
+                {!init && window.innerWidth <= 786 &&
                     <div style = {{width: '100%'}} className="flexbox column center">
-                        <AddToMobile setFunction = {setHasAdded} />
+                        <AddToMobile />
                     </div>
                 }
             </>
