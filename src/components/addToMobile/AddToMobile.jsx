@@ -13,7 +13,7 @@ const AddToMobile = () => {
     const isIOS = userAgent.indexOf('iPhone') > -1;
 
     const handleAllowClick = () => {
-        hasAdded = false;
+        setHasAdded(false);
     }
 
     function isRunningStandalone() {
@@ -44,7 +44,7 @@ const AddToMobile = () => {
                 exit="initial"
             >
                 <div className="flexbox cancel-icon">
-                    <ImCross size = {20} onClick={()=>setHasAdded(false)}/>
+                    <ImCross size = {20} onClick={handleAllowClick}/>
                 </div>
                 <div className='flexbox column center'>
                     <img src = 'images/logoNav.png' alt = 'mobile logo'/>
