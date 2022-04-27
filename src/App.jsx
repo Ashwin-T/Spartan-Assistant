@@ -14,11 +14,12 @@ const App = () => {
     const [allow, setAllow] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem("allow") === "true") {
+        if (localStorage.getItem("showReloadIcon") === "true") {
             setAllow(true);
         } else {
             const timeout = setTimeout(() => {
                 setAllow(true);
+                localStorage.setItem("showReloadIcon", "true");
             }, 3000);
 
             return () => {

@@ -5,6 +5,7 @@ import {ImCross} from 'react-icons/im';
 import {motion} from 'framer-motion';
 import './addToMobile.css';
 import {useState} from 'react';
+
 const AddToMobile = () => {
 
     const userAgent = window.navigator.userAgent
@@ -37,7 +38,7 @@ const AddToMobile = () => {
     }
     return ( 
         <>
-            {hasAdded && <motion.div className="add-to-mobile"
+            {hasAdded ? <motion.div className="add-to-mobile"
                 variants={variants}
                 initial="initial"
                 animate="final"
@@ -65,7 +66,12 @@ const AddToMobile = () => {
                         and then press <span style = {{fontWeight: 'bold'}}>Add to Home Screen</span>
                     </p>
                 </div>
-            </motion.div >}
+            </motion.div >
+            : 
+                <>
+
+                </>
+            }
         </> 
     );
 }

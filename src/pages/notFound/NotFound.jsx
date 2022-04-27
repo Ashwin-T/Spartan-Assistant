@@ -7,7 +7,7 @@ const NotFound = () => {
         <>
             <div className="notFound">
                 <div className='title'>
-                    <img src = 'images/logoNav.png' alt = 'logo'/>
+                    {/* <img src = 'images/logoNav.png' alt = 'logo'/> */}
                     <h1>404</h1>
                 </div>
                 <div className='words'>

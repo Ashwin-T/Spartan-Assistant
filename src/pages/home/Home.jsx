@@ -1,6 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "@firebase/auth";
-import {app} from "../../tools/Firebase";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import Loading from "../../components/loading/Loading";
@@ -14,7 +13,7 @@ import AddToMobile from "../../components/addToMobile/AddToMobile";
 import * as FunWordsJSON from "../../data/FunWords.json";
 
 const Home = () => {
-    const auth = getAuth(app);
+    const auth = getAuth();
     const [user] = useAuthState(auth);
 
     const [today, setToday] = useState(moment().format("dddd") + " " + moment().format("MMM Do"));

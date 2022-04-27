@@ -3,7 +3,6 @@ import ReactMapGL, { Source, Layer, Popup } from "react-map-gl";
 //eslint-disable-next-line
 import mapboxgl from 'mapbox-gl';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
-
 import { FaRoute, FaDirections, FaParking, FaHome } from "react-icons/fa";
 import {MdMap, MdDirectionsBike} from 'react-icons/md';
 import {ImCross} from 'react-icons/im';
@@ -459,7 +458,7 @@ const Map = () => {
                             </button>
                         </div>
                         <div className="flexbox center column">
-                            <button className='controlButton' onClick={()=>navigate('/staticmap')}>
+                            <button className='controlButton' onClick={()=>navigate('/static-map')}>
                                 <MdMap size={40}/>
                             </button>
                         </div>
@@ -505,7 +504,7 @@ const Map = () => {
                                         <p>Daily Schedule</p>
                                     </div>
                                     <div className="control-button flexbox column center">
-                                        <button className='controlButton' onClick={()=>navigate('/staticmap')}>
+                                        <button className='controlButton' onClick={()=>navigate('/static-map')}>
                                             <MdMap size={40}/>
                                         </button>
                                         <p>Static Map</p>
