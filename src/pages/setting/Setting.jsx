@@ -209,7 +209,7 @@ const Settings = ({ init, setDontRedirect  }) => {
                         <div>
                             <div className='promptPeriod column'>
                                 <h2>Enter in Your Rooms</h2>
-                                <p>(portables or free is accepable)</p>
+                                <p>(portables or free is acceptable)</p>
                             </div>
                             <div className='periodContainers'>
                                 <h2 className = {periodOneStyle}>Period 1</h2>

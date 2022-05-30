@@ -227,7 +227,7 @@ const Map = () => {
         }
     };
 
-    const handleScheduleDirections = async() => {
+    const handleScheduleDirections = async () => {
         if(scheduleDirectionToggle){ //this is false lol sorry poor control flow and convention
             setSingleDirectionsToggle(false);
             setSubmittedRoom(false);
