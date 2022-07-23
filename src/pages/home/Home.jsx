@@ -8,7 +8,6 @@ import { FaDirections } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { BsFillPeopleFill, BsFillChatTextFill} from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
-import AddToMobile from "../../components/addToMobile/AddToMobile";
 
 import * as FunWordsJSON from "../../data/FunWords.json";
 
@@ -87,13 +86,7 @@ const Home = () => {
                                     </a>
                                 )}
                             </div>
-                        </div>
-                        {window.innerWidth <= 786 &&
-                            <div style = {{width: '100%'}} className="flexbox column center">
-                                <AddToMobile />
-                            </div>
-                        }
-                         
+                        </div>                 
                     </div>
             ) : (
                 <Loading />

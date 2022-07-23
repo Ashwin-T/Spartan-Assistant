@@ -534,8 +534,7 @@ const Map = () => {
                                 {
                                     !scheduleDirectionToggle &&
                                     <div className='flexbox column center controlContainer'>
-                                        <div className = 'flexbox center' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem'}} onClick = {()=>setScheduleDirectionToggle(true)}>
-                                            <ImCross style = {{color: 'red'}}/>
+                                        <div className = 'flexbox center' style = {{justifyContent: 'flex-start', marginBottom: '0.5rem', color: 'grey'}} onClick = {()=>setScheduleDirectionToggle(true)}>
                                             <span style = {{marginLeft: "5px"}}>Hide</span>
                                         </div>
                                         <h2>Daily Schedule Route</h2>
@@ -561,7 +560,7 @@ const Map = () => {
                                     <span style={{marginBotton: "1vh"}} />
                                 }   
                             </div>
-                            
+                            <br />
                         </BottomSheet>
                     </>
                     }

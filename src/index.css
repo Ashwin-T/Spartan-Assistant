@@ -16,6 +16,8 @@ html {
     --rsbs-ml: env(safe-area-inset-left);
     --rsbs-mr: env(safe-area-inset-right);
     --rsbs-overlay-rounded: 16px;
+    --snackbar-bg: #0ca1b4;
+    --snackbar-color: #fff;
 }
 
 ::-webkit-scrollbar {
@@ -37,6 +39,29 @@ html {
 
 .errorUnderline{
     border-bottom: 3px solid red !important;
+}
+
+.main-resources-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.right-triangle-title {
+    width: 0;
+    height: 0;
+    border-right: 4rem solid transparent;
+    border-top: 8rem solid var(--alternate-color-transparent);
+    margin-left: 0px;
+    margin-right: 0px;
+    z-index: -1;
+}
+
+.main-resources {
+    padding: 0.5rem;
+    margin: 0px;
+    font-size: 4.5rem;
+    background-image: linear-gradient(to right, var(--background-color) 0%, var(--alternate-color-transparent) 50%);
 }
 
 .colorRed{
@@ -122,4 +147,7 @@ a {
     /* .container {
         width: 85vw !important;
     } */
+    .right-triangle-title {
+        display: none;
+    }
 }

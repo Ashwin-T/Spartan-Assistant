@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { FaGraduationCap } from "react-icons/fa";
 import { doc, getFirestore, setDoc, getDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+// import {motion} from "framer-motion";
 import Alert from "@mui/material/Alert";
 
 import "./setting.css";
@@ -12,12 +12,11 @@ import * as gradData from "../../data/GraduationData.json";
 
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
-import AddToMobile from "../../components/addToMobile/AddToMobile";
 
 const Settings = ({ init, setDontRedirect  }) => {
     //settings have preview of graduation year, and schecule of rooms
 
-    const navigate = useNavigate();
+    // const [showSuccess, setShowSuccess] = useState(false);
 
     const [gradYear, setGradYear] = useState("");
 
@@ -49,6 +48,9 @@ const Settings = ({ init, setDontRedirect  }) => {
 
     const [loading, setLoading] = useState(true);
 
+    const [studentID, setStudentID] = useState("");
+    const [studentIDStyle, setStudentIDStyle] = useState("");
+
     const handleError = (message) => {
         setError(true);
         setErrorMessage(message);
@@ -66,6 +68,7 @@ const Settings = ({ init, setDontRedirect  }) => {
 
             if (docSnap.exists()) {
                 setGradYear(docSnap.data().gradYear);
+                setStudentID(docSnap.data().studentID);
                 setPeriodOne(docSnap.data().periods[0]);
                 setPeriodTwo(docSnap.data().periods[1]);
                 setPeriodThree(docSnap.data().periods[2]);
@@ -96,6 +99,7 @@ const Settings = ({ init, setDontRedirect  }) => {
             name: getAuth().currentUser.displayName,
             periods: periods,
             gradYear: "" + Math.floor(gradYear),
+            studentID: studentID,
         });
         localStorage.setItem("allow", "true");
         localStorage.setItem("periods", JSON.stringify([...periods]));
@@ -103,7 +107,7 @@ const Settings = ({ init, setDontRedirect  }) => {
         const isFreshmen = gradYear === gradData.freshmanGraduationYear ? true : false;
         localStorage.setItem("freshmen", isFreshmen);
         setError(false);
-        navigate("/");
+        // navigate("/");
         setLoading(false);
         
         if (init) {
@@ -121,6 +125,7 @@ const Settings = ({ init, setDontRedirect  }) => {
         setPeriodSixStyle("");
         setPeriodSevenStyle("");
         setGradYearStyle("");
+        setStudentIDStyle("");
 
         if (periodOne === "" || periodTwo === "" || periodThree === "" || periodFour === "" || periodFive === "" || periodSix === "" || periodSeven === "") {
             handleError("Please fill out all periods");
@@ -147,6 +152,9 @@ const Settings = ({ init, setDontRedirect  }) => {
             }
             if(gradYear === ""){
                 setGradYearStyle("errorUnderline");
+            }
+            if(studentID === "" || studentID.length !== 9 || !studentID.includes("1000")){
+                setStudentIDStyle("errorUnderline");
             }
             return;
         }
@@ -203,6 +211,10 @@ const Settings = ({ init, setDontRedirect  }) => {
                                 What Year Do You Graduate <FaGraduationCap size={40} />?
                             </h2>
                             <input type='number' placeholder='2022' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
+                            <h2 className= {studentIDStyle}>
+                                What is your student ID number?
+                            </h2>
+                            <input type='text' placeholder='1000XXXXX' value={studentID} onChange={(e) => setStudentID(e.target.value)} />
                         </div>
                     </div>
                     <div className='schedule-container'>
@@ -252,18 +264,13 @@ const Settings = ({ init, setDontRedirect  }) => {
                         </Alert>
                     </div>
                 }
+
                 <br />
                 <div className='flexbox column center'>
                     <button className='submit-button' onClick={changePage}>
                         Submit
                     </button>
                 </div>
-
-                {!init && window.innerWidth <= 786 &&
-                    <div style = {{width: '100%'}} className="flexbox column center">
-                        <AddToMobile />
-                    </div>
-                }
             </>
             : <Loading  />}
         </>

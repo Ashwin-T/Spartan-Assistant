@@ -4,7 +4,6 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { AiOutlineArrowDown } from "react-icons/ai";
-import AddToMobile from "../../components/addToMobile/AddToMobile";
 const Resources = () => {
 
     const links = [
@@ -88,11 +87,6 @@ const Resources = () => {
                         })}
                     </div>
                 </div>
-                {window.innerWidth <= 786 &&
-                    <div style = {{width: '100%'}} className="flexbox column center">
-                        <AddToMobile />
-                    </div>
-                }
             </div>
         </>
     );

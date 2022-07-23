@@ -4,15 +4,16 @@ import { useState, useEffect, Suspense } from "react";
 import Navbar from "../components/navbar/Navbar";
 import Loading from "../components/loading/Loading";
 import Home from "./home/Home";
-import {app} from "../tools/Firebase";
+import AddToMobile from "../components/addToMobile/AddToMobile";
 
-import Map from "./map/Map"; //too slow without
+import {app} from "../tools/Firebase";
 
 const StaticMap = React.lazy(() => import("./map/StaticMap"));
 const Setting = React.lazy(() => import("./setting/Setting"));
 const Resources = React.lazy(() => import("./resources/Resources"));
 const NotFound = React.lazy(() => import( "./notFound/NotFound"));
 const Version = React.lazy(() => import("./version/Version"));
+const Map = React.lazy(() => import("./map/Map"));
 
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
@@ -26,6 +27,12 @@ const AppRoutes = () => {
     const [dontRedirect, setDontRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    function isRunningStandalone() {
+        return (window.matchMedia('(display-mode: standalone)').matches);
+    }
+
+    const [hasAdded, setHasAdded] = useState(!isRunningStandalone());
+    
     useEffect(() => {
         setLoading(true);
 
@@ -38,6 +45,7 @@ const AppRoutes = () => {
 
             if (docSnap.exists()) {
                 localStorage.setItem("periods", JSON.stringify([...docSnap.data().periods]));
+                
                 setDontRedirect(true);
             } else {
                 // doc.data() will be undefined in this case
@@ -132,6 +140,9 @@ const AppRoutes = () => {
                 </Routes>
 
             </Suspense>
+
+            <AddToMobile hasAdded = {hasAdded} setHasAdded = {setHasAdded} />
+
         </>
     );
 };
