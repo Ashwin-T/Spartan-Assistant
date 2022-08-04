@@ -67,15 +67,15 @@ const Settings = ({ init, setDontRedirect  }) => {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                setGradYear(docSnap.data().gradYear);
-                setStudentID(docSnap.data().studentID);
-                setPeriodOne(docSnap.data().periods[0]);
-                setPeriodTwo(docSnap.data().periods[1]);
-                setPeriodThree(docSnap.data().periods[2]);
-                setPeriodFour(docSnap.data().periods[3]);
-                setPeriodFive(docSnap.data().periods[4]);
-                setPeriodSix(docSnap.data().periods[5]);
-                setPeriodSeven(docSnap.data().periods[6]);
+                setGradYear(docSnap.data()?.gradYear);
+                setStudentID(docSnap.data()?.studentID);
+                setPeriodOne(docSnap.data()?.periods[0]);
+                setPeriodTwo(docSnap.data()?.periods[1]);
+                setPeriodThree(docSnap.data()?.periods[2]);
+                setPeriodFour(docSnap.data()?.periods[3]);
+                setPeriodFive(docSnap.data()?.periods[4]);
+                setPeriodSix(docSnap.data()?.periods[5]);
+                setPeriodSeven(docSnap.data()?.periods[6]);
 
                 localStorage.setItem("periods", JSON.stringify(docSnap.data().periods));
             } else {
@@ -185,9 +185,11 @@ const Settings = ({ init, setDontRedirect  }) => {
             return;
         }
         if (gradYear === '' || gradYear > gradData.freshmanGraduationYear || gradYear < gradData.currentGraduationYear) {
-            handleError("Please enter a valid graduation year");
-            setGradYearStyle("errorUnderline");
-            return;
+            if(gradYear !== "2022"){
+                handleError("Please enter a valid graduation year");
+                setGradYearStyle("errorUnderline");
+                return;
+            }
         }
         submit();
     };

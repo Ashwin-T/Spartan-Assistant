@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-src/tools/Secrets.jsx
+# src/tools/Secrets.jsx
 
 # testing
 /coverage
