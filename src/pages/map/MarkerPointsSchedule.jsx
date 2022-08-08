@@ -14,8 +14,8 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
         
         setLoading(true);
         const getDirections = async () => {
-            const filteredSchedule = schedule.filter(item => item.properties.name !== 'free');
-
+            if(schedule.length > 0){
+                const filteredSchedule = schedule.filter(item => item.properties.name !== 'free');
             let dataString = 'https://api.mapbox.com/directions/v5/mapbox/walking/';
 
             for(let i = 0; i < filteredSchedule.length; i++){
@@ -43,7 +43,10 @@ const MarkerPointsScheduleWay = ({schedule, ok , raw}) => {
             await setDirections(directionsObj);
 
             setLoading(false);
-
+            }
+            else{
+                setLoading(false);
+            }
         }
 
         if(!ok){

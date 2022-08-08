@@ -1,6 +1,5 @@
 
 import { Source, Layer } from "react-map-gl";
-
 const constructionCoords = [
    [ 
         [

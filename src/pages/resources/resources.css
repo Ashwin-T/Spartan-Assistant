@@ -35,11 +35,11 @@
 }
 .faq-container > h3 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 .faq-container > h5 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 .faq-container > h6 {
     font-size: 1.2rem;

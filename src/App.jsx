@@ -53,7 +53,7 @@ const App = () => {
               />
             </div> 
     
-            : user ? <AppRoutes/> : <Login />: <p>I'll be honest, something broke and I can't tell what. Try Refreshing hopefull that will work</p> : <Loading />}
+            : user ? <AppRoutes/> : <Login />: <p>I'll be honest, something broke and we can't tell what. Try a hard refresh; hopefull that will work</p> : <Loading />}
         </>
       );
     };
