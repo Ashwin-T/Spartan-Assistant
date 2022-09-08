@@ -7,7 +7,8 @@ This project primarily uses React, Firebase, and Mapbox. View `package.json` for
 ## Requirements Prior to Development
 
 1. Have Node.js installed on local machine
-2. Run `git pull` and `npm install` to work with the newest version and download all dependences on local machine
+2. Gain access to Firebase project via contact with Ashwin Talwalkar (preferably via email: atalwalkar719@gmail.com)
+3. Run `git pull` and `npm install` to work with the newest version and download all dependences on local machine
 
 ## Available Scripts
 
