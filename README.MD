@@ -7,8 +7,7 @@ This project primarily uses React, Firebase, and Mapbox. View `package.json` for
 ## Requirements Prior to Development
 
 1. Have Node.js installed on local machine
-2. Add a file with a name of Secrets.jsx inside the `src\tools` directory. The contents of this file shall be provided on request
-3. Run `git pull` and `npm install` to work with the newest version and download all dependences on local machine
+2. Run `git pull` and `npm install` to work with the newest version and download all dependences on local machine
 
 ## Available Scripts
 
@@ -60,7 +59,7 @@ The object inside the file contains this shape:
 ```
 {
     "currentGraduationYear": "2022", //Senior graduating year of current school year
-    "freshmanGraduationYear": "2025" //Freshment graduating year of current school year
+    "freshmanGraduationYear": "2026" //Freshment graduating year of current school year
 }
 ```
 
