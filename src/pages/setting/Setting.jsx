@@ -203,8 +203,8 @@ const Settings = ({ init, setDontRedirect  }) => {
 
                 <div className={"setting-container " + styleName}>
                     <div className='year-container'>
-                        <div className='main-resources-container' style={{ marginLeft: 2 + "rem" }}>
-                            <h1 className='main-resources'>{title}</h1>
+                        <div className='main-resources-container' style = {title !== "Settings" ? {marginTop: 1.5 + "rem" , marginLeft: 2 + "rem" } : { marginLeft: 2 + "rem" }}>
+                            <h1 className='main-resources' >{title}</h1>
                             <div className='right-triangle-title'></div>
                         </div>
 
@@ -212,7 +212,7 @@ const Settings = ({ init, setDontRedirect  }) => {
                             <h2 className= {gradYearStyle}>
                                 What Year Do You Graduate <FaGraduationCap size={40} />?
                             </h2>
-                            <input type='number' placeholder='2022' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
+                            <input type='number' placeholder='202X' value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
                             <h2 className= {studentIDStyle}>
                                 What is your student ID number?
                             </h2>
